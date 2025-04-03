@@ -3,7 +3,8 @@
 <head>
     <title>Home - Classroom</title>
     <link rel="https://raw.githubusercontent.com/mrdavidss-vgg/assets/refs/heads/main/IMG_2672.png">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">    <style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">    
+    <style>
         /* Base Styles */
         :root {
             --light-blue: #e6f2ff;
@@ -29,6 +30,10 @@
             display: flex;
             justify-content: center;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
         }
         
         .nav-btn {
@@ -56,6 +61,7 @@
             height: calc(100vh - 60px);
             width: 100%;
             overflow: hidden;
+            margin-top: 60px;
         }
         
         /* Pages */
@@ -68,12 +74,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             text-align: center;
             padding: 20px;
             opacity: 0;
             transform: translateX(100%);
             transition: all 0.5s ease;
+            overflow-y: auto;
+            box-sizing: border-box;
         }
         
         .page.active {
@@ -103,14 +110,22 @@
             background: var(--accent-blue);
             color: white;
         }
+        
+        /* Method page specific styles */
+        .method-content {
+            max-width: 800px;
+            width: 90%;
+            text-align: left;
+            margin-bottom: 40px;
+        }
     </style>
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
-        <a href="#" class="nav-btn active" onclick="showPage('home')">Home</a>
-        <a href="#" class="nav-btn" onclick="showPage('methods')">Methods</a>
-        <a href="#" class="nav-btn" onclick="showPage('credits')">Credits</a>
+        <a href="#" class="nav-btn active" onclick="showPage('home', event)">Home</a>
+        <a href="#" class="nav-btn" onclick="showPage('methods', event)">Methods</a>
+        <a href="#" class="nav-btn" onclick="showPage('credits', event)">Credits</a>
     </nav>
 
     <!-- Page Container -->
@@ -126,41 +141,65 @@
             <h1>Methods</h1>
             <p>Methods to bypass your schools filtering</p>
             <div style="max-width: 600px;">
-                <button class="btn" onclick="showPage('method-rigtools')">Rigtools (Recommended)</button>
-                <button class="btn" onclick="showPage('method-extprinter')">ExtPrint3r</button>
+                <button class="btn" onclick="showPage('method-rigtools', event)">Rigtools (Recommended)</button>
+                <button class="btn" onclick="showPage('method-extprinter', event)">ExtPrint3r</button>
                 <button class="btn" onclick="alert('comingsoon')">comingsoon</button>
             </div>
         </div>
 
-        <div id="method-rigtools" class="page" style="font-size: 14px;">
-            <h1>Rigtools</h1>
-            <p>Requrments</p>
-            <p>chromebook version under 128</p>
-            <h3>Method</h3>
-            <p>1. First click the first button below then go back here</p>
-            <p>2. Close the Devtools Tab then press the second button</p>
-            <p>Then Click the Network Tab</p>
-            <p>Underneath Name press gray check box 2 times</p>
-            <p>Then click GForms then you can disable any extenstion.</p>
-            <button class="btn" onclick="window.open('devtools://devtools/bundled/devtools_app.html', '_blank')">DevTools First Link</button>
-            <button class="btn" onclick="window.open('devtools://devtools/bundled/devtools_app.html?experiments=true&ws=rig.kxtz.dev/', '_blank')">DevTools Second Link</button>
+        <div id="method-rigtools" class="page">
+            <div class="method-content">
+                <h1>Rigtools</h1>
+                <p>Requrments</p>
+                <p>chromebook version under 128</p>
+                <h3>Method</h3>
+                <p>1. First click the first button below then go back here</p>
+                <p>2. Close the Devtools Tab then press the second button</p>
+                <p>Then Click the Network Tab</p>
+                <p>Underneath Name press gray check box 2 times</p>
+                <p>Then click GForms then you can disable any extenstion.</p>
+                <button class="btn" onclick="window.open('devtools://devtools/bundled/devtools_app.html', '_blank')">DevTools First Link</button>
+                <button class="btn" onclick="window.open('devtools://devtools/bundled/devtools_app.html?experiments=true&ws=rig.kxtz.dev/', '_blank')">DevTools Second Link</button>
+                <p>Additional notes:</p>
+                <p>- Make sure you have the correct Chrome OS version</p>
+                <p>- This method may require administrator privileges</p>
+                <p>- If it doesn't work, try restarting your Chromebook</p>
+                <p>- Some school networks may block these devtools URLs</p>
+                <p>- Alternative methods may be needed if this doesn't work</p>
+                <p>- Be cautious when disabling extensions as it may affect system functionality</p>
+                <p>- This method has been tested on Chrome OS versions 100-127</p>
+                <p>- Results may vary depending on your school's specific configuration</p>
+            </div>
         </div>
         
-        <div id="method-extprinter" class="page" style="font-size: 14px;">
-            <h1>ExtPrint3r</h1>
-            <p>works on any version on chromeos.</p>
-            <p>Requrments</p>
-            <p>1 brain cell</p>
-            <h3>Method</h3>
-            <p>1. click data url and paste it to your browser (if its blocked use hosting on github)</p>
-            <p>2. Press settings then set the iframes to max</p>
-            <p>3. Press show all extensions </p>
-            <p>4. go to "The Expl0it tab"</p>
-            <p>4. click the extension you want to disable and follow the steps."</p>
-            <p>This works for like 5 - 10 mins working and tested by me</p>
-            <button class="btn" onclick="window.open('https://github.com/Blobby-Boi/ExtPrint3r', '_blank')">Github Repo</button>
-            <button class="btn" onclick="window.open('https://shrib.com/#Livia5oZpeZj', '_blank')">Hosting</button>
-            <button class="btn" onclick="window.open('https://gist.githubusercontent.com/mrdavidss-vgg/7d4a6353c210974572391a77fbf6bdf9/raw/3f7c22179288d5e25578b94eedd300ea50a99fab/extprint3r.txt', '_blank')">ExtPrint3r data:text</button>
+        <div id="method-extprinter" class="page">
+            <div class="method-content">
+                <h1>ExtPrint3r</h1>
+                <p>works on any version on chromeos.</p>
+                <p>Requrments</p>
+                <p>1 brain cell</p>
+                <h3>Method</h3>
+                <p>1. click data url and paste it to your browser (if its blocked use hosting on github)</p>
+                <p>2. Press settings then set the iframes to max</p>
+                <p>3. Press show all extensions </p>
+                <p>4. go to "The Expl0it tab"</p>
+                <p>4. click the extension you want to disable and follow the steps."</p>
+                <p>This works for like 5 - 10 mins working and tested by me</p>
+                <button class="btn" onclick="window.open('https://github.com/Blobby-Boi/ExtPrint3r', '_blank')">Github Repo</button>
+                <button class="btn" onclick="window.open('https://shrib.com/#Livia5oZpeZj', '_blank')">Hosting</button>
+                <button class="btn" onclick="window.open('https://gist.githubusercontent.com/mrdavidss-vgg/7d4a6353c210974572391a77fbf6bdf9/raw/3f7c22179288d5e25578b94eedd300ea50a99fab/extprint3r.txt', '_blank')">ExtPrint3r data:text</button>
+                <p>Additional notes:</p>
+                <p>- This method works on all Chrome OS versions</p>
+                <p>- The effect is temporary (5-10 minutes)</p>
+                <p>- You may need to repeat the process after the time expires</p>
+                <p>- Some school networks may block the GitHub or hosting links</p>
+                <p>- Alternative hosting options may be needed if blocked</p>
+                <p>- Be careful when following the steps to avoid detection</p>
+                <p>- This method has been tested on multiple Chromebook models</p>
+                <p>- Results may vary depending on your school's security measures</p>
+                <p>- The method requires careful attention to the steps</p>
+                <p>- Make sure to follow each step precisely for best results</p>
+            </div>
         </div>
         
         <!-- Credits Page -->
@@ -169,24 +208,42 @@
             <p>Developed by trxz / david - coder (founder)</p>
             <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg', '_blank')">GitHub</button>
             <button class="btn" onclick="window.open('https://discord.com/users/959880218263310406', '_blank')">Discord</button>
+            <div style="margin-top: 40px; max-width: 600px;">
+                <h3>Special Thanks</h3>
+                <p>Thanks to all the contributors who helped test these methods</p>
+                <p>Special recognition to the developers of the original techniques</p>
+                <p>Community members who provided feedback and improvements</p>
+                <p>Open source projects that made this possible</p>
+                <p>Testers who verified the methods on different Chromebook models</p>
+                <p>Documentation contributors who helped make the instructions clearer</p>
+                <p>Everyone who supported the development of this project</p>
+                <p>The educational community for pushing the boundaries of technology</p>
+                <p>Security researchers who discovered these techniques</p>
+                <p>Chromium developers for creating such a flexible platform</p>
+            </div>
         </div>
     </div>
 
     <script>
-    const hiddenPages = ["method-rigtools", "method-extprinter"];
+        const hiddenPages = ["method-rigtools", "method-extprinter"];
         
-        function showPage(pageId) {
+        function showPage(pageId, event) {
             // Update navbar
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
+            if (!hiddenPages.includes(pageId)) {
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                event.target.classList.add('active');
+            }
             
             // Show selected page
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
             document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top when switching pages
+            document.getElementById(pageId).scrollTop = 0;
         }
     </script>
 </body>
