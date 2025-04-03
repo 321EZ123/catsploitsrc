@@ -118,31 +118,43 @@
         <!-- Home Page -->
         <div id="home" class="page active">
             <h1>Catsploit V1</h1>
-            <p>Last Updated: 3/25/25</p>
             <p>Methods for school extensions deletion</p>
-            <button class="btn" onclick="window.open('https://raw.githubusercontent.com/mrdavidss-vgg/Dinosploit/refs/heads/main/dinosploit.js', '_blank')">Download</button>
         </div>
 
         <!-- Methods Page -->
         <div id="methods" class="page">
             <h1>Methods</h1>
+            <p>Methods to bypass your schools filtering</p>
             <div style="max-width: 600px;">
-                <button class="btn" onclick="alert('Method 1 executed')">Basic Removal</button>
-                <button class="btn" onclick="alert('Method 2 executed')">Advanced Tools</button>
-                <button class="btn" onclick="alert('Method 3 executed')">Registry Editor</button>
+                <button class="btn" onclick="showPage('method-rigtools')">Rigtools (Recommended)</button>
+                <button class="btn" onclick="showPage('method-extprinter')">ExtPrint3r</button>
+                <button class="btn" onclick="alert('comingsoon')">comingsoon</button>
             </div>
         </div>
 
+        <div id="method-rigtools" class="page">
+            <h1>Rigtools</h1>
+            <p>Requrments</p>
+            <p>chromebook version under 128</p>
+            <p> </p>
+            <p>First go to devtools://devtools/bundled/devtools_app.html for 7 seconds</p>
+            <p>Then go to devtools://devtools/bundled/devtools_app.html?experiments=true&ws=rig.kxtz.dev/ after that press Network</p>
+            <p>Underneath Name press gray check box 2 times</p>
+            <p>Then click GForms then you can disable any extenstion.</p>
+        </div>
+        
         <!-- Credits Page -->
         <div id="credits" class="page">
             <h1>Credits</h1>
-            <p>Developed by mrdavidss-vgg</p>
+            <p>Developed by trxz / david - coder (founder)</p>
             <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg', '_blank')">GitHub</button>
+            <button class="btn" onclick="window.open('https://discord.com/users/959880218263310406', '_blank')">Discord</button>
         </div>
     </div>
 
     <script>
-        // Page Navigation
+    const hiddenPages = ["method-rigtools", "method-extprinter"]; // Fixed the syntax error here
+        
         function showPage(pageId) {
             // Update navbar
             document.querySelectorAll('.nav-btn').forEach(btn => {
