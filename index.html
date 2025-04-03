@@ -117,6 +117,89 @@
             text-align: left;
             margin-bottom: 40px;
         }
+        
+        /* Games Page Styles */
+        .games-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1000px;
+            margin-top: 20px;
+        }
+        
+        .game-card {
+            width: 200px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .game-image {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            background-color: #f0f0f0;
+        }
+        
+        .game-title {
+            padding: 10px;
+            font-weight: 600;
+        }
+        
+        .search-container {
+            margin: 20px 0;
+            width: 80%;
+            max-width: 500px;
+        }
+        
+        #gameSearch {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid var(--accent-blue);
+            border-radius: 25px;
+            font-family: Poppins;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        /* Fullscreen Game Styles */
+        #fullscreen-game {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            z-index: 1000;
+            display: none;
+        }
+        
+        #game-embed {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Fullscreen message */
+        .fullscreen-message {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            z-index: 1001;
+            opacity: 0.7;
+        }
     </style>
 </head>
 <body>
@@ -187,30 +270,105 @@
             </div>
         </div>
         
-        <!-- Credits Page -->
+        <!-- Games Page -->
         <div id="games" class="page">
-           <div style="max-width: 600px;">
             <h1>Games</h1>
-            <p>Games Tab. If a game is down please message me on dscord,</p>
-            <button class="btn" onclick="alert('Placeholder Game')">Placeholder</button>
-            <button class="btn" onclick="alert('Placeholder Game')">Placeholder</button>
-            <button class="btn" onclick="alert('Placeholder Game')">Placeholder</button>
+            <p>Games Tab. If a game is down please message me on discord.</p>
+            
+            <div class="search-container">
+                <input type="text" id="gameSearch" placeholder="Search games..." oninput="filterGames()">
+            </div>
+            
+            <div class="games-container" id="gamesGrid">
+                <!-- Game cards will be added dynamically by JavaScript -->
+            </div>
+        </div>
+        
+        <div id="credits" class="page">
+            <div style="max-width: 600px;">
+                <h1>Credits</h1>
+                <p>Developed by David - coder (founder)</p>
+                <p>Krypton - Inspired by concept of the 404 page.</p>
+                <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg', '_blank')">My GitHub</button>
+                <button class="btn" onclick="window.open('https://github.com/EvanTeSecond/Krypton', '_blank')">Krypton Repo</button>
+                <button class="btn" onclick="window.open('https://discord.com/users/959880218263310406', '_blank')">My Discord</button>
+            </div>
         </div>
     </div>
     
-        <div id="credits" class="page">
-            <div style="max-width: 600px;">
-            <h1>Credits</h1>
-            <p>Developed by David - coder (founder)</p>
-            <p>Krypton - Inspired by concept of the 404 page.</p>
-            <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg', '_blank')">My GitHub</button>
-            <button class="btn" onclick="window.open('https://github.com/EvanTeSecond/Krypton', '_blank')">Krypton Repo</button>
-            <button class="btn" onclick="window.open('https://discord.com/users/959880218263310406', '_blank')">My Discord</button>
-        </div>
+    <!-- Fullscreen Game Container -->
+    <div id="fullscreen-game">
+        <embed id="game-embed" type="text/html">
+        <div class="fullscreen-message">Press ESC to exit fullscreen</div>
     </div>
 
     <script>
         const hiddenPages = ["method-rigtools", "method-extprinter"];
+        
+        // Game data - you can add more games here
+        const games = [
+            {
+                id: "game1",
+                title: "Gunspin",
+                image: "https://static.cdnvia.com/pics/games/200/1-2534-gunspin.jpg",
+                url: "https://ubg44.github.io/GunSpin/"
+            },
+            {
+                id: "game2",
+                title: "Placeholder Game 2",
+                image: "https://via.placeholder.com/300x200?text=Game+2",
+                url: "https://example.com/game2"
+            },
+            {
+                id: "game3",
+                title: "Placeholder Game 3",
+                image: "https://via.placeholder.com/300x200?text=Game+3",
+                url: "https://example.com/game3"
+            },
+            {
+                id: "game4",
+                title: "Adventure Game",
+                image: "https://via.placeholder.com/300x200?text=Adventure",
+                url: "https://example.com/adventure"
+            },
+            {
+                id: "game5",
+                title: "Puzzle Challenge",
+                image: "https://via.placeholder.com/300x200?text=Puzzle",
+                url: "https://example.com/puzzle"
+            },
+            {
+                id: "game6",
+                title: "Racing Game",
+                image: "https://via.placeholder.com/300x200?text=Racing",
+                url: "https://example.com/racing"
+            }
+        ];
+        
+        // Initialize the games grid when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const gamesGrid = document.getElementById('gamesGrid');
+            
+            games.forEach(game => {
+                const gameCard = document.createElement('div');
+                gameCard.className = 'game-card';
+                gameCard.innerHTML = `
+                    <img src="${game.image}" alt="${game.title}" class="game-image">
+                    <div class="game-title">${game.title}</div>
+                `;
+                gameCard.onclick = function() {
+                    openGameInFullscreen(game.url);
+                };
+                gamesGrid.appendChild(gameCard);
+            });
+            
+            // Add ESC key listener to exit fullscreen
+            document.addEventListener('keydown', function(e) {
+                if (e.key === "Escape") {
+                    closeFullscreen();
+                }
+            });
+        });
         
         function showPage(pageId, event) {
             // Update navbar
@@ -218,7 +376,9 @@
                 document.querySelectorAll('.nav-btn').forEach(btn => {
                     btn.classList.remove('active');
                 });
-                event.target.classList.add('active');
+                if (event && event.target) {
+                    event.target.classList.add('active');
+                }
             }
             
             // Show selected page
@@ -229,6 +389,70 @@
             
             // Scroll to top when switching pages
             document.getElementById(pageId).scrollTop = 0;
+        }
+        
+        function filterGames() {
+            const searchTerm = document.getElementById('gameSearch').value.toLowerCase();
+            const gameCards = document.querySelectorAll('.game-card');
+            
+            gameCards.forEach(card => {
+                const title = card.querySelector('.game-title').textContent.toLowerCase();
+                if (title.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        function openGameInFullscreen(url) {
+            const fullscreen = document.getElementById('fullscreen-game');
+            const embed = document.getElementById('game-embed');
+            
+            // Set the game URL
+            embed.src = url;
+            
+            // Show the fullscreen container
+            fullscreen.style.display = 'block';
+            
+            // Hide the page container
+            document.querySelector('.page-container').style.display = 'none';
+            
+            // Hide the navbar
+            document.querySelector('.navbar').style.display = 'none';
+            
+            // Attempt to enter fullscreen mode
+            if (fullscreen.requestFullscreen) {
+                fullscreen.requestFullscreen();
+            } else if (fullscreen.webkitRequestFullscreen) {
+                fullscreen.webkitRequestFullscreen();
+            } else if (fullscreen.msRequestFullscreen) {
+                fullscreen.msRequestFullscreen();
+            }
+        }
+        
+        function closeFullscreen() {
+            const fullscreen = document.getElementById('fullscreen-game');
+            const embed = document.getElementById('game-embed');
+            
+            // Exit fullscreen mode
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+            
+            // Reset the embed
+            embed.src = 'about:blank';
+            
+            // Hide the fullscreen container
+            fullscreen.style.display = 'none';
+            
+            // Show the page container and navbar
+            document.querySelector('.page-container').style.display = 'block';
+            document.querySelector('.navbar').style.display = 'flex';
         }
     </script>
 </body>
