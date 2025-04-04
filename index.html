@@ -200,6 +200,29 @@
             z-index: 1001;
             opacity: 0.7;
         }
+        
+        /* Exit button */
+        .exit-game-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 1002;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .exit-game-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
     </style>
 </head>
 <body>
@@ -298,8 +321,9 @@
     
     <!-- Fullscreen Game Container -->
     <div id="fullscreen-game">
+        <button class="exit-game-btn" onclick="closeFullscreen()">×</button>
         <embed id="game-embed" type="text/html">
-        <div class="fullscreen-message">Press ESC to exit fullscreen</div>
+        <div class="fullscreen-message">Press ESC or click the X button to exit</div>
     </div>
 
     <script>
@@ -315,34 +339,28 @@
             },
             {
                 id: "game2",
-                title: "Placeholder Game 2",
-                image: "https://via.placeholder.com/300x200?text=Game+2",
-                url: "https://example.com/game2"
+                title: "Minecraft v1.8.8 (Eaglercraft)",
+                image: "https://upload.wikimedia.org/wikipedia/en/b/b6/Minecraft_2024_cover_art.png",
+                url: "https://eaglercraft.com/mc/1.8.8/"
             },
             {
                 id: "game3",
-                title: "Placeholder Game 3",
-                image: "https://via.placeholder.com/300x200?text=Game+3",
-                url: "https://example.com/game3"
+                title: "Slope",
+                image: "https://raw.githubusercontent.com/mrdavidss-vgg/assets/refs/heads/main/slope.jpeg",
+                url: "https://firespread01.github.io/slope/"
             },
             {
                 id: "game4",
-                title: "Adventure Game",
-                image: "https://via.placeholder.com/300x200?text=Adventure",
-                url: "https://example.com/adventure"
+                title: "Idle Dice",
+                image: "https://raw.githubusercontent.com/mrdavidss-vgg/assets/refs/heads/main/coolmathidledice.jpeg",
+                url: "https://mathstudy.tech/idle-dice/"
             },
             {
                 id: "game5",
-                title: "Puzzle Challenge",
-                image: "https://via.placeholder.com/300x200?text=Puzzle",
-                url: "https://example.com/puzzle"
+                title: "Slowroads.io",
+                image: "https://raw.githubusercontent.com/mrdavidss-vgg/assets/refs/heads/main/slowroads.jpeg",
+                url: "https://slowroads.io/"
             },
-            {
-                id: "game6",
-                title: "Racing Game",
-                image: "https://via.placeholder.com/300x200?text=Racing",
-                url: "https://example.com/racing"
-            }
         ];
         
         // Initialize the games grid when page loads
@@ -421,28 +439,13 @@
             // Hide the navbar
             document.querySelector('.navbar').style.display = 'none';
             
-            // Attempt to enter fullscreen mode
-            if (fullscreen.requestFullscreen) {
-                fullscreen.requestFullscreen();
-            } else if (fullscreen.webkitRequestFullscreen) {
-                fullscreen.webkitRequestFullscreen();
-            } else if (fullscreen.msRequestFullscreen) {
-                fullscreen.msRequestFullscreen();
-            }
+            // Prevent scrolling
+            document.body.style.overflow = 'hidden';
         }
         
         function closeFullscreen() {
             const fullscreen = document.getElementById('fullscreen-game');
             const embed = document.getElementById('game-embed');
-            
-            // Exit fullscreen mode
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            } else if (document.webkitExitFullscreen) {
-                document.webkitExitFullscreen();
-            } else if (document.msExitFullscreen) {
-                document.msExitFullscreen();
-            }
             
             // Reset the embed
             embed.src = 'about:blank';
@@ -453,6 +456,12 @@
             // Show the page container and navbar
             document.querySelector('.page-container').style.display = 'block';
             document.querySelector('.navbar').style.display = 'flex';
+            
+            // Re-enable scrolling
+            document.body.style.overflow = 'auto';
+            
+            // Show the games page
+            showPage('games');
         }
     </script>
 </body>
