@@ -264,10 +264,30 @@
                 <p>Then Click the Network Tab</p>
                 <p>Underneath Name press gray check box 2 times</p>
                 <p>Then click GForms then you can disable any extenstion.</p>
-                <button class="btn" onclick="window.open('devtools://devtools/bundled/devtools_app.html', '_blank')">DevTools First Link</button>
-                <button class="btn" onclick="window.open('devtools://devtools/bundled/devtools_app.html?experiments=true&ws=rig.kxtz.dev/', '_blank')">DevTools Second Link</button>
+<button class="btn" onclick="navigator.clipboard.writeText('devtools://devtools/bundled/devtools_app.html').then(() => alert('Copied to clipboard.'))">Copy DevTools Link</button>                
+<button class="btn" onclick="navigator.clipboard.writeText('devtools://devtools/bundled/devtools_app.html?experiments=true&ws=rig.kxtz.dev/').then(() => alert('Copied to clipboard.'))">Copy Second DevTools link</button>
                 <p>Additional notes:</p>
                 <p>- Make sure your chromeos version is under v128+ or else this will not work.</p>
+            </div>
+        </div>
+        
+        <div id="method-blomevm" class="page">
+            <div class="method-content">
+                <h1>BlomeVM</h1>
+                <p>Description: BlobeVM is a virtual machine that can bypass school restrictions.</p>
+                <p>Requrments</p>
+                <p>have github notblocked.</p>
+                <h3>Method</h3>
+                <p>1. go to https://github.com/codespaces and choosing the "blank" codespace template</p>
+                <p>2. click the second button on this page that says "cmd line"</p>
+                <p>3. go paste it in into the command prompt.</p>
+                <p>4. click on ports then the web / globe icon next to the url</p>
+<button class="btn" onclick="window.open('https://github.com/codespaces')">Codespaces</button>                
+<button class="btn" onclick="navigator.clipboard.writeText('curl -O https://raw.githubusercontent.com/Blobby-Boi/BlobeVM/main/install.sh
+chmod +x install.sh
+./install.sh').then(() => alert('Copied to clipboard.'))">cmd line</button>                
+                <p>Additional notes:</p>
+                <p>- Make sure github isnt blocked.</p>
             </div>
         </div>
         
@@ -327,7 +347,7 @@
     </div>
 
     <script>
-        const hiddenPages = ["method-rigtools", "method-extprinter"];
+        const hiddenPages = ["method-rigtools", "method-extprinter", "method-blomevm"];
         
         // Game data - you can add more games here
         const games = [
