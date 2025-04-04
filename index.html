@@ -5,7 +5,6 @@
     <link rel="icon" href="https://raw.githubusercontent.com/mrdavidss-vgg/assets/refs/heads/main/enhanced_image.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">    
     <style>
-        /* Base Styles */
         :root {
             --light-blue: #e6f2ff;
             --soft-blue: #b3d4ff;
@@ -55,7 +54,6 @@
             color: white;
         }
 
-        /* Page Container */
         .page-container {
             position: relative;
             height: calc(100vh - 60px);
@@ -64,7 +62,6 @@
             margin-top: 60px;
         }
         
-        /* Pages */
         .page {
             position: absolute;
             top: 0;
@@ -88,7 +85,6 @@
             transform: translateX(0);
         }
         
-        /* Content Styles */
         h1 {
             font-size: 3em;
             margin-bottom: 20px;
@@ -111,7 +107,6 @@
             color: white;
         }
         
-        /* Method page specific styles */
         .method-content {
             max-width: 800px;
             width: 90%;
@@ -119,7 +114,6 @@
             margin-bottom: 40px;
         }
         
-        /* Games Page Styles */
         .games-container {
             display: flex;
             flex-wrap: wrap;
@@ -225,7 +219,6 @@
             display: block;
         }
         
-        /* Fullscreen Game Styles */
         #fullscreen-game {
             position: fixed;
             top: 0;
@@ -243,7 +236,6 @@
             border: none;
         }
         
-        /* Fullscreen message */
         .fullscreen-message {
             position: fixed;
             bottom: 20px;
@@ -256,7 +248,6 @@
             opacity: 0.7;
         }
         
-        /* Exit button */
         .exit-game-btn {
             position: fixed;
             top: 20px;
@@ -287,7 +278,6 @@
     </style>
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar">
         <a href="#" class="nav-btn active" onclick="showPage('home', event)">Home</a>
         <a href="#" class="nav-btn" onclick="showPage('methods', event)">Methods</a>
@@ -295,15 +285,12 @@
         <a href="#" class="nav-btn" onclick="showPage('games', event)">Games</a>
     </nav>
 
-    <!-- Page Container -->
     <div class="page-container">
-        <!-- Home Page -->
         <div id="home" class="page active">
             <h1>Catsploit V1</h1>
             <p>Methods for school extensions deletion</p>
         </div>
 
-        <!-- Methods Page -->
         <div id="methods" class="page">
             <h1>Methods</h1>
             <p>Methods to bypass your schools filtering</p>
@@ -384,7 +371,6 @@
             </div>
         </div>
         
-        <!-- Games Page -->
         <div id="games" class="page">
             <h1>Games</h1>
             <p>Games Tab. If a game is down please message me on discord.</p>
@@ -403,7 +389,6 @@
             </div>
             
             <div class="games-container" id="gamesGrid">
-                <!-- Game cards will be added dynamically by JavaScript -->
             </div>
         </div>
         
@@ -419,7 +404,6 @@
         </div>
     </div>
     
-    <!-- Fullscreen Game Container -->
     <div id="fullscreen-game">
         <button class="exit-game-btn" onclick="closeFullscreen()">×</button>
         <embed id="game-embed" type="text/html">
@@ -429,7 +413,6 @@
     <script>
         const hiddenPages = ["method-rigtools", "method-extprinter", "method-blomevm"];
         
-        // Game data - you can add more games here
         const games = [
             {
                 id: "Other1",
@@ -516,7 +499,6 @@
         },
         ];
         
-        // Initialize the games grid when page loads
         document.addEventListener('DOMContentLoaded', function() {
             const gamesGrid = document.getElementById('gamesGrid');
             
@@ -536,7 +518,6 @@
                 gamesGrid.appendChild(gameCard);
             });
             
-            // Add ESC key listener to exit fullscreen
             document.addEventListener('keydown', function(e) {
                 if (e.key === "Escape") {
                     closeFullscreen();
@@ -545,7 +526,6 @@
         });
         
         function showPage(pageId, event) {
-            // Update navbar
             if (!hiddenPages.includes(pageId)) {
                 document.querySelectorAll('.nav-btn').forEach(btn => {
                     btn.classList.remove('active');
@@ -555,13 +535,11 @@
                 }
             }
             
-            // Show selected page
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
             document.getElementById(pageId).classList.add('active');
             
-            // Scroll to top when switching pages
             document.getElementById(pageId).scrollTop = 0;
         }
         
@@ -583,7 +561,6 @@
             const gameCards = document.querySelectorAll('.game-card');
             const filterButton = document.querySelector('.filter-button');
             
-            // Update button text
             filterButton.textContent = 
                 category === 'all' ? 'All Games ▼' : 
                 category.charAt(0).toUpperCase() + category.slice(1) + ' ▼';
@@ -606,19 +583,14 @@
             const fullscreen = document.getElementById('fullscreen-game');
             const embed = document.getElementById('game-embed');
             
-            // Set the game URL
             embed.src = url;
             
-            // Show the fullscreen container
             fullscreen.style.display = 'block';
             
-            // Hide the page container
             document.querySelector('.page-container').style.display = 'none';
             
-            // Hide the navbar
             document.querySelector('.navbar').style.display = 'none';
             
-            // Prevent scrolling
             document.body.style.overflow = 'hidden';
         }
         
@@ -626,20 +598,15 @@
             const fullscreen = document.getElementById('fullscreen-game');
             const embed = document.getElementById('game-embed');
             
-            // Reset the embed
             embed.src = 'about:blank';
             
-            // Hide the fullscreen container
             fullscreen.style.display = 'none';
             
-            // Show the page container and navbar
             document.querySelector('.page-container').style.display = 'block';
             document.querySelector('.navbar').style.display = 'flex';
             
-            // Re-enable scrolling
             document.body.style.overflow = 'auto';
             
-            // Show the games page
             showPage('games');
         }
     </script>
