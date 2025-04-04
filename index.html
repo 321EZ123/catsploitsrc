@@ -158,16 +158,70 @@
             margin: 20px 0;
             width: 80%;
             max-width: 500px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
         }
         
         #gameSearch {
-            width: 100%;
+            flex: 1;
             padding: 10px 15px;
             border: 2px solid var(--accent-blue);
             border-radius: 25px;
             font-family: Poppins;
             font-size: 16px;
             outline: none;
+        }
+        
+        .filter-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .filter-button {
+            padding: 10px 15px;
+            background: white;
+            color: var(--accent-blue);
+            border: 2px solid var(--accent-blue);
+            border-radius: 25px;
+            font-family: Poppins;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .filter-button:hover {
+            background: var(--soft-blue);
+        }
+        
+        .filter-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 10px;
+            right: 0;
+            overflow: hidden;
+        }
+        
+        .filter-dropdown-content a {
+            color: var(--text-dark);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+        
+        .filter-dropdown-content a:hover {
+            background-color: var(--soft-blue);
+        }
+        
+        .filter-dropdown:hover .filter-dropdown-content {
+            display: block;
         }
         
         /* Fullscreen Game Styles */
@@ -224,10 +278,10 @@
             background: rgba(255,255,255,0.3);
         }
         .image img {
-      max-width: 60%; /* Adjust this value to make the image smaller or larger */
-      height: auto;
-      border-radius: 10px;
-      margin-top: 20px;
+            max-width: 60%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -277,33 +331,34 @@
             </div>
         </div>
         
-<div id="method-blomevm" class="page">
-    <div class="method-content">
-        <h1>BlomeVM</h1>
-        <p>Description: BlobeVM is a virtual machine that can bypass school restrictions. Fast Easy to use.</p>
-        <h2>Requrments</h2>
-        <p>have github notblocked.</p>
-        <h3>Method</h3>
-        <p>1. go to https://github.com/codespaces and choosing the "blank" codespace template</p>
-        <p>2. click the second button on this page that says "cmd line"</p>
-        <p>3. right click & paste it in into the command prompt. then press enter</p>
-        <p>4. install the vm in terminal</p>
-        <p>5. press install now the vm in terminal</p>
-        <p>6. wait around 4 mins to install. 20 mins max</p>
-        <p>7. once it clears everything go to ports then go above the link then click the web icon</p>
-        <button class="btn" onclick="window.open('https://github.com/codespaces')">Codespaces</button>                
-        <button class="btn" onclick="navigator.clipboard.writeText('curl -O https://raw.githubusercontent.com/Blobby-Boi/BlobeVM/main/install.sh chmod +x install.sh ./install.sh').then(() => alert('Copied to clipboard.'))">cmd line</button>                
-        <h2>Important Notes</h2>
-        <p>1. If your vm stops like this image</p>
-        <div class="image">
-            <img 
-                src="https://raw.githubusercontent.com/mrdavidss-vgg/assets/main/Screenshot%202025-04-04%2015.26.13.png" 
-                alt="BlomeVM Screenshot"
-            >
-            <p>Go back into your codespace and restart it and it should work again.</p>
+        <div id="method-blomevm" class="page">
+            <div class="method-content">
+                <h1>BlomeVM</h1>
+                <p>Description: BlobeVM is a virtual machine that can bypass school restrictions. Fast Easy to use.</p>
+                <h2>Requrments</h2>
+                <p>have github notblocked.</p>
+                <h3>Method</h3>
+                <p>1. go to https://github.com/codespaces and choosing the "blank" codespace template</p>
+                <p>2. click the second button on this page that says "cmd line"</p>
+                <p>3. right click & paste it in into the command prompt. then press enter</p>
+                <p>4. install the vm in terminal</p>
+                <p>5. press install now the vm in terminal</p>
+                <p>6. wait around 4 mins to install. 20 mins max</p>
+                <p>7. once it clears everything go to ports then go above the link then click the web icon</p>
+<button class="btn" onclick="window.open('https://github.com/codespaces')">Codespaces</button>                
+<button class="btn" onclick="navigator.clipboard.writeText('curl -O https://raw.githubusercontent.com/Blobby-Boi/BlobeVM/main/install.sh chmod +x install.sh ./install.sh').then(() => alert('Copied to clipboard.'))">cmd line</button>                
+                <h2>Important Notes</h2>
+                <p>1. If your vm stops like this image</p>
+                <div class="image">
+                    <img 
+                        src="https://raw.githubusercontent.com/mrdavidss-vgg/assets/main/Screenshot%202025-04-04%2015.26.13.png" 
+                        alt="BlomeVM Screenshot"
+                        onerror="this.src='https://via.placeholder.com/400x200?text=Image+Not+Found'"
+                    >
+                </div>
+                <p>Go back into your codespace and restart it and it should work again.</p>
+            </div>
         </div>
-    </div>
-</div>
         
         <div id="method-extprinter" class="page">
             <div class="method-content">
@@ -334,6 +389,15 @@
             
             <div class="search-container">
                 <input type="text" id="gameSearch" placeholder="Search games..." oninput="filterGames()">
+                <div class="filter-dropdown">
+                    <button class="filter-button">All Games ▼</button>
+                    <div class="filter-dropdown-content">
+                        <a href="#" onclick="filterByCategory('all')">All Games</a>
+                        <a href="#" onclick="filterByCategory('popular')">Popular</a>
+                        <a href="#" onclick="filterByCategory('action')">Action</a>
+                        <a href="#" onclick="filterByCategory('apps')">Apps</a>
+                    </div>
+                </div>
             </div>
             
             <div class="games-container" id="gamesGrid">
@@ -369,38 +433,79 @@
                 id: "game1",
                 title: "Gunspin",
                 image: "https://static.cdnvia.com/pics/games/200/1-2534-gunspin.jpg",
-                url: "https://ubg44.github.io/GunSpin/"
+                url: "https://ubg44.github.io/GunSpin/",
+                category: ["action", "popular"]
             },
             {
                 id: "game2",
                 title: "Minecraft v1.8.8 (Eaglercraft)",
                 image: "https://upload.wikimedia.org/wikipedia/en/b/b6/Minecraft_2024_cover_art.png",
-                url: "https://eaglercraft.com/mc/1.8.8/"
+                url: "https://eaglercraft.com/mc/1.8.8/",
+                category: ["popular"]
             },
             {
                 id: "game3",
                 title: "Slope",
                 image: "https://raw.githubusercontent.com/mrdavidss-vgg/assets/refs/heads/main/slope.jpeg",
-                url: "https://firespread01.github.io/slope/"
+                url: "https://firespread01.github.io/slope/",
+                category: ["action"]
             },
             {
                 id: "game4",
                 title: "Idle Dice",
                 image: "https://raw.githubusercontent.com/mrdavidss-vgg/assets/refs/heads/main/coolmathidledice.jpeg",
-                url: "https://mathstudy.tech/idle-dice/"
+                url: "https://mathstudy.tech/idle-dice/",
+                category: []
             },
             {
                 id: "game5",
                 title: "Slowroads.io",
                 image: "https://raw.githubusercontent.com/mrdavidss-vgg/assets/refs/heads/main/slowroads.jpeg",
-                url: "https://slowroads.io/"
+                url: "https://slowroads.io/",
+                category: ["popular"]
             },
             {
                 id: "game6",
                 title: "Coolmath (down)",
                 image: "https://www.coolmathgames.com/themes/custom/coolmath/logo-stacked.svg",
-                url: "https://coolmathgames.com/"
-            }
+                url: "https://coolmathgames.com/",
+                category: ["popular"]
+            },
+            {
+                id: "app1",
+                title: "Discord - Login",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ10rPiqQn7hN6eGiuB-UUYyerDiN7SiHpOWQ&s",
+                url: "https://discord.com/login",
+                category: ["popular", "apps"]
+        },
+        {
+                id: "app2",
+                title: "Discord (Canary) - Login",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ10rPiqQn7hN6eGiuB-UUYyerDiN7SiHpOWQ&s",
+                url: "https://canary.discord.com/login",
+                category: ["popular", "apps"]
+        },
+        {
+                id: "app3",
+                title: "Spotify",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Spotify_icon.svg/1982px-Spotify_icon.svg.png",
+                url: "https://open.spotify.com/",
+                category: ["popular", "apps"]
+        },
+        {
+                id: "app4",
+                title: "Youtube",
+                image: "https://youtube.com/",
+                url: "https://open.spotify.com/",
+                category: ["popular", "apps"]
+        },
+        {
+                id: "app5",
+                title: "Indivious (Youtube)",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Spotify_icon.svg/1982px-Spotify_icon.svg.png",
+                url: "https://open.spotify.com/",
+                category: ["apps"]
+        },
         ];
         
         // Initialize the games grid when page loads
@@ -410,8 +515,11 @@
             games.forEach(game => {
                 const gameCard = document.createElement('div');
                 gameCard.className = 'game-card';
+                gameCard.id = 'card-' + game.id;
+                gameCard.dataset.categories = game.category.join(' ');
                 gameCard.innerHTML = `
-                    <img src="${game.image}" alt="${game.title}" class="game-image">
+                    <img src="${game.image}" alt="${game.title}" class="game-image" 
+                         onerror="this.src='https://via.placeholder.com/200x120?text=Game+Image'">
                     <div class="game-title">${game.title}</div>
                 `;
                 gameCard.onclick = function() {
@@ -459,6 +567,29 @@
                     card.style.display = 'block';
                 } else {
                     card.style.display = 'none';
+                }
+            });
+        }
+        
+        function filterByCategory(category) {
+            const gameCards = document.querySelectorAll('.game-card');
+            const filterButton = document.querySelector('.filter-button');
+            
+            // Update button text
+            filterButton.textContent = 
+                category === 'all' ? 'All Games ▼' : 
+                category.charAt(0).toUpperCase() + category.slice(1) + ' ▼';
+            
+            gameCards.forEach(card => {
+                if (category === 'all') {
+                    card.style.display = 'block';
+                } else {
+                    const categories = card.dataset.categories.split(' ');
+                    if (categories.includes(category)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
                 }
             });
         }
