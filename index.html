@@ -523,6 +523,7 @@
 
 // Tab Cloaker functionality - Fixed Favicon Issue
 // Tab Cloaker functionality - Guaranteed Favicon Change
+// Tab Cloaker - Ultimate Solution
 const cloakerPresets = {
     'GoogleClass': {
         title: 'Google Classroom',
@@ -551,97 +552,112 @@ const cloakerPresets = {
     }
 };
 
-let isCloaked = false;
-let currentCloak = null;
-
 function settitleandfavicon(preset) {
     const presetData = cloakerPresets[preset];
     if (!presetData) return;
-    
-    // Set the title
+
+    // 1. Change title immediately
     document.title = presetData.title;
-    
-    // Get the dynamic favicon elements
-    const favicon = document.getElementById('dynamic-favicon');
-    const appleIcon = document.getElementById('dynamic-apple-icon');
-    
-    // Force favicon change with cache busting
-    const timestamp = Date.now();
-    favicon.href = presetData.favicon + '?v=' + timestamp;
-    appleIcon.href = presetData.favicon + '?v=' + timestamp;
-    
-    // Additional method to force refresh (for stubborn browsers)
-    const faviconFallback = document.createElement('link');
-    faviconFallback.id = 'dynamic-favicon-fallback';
-    faviconFallback.rel = 'icon';
-    faviconFallback.type = 'image/x-icon';
-    faviconFallback.href = presetData.favicon + '?force=' + timestamp;
-    document.head.appendChild(faviconFallback);
-    
-    // Store current cloak state
-    isCloaked = true;
-    currentCloak = preset;
-    
-    // Update the URL without reloading
+
+    // 2. Nuclear approach to favicon changing
+    changeFaviconNuclear(presetData.favicon);
+
+    // 3. URL masking
     history.replaceState(null, presetData.title, presetData.path);
+
+    // 4. Visual confirmation
+    showCloakNotification(`Tab now disguised as ${presetData.title}`);
+}
+
+function changeFaviconNuclear(faviconUrl) {
+    const timestamp = Date.now();
+    const faviconUrlWithCache = `${faviconUrl}?v=${timestamp}`;
     
-    // Visual feedback
-    const cloakIndicator = document.createElement('div');
-    cloakIndicator.style.position = 'fixed';
-    cloakIndicator.style.bottom = '10px';
-    cloakIndicator.style.right = '10px';
-    cloakIndicator.style.backgroundColor = 'rgba(0,0,0,0.7)';
-    cloakIndicator.style.color = 'white';
-    cloakIndicator.style.padding = '5px 10px';
-    cloakIndicator.style.borderRadius = '5px';
-    cloakIndicator.style.zIndex = '9999';
-    cloakIndicator.textContent = `Cloaked as: ${presetData.title}`;
-    cloakIndicator.id = 'cloak-indicator';
+    // Method 1: Standard favicon change
+    let favicon = document.getElementById('main-favicon');
+    if (!favicon) {
+        favicon = document.createElement('link');
+        favicon.id = 'main-favicon';
+        favicon.rel = 'icon';
+        favicon.type = 'image/x-icon';
+        document.head.appendChild(favicon);
+    }
+    favicon.href = faviconUrlWithCache;
     
-    // Remove existing indicator if any
-    const existingIndicator = document.getElementById('cloak-indicator');
-    if (existingIndicator) existingIndicator.remove();
+    // Method 2: Alternate favicon
+    let altFavicon = document.getElementById('alt-favicon');
+    if (!altFavicon) {
+        altFavicon = document.createElement('link');
+        altFavicon.id = 'alt-favicon';
+        altFavicon.rel = 'alternate icon';
+        altFavicon.type = 'image/x-icon';
+        document.head.appendChild(altFavicon);
+    }
+    altFavicon.href = faviconUrlWithCache;
     
-    document.body.appendChild(cloakIndicator);
+    // Method 3: Apple touch icon
+    let appleIcon = document.getElementById('apple-icon');
+    if (!appleIcon) {
+        appleIcon = document.createElement('link');
+        appleIcon.id = 'apple-icon';
+        appleIcon.rel = 'apple-touch-icon';
+        document.head.appendChild(appleIcon);
+    }
+    appleIcon.href = faviconUrlWithCache;
+    
+    // Method 4: Favicon hack for stubborn browsers
+    setTimeout(() => {
+        const hackFavicon = document.createElement('link');
+        hackFavicon.rel = 'icon';
+        hackFavicon.href = faviconUrlWithCache + '&hack=true';
+        document.head.appendChild(hackFavicon);
+        setTimeout(() => hackFavicon.remove(), 100);
+    }, 50);
+    
+    // Method 5: Change href dynamically
+    setTimeout(() => {
+        favicon.href = faviconUrlWithCache + '&final=true';
+    }, 100);
+}
+
+function showCloakNotification(message) {
+    // Remove any existing notification
+    const existing = document.getElementById('cloak-notification');
+    if (existing) existing.remove();
+    
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.id = 'cloak-notification';
+    notification.textContent = message;
+    notification.style.position = 'fixed';
+    notification.style.bottom = '20px';
+    notification.style.right = '20px';
+    notification.style.backgroundColor = '#4CAF50';
+    notification.style.color = 'white';
+    notification.style.padding = '10px 20px';
+    notification.style.borderRadius = '5px';
+    notification.style.zIndex = '99999';
+    notification.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+    
+    document.body.appendChild(notification);
     
     // Auto-hide after 3 seconds
     setTimeout(() => {
-        const indicator = document.getElementById('cloak-indicator');
-        if (indicator) {
-            indicator.style.transition = 'opacity 1s';
-            indicator.style.opacity = '0';
-            setTimeout(() => indicator.remove(), 1000);
-        }
+        notification.style.opacity = '0';
+        notification.style.transition = 'opacity 0.5s';
+        setTimeout(() => notification.remove(), 500);
     }, 3000);
 }
 
-// Add to your existing event listeners
+// Ensure cloak persists during navigation
 window.addEventListener('popstate', function() {
-    if (isCloaked && currentCloak) {
-        const presetData = cloakerPresets[currentCloak];
-        history.replaceState(null, presetData.title, presetData.path);
+    if (window.currentCloak) {
+        settitleandfavicon(window.currentCloak);
     }
 });
 
-// Modified showPage function
-const originalShowPage = showPage;
-showPage = function(pageId, event) {
-    originalShowPage(pageId, event);
-    
-    if (isCloaked && currentCloak) {
-        const presetData = cloakerPresets[currentCloak];
-        document.title = presetData.title;
-        
-        // Refresh favicon
-        const timestamp = Date.now();
-        const favicon = document.getElementById('dynamic-favicon');
-        const appleIcon = document.getElementById('dynamic-apple-icon');
-        favicon.href = presetData.favicon + '?v=' + timestamp;
-        appleIcon.href = presetData.favicon + '?v=' + timestamp;
-        
-        history.replaceState(null, presetData.title, presetData.path);
-    }
-};
+// Store the cloak state
+window.currentCloak = null;
         //end of  cloak
         document.addEventListener('DOMContentLoaded', function() {
             const gamesGrid = document.getElementById('gamesGrid');
