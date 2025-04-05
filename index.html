@@ -382,11 +382,12 @@
         <div class="filter-dropdown">
             <button class="filter-button">Disguise Tab As ▼</button>
             <div class="filter-dropdown-content">
-                <a href="#" onclick="settitleandfavicon('GoogleClass'); window.currentCloak='GoogleClass'">Google Classroom</a>
-                <a href="#" onclick="settitleandfavicon('GoogleDocs'); window.currentCloak='GoogleDocs'">Google Docs</a>
-                <a href="#" onclick="settitleandfavicon('GoogleDrive'); window.currentCloak='GoogleDrive'">Google Drive</a>
-                <a href="#" onclick="settitleandfavicon('iReadyMath'); window.currentCloak='iReadyMath'">i-Ready Math</a>
-                <a href="#" onclick="settitleandfavicon('iReadyReading'); window.currentCloak='iReadyReading'">i-Ready Reading</a>
+            <div class="filter-dropdown-content">
+            <a href="#" onclick="cloakTab('GoogleClass')">Google Classroom</a>
+            <a href="#" onclick="cloakTab('GoogleDocs')">Google Docs</a>
+            <a href="#" onclick="cloakTab('GoogleDrive')">Google Drive</a>
+            <a href="#" onclick="cloakTab('iReadyMath')">i-Ready Math</a>
+            <a href="#" onclick="cloakTab('iReadyReading')">i-Ready Reading</a>
             </div>
         </div>
     </div>
@@ -522,6 +523,7 @@
         ];
 
 // Tab Cloaker with Guaranteed Favicon Change
+// Tab Cloaker Configuration
 const cloakerPresets = {
     'GoogleClass': {
         title: 'Google Classroom',
@@ -545,91 +547,62 @@ const cloakerPresets = {
     },
     'iReadyReading': {
         title: 'Reading To Do, i-Ready',
-        favicon: 'https://assets.curriculumassociates.com/Images/favicon.ico',
+        favicon: 'https://assets.curriculumassociations.com/Images/favicon.ico',
         path: '/reading'
     }
 };
 
-// Nuclear option for favicon changes
-function changeFaviconAbsolutely(href) {
+// Favicon Management System
+function setFavicon(url) {
     // Remove all existing favicon links
-    document.querySelectorAll('link[rel*="icon"]').forEach(link => {
-        link.parentNode.removeChild(link);
-    });
+    const existingIcons = document.querySelectorAll('link[rel*="icon"], link[rel*="apple"]');
+    existingIcons.forEach(icon => icon.remove());
 
     // Create new favicon with cache busting
-    const newFavicon = document.createElement('link');
-    newFavicon.rel = 'icon';
-    newFavicon.type = 'image/x-icon';
-    newFavicon.href = href + '?v=' + Date.now();
-    document.head.appendChild(newFavicon);
+    const createIcon = (rel, href) => {
+        const link = document.createElement('link');
+        link.rel = rel;
+        link.type = 'image/x-icon';
+        link.href = `${href}?v=${Date.now()}`;
+        document.head.appendChild(link);
+    };
 
-    // Create alternate favicon
-    const altFavicon = document.createElement('link');
-    altFavicon.rel = 'alternate icon';
-    altFavicon.type = 'image/x-icon';
-    altFavicon.href = href + '?alt=' + Date.now();
-    document.head.appendChild(altFavicon);
+    // Set main and alternate icons
+    createIcon('icon', url);
+    createIcon('alternate icon', url);
+    createIcon('apple-touch-icon', url);
 
-    // Create apple touch icon
-    const appleIcon = document.createElement('link');
-    appleIcon.rel = 'apple-touch-icon';
-    appleIcon.href = href + '?apple=' + Date.now();
-    document.head.appendChild(appleIcon);
-
-    // Blink the favicon to force refresh (works in most browsers)
-    setTimeout(() => {
-        newFavicon.href = '';
-        setTimeout(() => {
-            newFavicon.href = href + '?final=' + Date.now();
-        }, 100);
-    }, 200);
+    // Force refresh for stubborn browsers
+    const tempLink = document.createElement('a');
+    tempLink.rel = 'icon';
+    tempLink.href = `${url}?force=${Date.now()}`;
+    document.head.appendChild(tempLink);
+    setTimeout(() => tempLink.remove(), 100);
 }
 
-// Enhanced tab cloaker function
+// Tab Cloaking Function
 function cloakTab(preset) {
     const presetData = cloakerPresets[preset];
     if (!presetData) return;
 
-    // Change title
+    // Update title
     document.title = presetData.title;
 
-    // Change favicon using nuclear method
-    changeFaviconAbsolutely(presetData.favicon);
+    // Update favicon
+    setFavicon(presetData.favicon);
 
-    // Change URL path
+    // Update URL path
     history.replaceState(null, presetData.title, presetData.path);
-
-    // Force favicon refresh in stubborn browsers
-    setTimeout(() => {
-        const iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.src = 'about:blank';
-        document.body.appendChild(iframe);
-        
-        setTimeout(() => {
-            iframe.contentDocument.write(`
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <link rel="icon" href="${presetData.favicon}?force=${Date.now()}">
-                </head>
-                <body></body>
-                </html>
-            `);
-            setTimeout(() => document.body.removeChild(iframe), 1000);
-        }, 100);
-    }, 500);
 
     // Store current cloak
     window.currentCloak = preset;
-    
+
     // Show visual feedback
-    showCloakSuccess(`Tab now appears as: ${presetData.title}`);
+    showCloakNotification(`Disguised as: ${presetData.title}`);
 }
 
-// Visual feedback for cloaking
-function showCloakSuccess(message) {
+// Visual Feedback System
+function showCloakNotification(message) {
     const existing = document.getElementById('cloak-notification');
     if (existing) existing.remove();
 
@@ -649,6 +622,7 @@ function showCloakSuccess(message) {
             animation: fadeIn 0.3s;
             display: flex;
             align-items: center;
+            font-family: Poppins, sans-serif;
         ">
             <span style="margin-right: 10px;">✓</span>
             ${message}
@@ -670,41 +644,33 @@ function showCloakSuccess(message) {
     }, 3000);
 }
 
-// Initialize favicon elements on page load
-function initFaviconSystem() {
-    if (!document.getElementById('main-favicon')) {
-        const favicon = document.createElement('link');
-        favicon.id = 'main-favicon';
-        favicon.rel = 'icon';
-        favicon.type = 'image/x-icon';
-        document.head.appendChild(favicon);
-    }
-    
-    if (!document.getElementById('alt-favicon')) {
-        const altFavicon = document.createElement('link');
-        altFavicon.id = 'alt-favicon';
-        altFavicon.rel = 'alternate icon';
-        altFavicon.type = 'image/x-icon';
-        document.head.appendChild(altFavicon);
+// Initialize Tab Cloaker
+function initTabCloaker() {
+    // Set up dropdown handlers
+    document.querySelectorAll('.filter-dropdown-content a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const preset = e.target.getAttribute('onclick').match(/'([^']+)'/)[1];
+            cloakTab(preset);
+        });
+    });
+
+    // Handle browser history changes
+    window.addEventListener('popstate', () => {
+        if (window.currentCloak) {
+            cloakTab(window.currentCloak);
+        }
+    });
+
+    // Set initial favicon structure
+    if (!document.querySelector('link[rel="icon"]')) {
+        setFavicon('/favicon.ico'); // Fallback default
     }
 }
 
-// Update your settings page to use the new function
-document.querySelectorAll('.filter-dropdown-content a').forEach(link => {
-    link.onclick = function(e) {
-        e.preventDefault();
-        const preset = this.getAttribute('onclick').match(/'([^']+)'/)[1];
-        cloakTab(preset);
-    };
-});
-
 // Initialize when page loads
-window.addEventListener('DOMContentLoaded', initFaviconSystem);
-window.addEventListener('popstate', function() {
-    if (window.currentCloak) {
-        cloakTab(window.currentCloak);
-    }
-});
+document.addEventListener('DOMContentLoaded', initTabCloaker);
+window.addEventListener('load', initTabCloaker);
         //end of  cloak
         document.addEventListener('DOMContentLoaded', function() {
             const gamesGrid = document.getElementById('gamesGrid');
