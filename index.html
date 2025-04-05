@@ -2,9 +2,11 @@
 <html>
 <head>
     <title>Untitled document - Google Docs</title>
-    <link id="dynamic-favicon" rel="icon" type="image/x-icon">
-    <link id="dynamic-apple-icon" rel="apple-touch-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">    
+    <link id="main-favicon" rel="icon" type="image/x-icon">
+    <link id="alt-favicon" rel="alternate icon" type="image/x-icon">
+    <link id="apple-icon" rel="apple-touch-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <style>
         :root {
             --light-blue: #e6f2ff;
@@ -376,16 +378,15 @@
 <div id="settings" class="page">
     <div style="max-width: 600px;">
         <h1>Settings</h1>
-        <p>Settings for catsploit :></p>
         <h3>Tab Cloaker</h3>
         <div class="filter-dropdown">
-            <button class="filter-button">Select a site to TabCloak ▼</button>
+            <button class="filter-button">Disguise Tab As ▼</button>
             <div class="filter-dropdown-content">
-                <a href="#" onclick="settitleandfavicon('GoogleClass')">Google Classroom</a>
-                <a href="#" onclick="settitleandfavicon('GoogleDocs')">Google Docs</a>
-                <a href="#" onclick="settitleandfavicon('GoogleDrive')">Google Drive</a>
-                <a href="#" onclick="settitleandfavicon('iReadyMath')">Math To Do, i-Ready</a>
-                <a href="#" onclick="settitleandfavicon('iReadyReading')">Reading To Do, i-Ready</a>
+                <a href="#" onclick="settitleandfavicon('GoogleClass'); window.currentCloak='GoogleClass'">Google Classroom</a>
+                <a href="#" onclick="settitleandfavicon('GoogleDocs'); window.currentCloak='GoogleDocs'">Google Docs</a>
+                <a href="#" onclick="settitleandfavicon('GoogleDrive'); window.currentCloak='GoogleDrive'">Google Drive</a>
+                <a href="#" onclick="settitleandfavicon('iReadyMath'); window.currentCloak='iReadyMath'">i-Ready Math</a>
+                <a href="#" onclick="settitleandfavicon('iReadyReading'); window.currentCloak='iReadyReading'">i-Ready Reading</a>
             </div>
         </div>
     </div>
