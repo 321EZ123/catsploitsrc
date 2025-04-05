@@ -519,6 +519,7 @@
         },
         ];
 
+// Tab Cloaker functionality - Fixed Favicon Issue
 const cloakerPresets = {
     'GoogleClass': {
         title: 'Google Classroom',
@@ -554,16 +555,27 @@ function settitleandfavicon(preset) {
     const presetData = cloakerPresets[preset];
     if (!presetData) return;
     
-    // Set the title and favicon
+    // Set the title
     document.title = presetData.title;
     
-    let favicon = document.querySelector("link[rel='icon']");
-    if (!favicon) {
-        favicon = document.createElement('link');
-        favicon.rel = 'icon';
-        document.head.appendChild(favicon);
-    }
-    favicon.href = presetData.favicon;
+    // Remove all existing favicon elements
+    const existingFavicons = document.querySelectorAll("link[rel*='icon']");
+    existingFavicons.forEach(icon => icon.remove());
+    
+    // Create new favicon element with cache-busting parameter
+    const favicon = document.createElement('link');
+    favicon.rel = 'icon';
+    favicon.type = 'image/x-icon';
+    favicon.href = presetData.favicon + '?v=' + Date.now(); // Cache busting
+    
+    // Add to head
+    document.head.appendChild(favicon);
+    
+    // For Safari/iOS
+    const appleTouchIcon = document.createElement('link');
+    appleTouchIcon.rel = 'apple-touch-icon';
+    appleTouchIcon.href = presetData.favicon + '?v=' + Date.now();
+    document.head.appendChild(appleTouchIcon);
     
     // Store current cloak state
     isCloaked = true;
@@ -584,7 +596,6 @@ window.addEventListener('popstate', function() {
     }
 });
 
-// Add this to your existing showPage function to maintain cloak when switching pages
 const originalShowPage = showPage;
 showPage = function(pageId, event) {
     originalShowPage(pageId, event);
@@ -592,10 +603,16 @@ showPage = function(pageId, event) {
     if (isCloaked && currentCloak) {
         const presetData = cloakerPresets[currentCloak];
         document.title = presetData.title;
+        
+        const favicon = document.querySelector("link[rel*='icon']");
+        if (favicon) {
+            favicon.href = presetData.favicon + '?v=' + Date.now();
+        }
+        
         history.replaceState(null, presetData.title, presetData.path);
     }
 };
-        
+        //end of  cloak
         document.addEventListener('DOMContentLoaded', function() {
             const gamesGrid = document.getElementById('gamesGrid');
             
