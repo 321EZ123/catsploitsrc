@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Untitled document - Google Docs</title>
-    <link id="main-favicon" rel="icon" type="image/x-icon" href="data:image/x-icon;,">
+    <link rel="icon" href="https://raw.githubusercontent.com/mrdavidss-vgg/assets/refs/heads/main/enhanced_image.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">    
     <style>
         :root {
@@ -282,7 +282,6 @@
         <a href="#" class="nav-btn" onclick="showPage('methods', event)">Methods</a>
         <a href="#" class="nav-btn" onclick="showPage('games', event)">Games</a>
         <a href="#" class="nav-btn" onclick="showPage('ptchnotes', event)">Updates & Patch Notes</a>
-        <a href="#" class="nav-btn" onclick="showPage('settings', event)">Settings</a>
         <a href="#" class="nav-btn" onclick="showPage('credits', event)">Credits</a>
     </nav>
 
@@ -325,9 +324,6 @@
             <p>+ Tab Cloaker</p>
             <p>+ Dark Mode</p>
             <h2>Information</h2>
-            <p>Catsploit Released on: April 4th, 2025 11:50pm ET</p>
-            <p>Catsploit Development Started: March 31, 2025 5PM ET</p>
-            <p>Catsploit Current Version: v1.0</p>
             <div style="max-width: 600px;">
                 <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg/catsploit')">Github Repo</button>                
             </div>
@@ -418,23 +414,6 @@
                 <p>- The effect is temporary (5-10 minutes)</p>
             </div>
         </div>
-
-    <div id="settings" class="page">
-        <div style="max-width: 600px;">
-            <h1>Settings</h1>
-            <h3>Tab Cloaker</h3>
-            <div class="filter-dropdown">
-                <button class="filter-button" onclick="toggleDropdown(this)">Disguise Tab As ▼</button>
-                <div class="filter-dropdown-content">
-                    <a href="javascript:void(0)" onclick="cloakTab('GoogleClass')">Google Classroom</a>
-                    <a href="javascript:void(0)" onclick="cloakTab('GoogleDocs')">Google Docs</a>
-                    <a href="javascript:void(0)" onclick="cloakTab('GoogleDrive')">Google Drive</a>
-                    <a href="javascript:void(0)" onclick="cloakTab('iReadyMath')">i-Ready Math</a>
-                    <a href="javascript:void(0)" onclick="cloakTab('iReadyReading')">i-Ready Reading</a>
-                </div>
-            </div>
-        </div>
-    </div>
         
         <div id="games" class="page">
             <h1>Games</h1>
@@ -563,89 +542,8 @@
                 category: ["apps", "popular"]
         },
         ];
-
-        const cloakerPresets = {
-            'GoogleClass': {
-                title: 'Google Classroom',
-                favicon: 'https://ssl.gstatic.com/classroom/favicon.png',
-                path: '/classroom'
-            },
-            'GoogleDocs': {
-                title: 'Untitled document - Google Docs',
-                favicon: 'https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico',
-                path: '/document'
-            },
-            'GoogleDrive': {
-                title: 'My Drive - Google Drive',
-                favicon: 'https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png',
-                path: '/drive'
-            },
-            'iReadyMath': {
-                title: 'Math To Do, i-Ready',
-                favicon: 'https://assets.curriculumassociates.com/Images/favicon.ico',
-                path: '/math'
-            },
-            'iReadyReading': {
-                title: 'Reading To Do, i-Ready',
-                favicon: 'https://assets.curriculumassociates.com/Images/favicon.ico',
-                path: '/reading'
-            }
-        };
-
-        function toggleDropdown(button) {
-            const dropdown = button.nextElementSibling;
-            dropdown.classList.toggle('show');
-        }
-
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.filter-dropdown')) {
-                document.querySelectorAll('.filter-dropdown-content.show').forEach(d => {
-                    d.classList.remove('show');
-                });
-            }
-        });
-
-function cloakTab(preset) {
-    const presetData = cloakerPresets[preset];
-    if (!presetData) return;
-
-    document.title = presetData.title;
-    setFavicon(presetData.favicon);
-    history.replaceState(null, presetData.title, presetData.path);
-    
-    // Additional forced refresh for stubborn browsers
-    const iframe = document.createElement('iframe');
-    iframe.style.display = 'none';
-    iframe.src = 'about:blank';
-    document.body.appendChild(iframe);
-    setTimeout(() => {
-        iframe.contentWindow.location.reload();
-        setTimeout(() => document.body.removeChild(iframe), 10);
-    }, 10);
-}
-
-  function setFavicon(url) {
-    const timestamp = new Date().getTime();
-    const faviconUrl = `${url}?${timestamp}`;
-    
-    const links = document.querySelectorAll('link[rel*="icon"]');
-    links.forEach(link => link.remove());
-    
-    const favicon = document.createElement('link');
-    favicon.rel = 'icon';
-    favicon.type = 'image/x-icon';
-    favicon.href = faviconUrl;
-    favicon.id = 'main-favicon';
-    
-    document.head.appendChild(favicon);
-    
-    const head = document.head;
-    head.removeChild(favicon);
-    head.appendChild(favicon);
-}
-        // end of tab cloak
-        //start of gamesgrid
-      document.addEventListener('DOMContentLoaded', function() {
+        
+        document.addEventListener('DOMContentLoaded', function() {
             const gamesGrid = document.getElementById('gamesGrid');
             
             games.forEach(game => {
