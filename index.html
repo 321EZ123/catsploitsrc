@@ -393,22 +393,22 @@
 </div>
     
         
-        <div id="games" class="page">
-            <h1>Games</h1>
-            <p>Games Tab. If a game is down please message me on discord.</p>
-            
-            <div class="search-container">
-                <input type="text" id="gameSearch" placeholder="Search games..." oninput="filterGames()">
-                <div class="filter-dropdown">
-                    <button class="filter-button">All Games ▼</button>
-                    <div class="filter-dropdown-content">
-                        <a href="#" onclick="filterByCategory('all')">All Games</a>
-                        <a href="#" onclick="filterByCategory('popular')">Popular</a>
-                        <a href="#" onclick="filterByCategory('action')">Action</a>
-                        <a href="#" onclick="filterByCategory('apps')">Apps</a>
-                    </div>
+    <div id="settings" class="page">
+        <div style="max-width: 600px;">
+            <h1>Settings</h1>
+            <h3>Tab Cloaker</h3>
+            <div class="filter-dropdown">
+                <button class="filter-button" onclick="toggleDropdown(this)">Disguise Tab As ▼</button>
+                <div class="filter-dropdown-content">
+                    <a href="javascript:void(0)" onclick="cloakTab('GoogleClass')">Google Classroom</a>
+                    <a href="javascript:void(0)" onclick="cloakTab('GoogleDocs')">Google Docs</a>
+                    <a href="javascript:void(0)" onclick="cloakTab('GoogleDrive')">Google Drive</a>
+                    <a href="javascript:void(0)" onclick="cloakTab('iReadyMath')">i-Ready Math</a>
+                    <a href="javascript:void(0)" onclick="cloakTab('iReadyReading')">i-Ready Reading</a>
                 </div>
             </div>
+        </div>
+    </div>
             
             <div class="games-container" id="gamesGrid">
             </div>
@@ -523,153 +523,78 @@
 
 // Tab Cloaker with Guaranteed Favicon Change
 // Tab Cloaker Configuration
-const cloakerPresets = {
-    'GoogleClass': {
-        title: 'Google Classroom',
-        favicon: 'https://ssl.gstatic.com/classroom/favicon.png',
-        path: '/classroom'
-    },
-    'GoogleDocs': {
-        title: 'Untitled document - Google Docs',
-        favicon: 'https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico',
-        path: '/document'
-    },
-    'GoogleDrive': {
-        title: 'My Drive - Google Drive',
-        favicon: 'https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png',
-        path: '/drive'
-    },
-    'iReadyMath': {
-        title: 'Math To Do, i-Ready',
-        favicon: 'https://assets.curriculumassociates.com/Images/favicon.ico',
-        path: '/math'
-    },
-    'iReadyReading': {
-        title: 'Reading To Do, i-Ready',
-        favicon: 'https://assets.curriculumassociations.com/Images/favicon.ico',
-        path: '/reading'
-    }
-};
-
-// Favicon Management System
-function setFavicon(url) {
-    // Remove all existing favicon links
-    const existingIcons = document.querySelectorAll('link[rel*="icon"], link[rel*="apple"]');
-    existingIcons.forEach(icon => icon.remove());
-
-    // Create new favicon with cache busting
-    const createIcon = (rel, href) => {
-        const link = document.createElement('link');
-        link.rel = rel;
-        link.type = 'image/x-icon';
-        link.href = `${href}?v=${Date.now()}`;
-        document.head.appendChild(link);
-    };
-
-    // Set main and alternate icons
-    createIcon('icon', url);
-    createIcon('alternate icon', url);
-    createIcon('apple-touch-icon', url);
-
-    // Force refresh for stubborn browsers
-    const tempLink = document.createElement('a');
-    tempLink.rel = 'icon';
-    tempLink.href = `${url}?force=${Date.now()}`;
-    document.head.appendChild(tempLink);
-    setTimeout(() => tempLink.remove(), 100);
-}
-
-// Tab Cloaking Function
-function cloakTab(preset) {
-    const presetData = cloakerPresets[preset];
-    if (!presetData) return;
-
-    // Update title
-    document.title = presetData.title;
-
-    // Update favicon
-    setFavicon(presetData.favicon);
-
-    // Update URL path
-    history.replaceState(null, presetData.title, presetData.path);
-
-    // Store current cloak
-    window.currentCloak = preset;
-
-    // Show visual feedback
-    showCloakNotification(`Disguised as: ${presetData.title}`);
-}
-
-// Visual Feedback System
-function showCloakNotification(message) {
-    const existing = document.getElementById('cloak-notification');
-    if (existing) existing.remove();
-
-    const notification = document.createElement('div');
-    notification.id = 'cloak-notification';
-    notification.innerHTML = `
-        <div style="
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #4CAF50;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 4px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 9999;
-            animation: fadeIn 0.3s;
-            display: flex;
-            align-items: center;
-            font-family: Poppins, sans-serif;
-        ">
-            <span style="margin-right: 10px;">✓</span>
-            ${message}
-        </div>
-        <style>
-            @keyframes fadeIn {
-                from { opacity: 0; transform: translateY(10px); }
-                to { opacity: 1; transform: translateY(0); }
+        // Tab Cloaker Configuration
+        const cloakerPresets = {
+            'GoogleClass': {
+                title: 'Google Classroom',
+                favicon: 'https://ssl.gstatic.com/classroom/favicon.png',
+                path: '/classroom'
+            },
+            'GoogleDocs': {
+                title: 'Untitled document - Google Docs',
+                favicon: 'https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico',
+                path: '/document'
+            },
+            'GoogleDrive': {
+                title: 'My Drive - Google Drive',
+                favicon: 'https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png',
+                path: '/drive'
+            },
+            'iReadyMath': {
+                title: 'Math To Do, i-Ready',
+                favicon: 'https://assets.curriculumassociates.com/Images/favicon.ico',
+                path: '/math'
+            },
+            'iReadyReading': {
+                title: 'Reading To Do, i-Ready',
+                favicon: 'https://assets.curriculumassociates.com/Images/favicon.ico',
+                path: '/reading'
             }
-        </style>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.style.opacity = '0';
-        notification.style.transition = 'opacity 0.5s';
-        setTimeout(() => notification.remove(), 500);
-    }, 3000);
-}
+        };
 
-// Initialize Tab Cloaker
-function initTabCloaker() {
-    // Set up dropdown handlers
-    document.querySelectorAll('.filter-dropdown-content a').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const preset = e.target.getAttribute('onclick').match(/'([^']+)'/)[1];
-            cloakTab(preset);
-        });
-    });
-
-    // Handle browser history changes
-    window.addEventListener('popstate', () => {
-        if (window.currentCloak) {
-            cloakTab(window.currentCloak);
+        // Dropdown Functions
+        function toggleDropdown(button) {
+            const dropdown = button.nextElementSibling;
+            dropdown.classList.toggle('show');
         }
-    });
 
-    // Set initial favicon structure
-    if (!document.querySelector('link[rel="icon"]')) {
-        setFavicon('/favicon.ico'); // Fallback default
-    }
-}
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.filter-dropdown')) {
+                document.querySelectorAll('.filter-dropdown-content.show').forEach(d => {
+                    d.classList.remove('show');
+                });
+            }
+        });
 
-// Initialize when page loads
-document.addEventListener('DOMContentLoaded', initTabCloaker);
-window.addEventListener('load', initTabCloaker);
+        // Cloaking Functions
+        function cloakTab(preset) {
+            const presetData = cloakerPresets[preset];
+            if (!presetData) return;
+
+            // Update title and favicon
+            document.title = presetData.title;
+            setFavicon(presetData.favicon);
+            history.replaceState(null, presetData.title, presetData.path);
+        }
+
+        function setFavicon(url) {
+            document.querySelectorAll('link[rel*="icon"]').forEach(link => link.remove());
+            
+            const links = [
+                { rel: 'icon', href: url },
+                { rel: 'alternate icon', href: url },
+                { rel: 'apple-touch-icon', href: url }
+            ];
+            
+            links.forEach(linkInfo => {
+                const link = document.createElement('link');
+                link.rel = linkInfo.rel;
+                link.type = 'image/x-icon';
+                link.href = `${linkInfo.href}?v=${Date.now()}`;
+                document.head.appendChild(link);
+            });
+        }
         //end of  cloak
         document.addEventListener('DOMContentLoaded', function() {
             const gamesGrid = document.getElementById('gamesGrid');
