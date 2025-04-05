@@ -292,7 +292,7 @@
         </div>
 
         <div id="methods" class="page">
-            <h1>Methods</h1>
+            <h1>Methods / Kajigs</h1>
             <p>Methods to bypass your schools filtering</p>
             <div style="max-width: 600px;">
                 <button class="btn" onclick="showPage('method-rigtools', event)">Rigtools (Recommended)</button>
@@ -370,6 +370,25 @@
                 <p>- The effect is temporary (5-10 minutes)</p>
             </div>
         </div>
+        
+<div id="settings" class="page">
+    <div style="max-width: 600px;">
+        <h1>Settings</h1>
+        <p>Settings for catsploit :></p>
+        <h3>Tab Cloaker</h3>
+        <div class="filter-dropdown">
+            <button class="filter-button">Select a site to TabCloak ▼</button>
+            <div class="filter-dropdown-content">
+                <a href="#" onclick="settitleandfavicon('GoogleClass')">Google Classroom</a>
+                <a href="#" onclick="settitleandfavicon('GoogleDocs')">Google Docs (current)</a>
+                <a href="#" onclick="settitleandfavicon('GoogleDrive')">Google Drive</a>
+                <a href="#" onclick="settitleandfavicon('iReadyMath')">Math To Do, i-Ready</a>
+                <a href="#" onclick="settitleandfavicon('iReadyReading')">Reading To Do, i-Ready</a>
+            </div>
+        </div>
+    </div>
+</div>
+    
         
         <div id="games" class="page">
             <h1>Games</h1>
@@ -498,6 +517,83 @@
                 category: ["apps", "popular"]
         },
         ];
+
+const cloakerPresets = {
+    'GoogleClass': {
+        title: 'Google Classroom',
+        favicon: 'https://ssl.gstatic.com/classroom/favicon.png',
+        path: '/classroom'
+    },
+    'GoogleDocs': {
+        title: 'Untitled document - Google Docs',
+        favicon: 'https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico',
+        path: '/document'
+    },
+    'GoogleDrive': {
+        title: 'My Drive - Google Drive',
+        favicon: 'https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png',
+        path: '/drive'
+    },
+    'iReadyMath': {
+        title: 'Math To Do, i-Ready',
+        favicon: 'https://assets.curriculumassociates.com/Images/favicon.ico',
+        path: '/math'
+    },
+    'iReadyReading': {
+        title: 'Reading To Do, i-Ready',
+        favicon: 'https://assets.curriculumassociates.com/Images/favicon.ico',
+        path: '/reading'
+    }
+};
+
+let isCloaked = false;
+let currentCloak = null;
+
+function settitleandfavicon(preset) {
+    const presetData = cloakerPresets[preset];
+    if (!presetData) return;
+    
+    // Set the title and favicon
+    document.title = presetData.title;
+    
+    let favicon = document.querySelector("link[rel='icon']");
+    if (!favicon) {
+        favicon = document.createElement('link');
+        favicon.rel = 'icon';
+        document.head.appendChild(favicon);
+    }
+    favicon.href = presetData.favicon;
+    
+    // Store current cloak state
+    isCloaked = true;
+    currentCloak = preset;
+    
+    // Update the URL without reloading
+    history.replaceState(null, presetData.title, presetData.path);
+    
+    // Show success message
+    alert(`Tab cloaked as ${presetData.title}!`);
+}
+
+// Add this to your existing event listeners to handle page navigation
+window.addEventListener('popstate', function() {
+    if (isCloaked && currentCloak) {
+        const presetData = cloakerPresets[currentCloak];
+        history.replaceState(null, presetData.title, presetData.path);
+    }
+});
+
+// Add this to your existing showPage function to maintain cloak when switching pages
+const originalShowPage = showPage;
+showPage = function(pageId, event) {
+    originalShowPage(pageId, event);
+    
+    if (isCloaked && currentCloak) {
+        const presetData = cloakerPresets[currentCloak];
+        document.title = presetData.title;
+        history.replaceState(null, presetData.title, presetData.path);
+    }
+};
         
         document.addEventListener('DOMContentLoaded', function() {
             const gamesGrid = document.getElementById('gamesGrid');
