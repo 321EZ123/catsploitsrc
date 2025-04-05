@@ -521,8 +521,6 @@
         },
         ];
 
-// Tab Cloaker functionality - Fixed Favicon Issue
-// Tab Cloaker functionality - Guaranteed Favicon Change
 // Tab Cloaker - Ultimate Solution
 const cloakerPresets = {
     'GoogleClass': {
@@ -565,7 +563,10 @@ function settitleandfavicon(preset) {
     // 3. URL masking
     history.replaceState(null, presetData.title, presetData.path);
 
-    // 4. Visual confirmation
+    // 4. Store current cloak state
+    window.currentCloak = preset;
+
+    // 5. Visual confirmation
     showCloakNotification(`Tab now disguised as ${presetData.title}`);
 }
 
