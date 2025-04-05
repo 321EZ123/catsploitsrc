@@ -281,14 +281,17 @@
     <nav class="navbar">
         <a href="#" class="nav-btn active" onclick="showPage('home', event)">Home</a>
         <a href="#" class="nav-btn" onclick="showPage('methods', event)">Methods</a>
-        <a href="#" class="nav-btn" onclick="showPage('credits', event)">Credits</a>
         <a href="#" class="nav-btn" onclick="showPage('games', event)">Games</a>
+        <a href="#" class="nav-btn" onclick="showPage('ptchnotes', event)">Updates & Patch Notes</a>
+        <a href="#" class="nav-btn" onclick="showPage('credits', event)">Credits</a>
     </nav>
 
     <div class="page-container">
         <div id="home" class="page active">
             <h1>Catsploit V1</h1>
-            <p>Methods for school extensions deletion</p>
+            <p>Methods for school extensions deletion.</p>
+            <p>Check out our Patch Notes and Updates!</p>
+            <button class="btn" onclick="showPage('method-blomevm')">Patch Notes (fast and working)</button>
         </div>
 
         <div id="methods" class="page">
@@ -298,6 +301,7 @@
                 <button class="btn" onclick="showPage('method-rigtools', event)">Rigtools (Recommended)</button>
                 <button class="btn" onclick="showPage('method-extprinter', event)">ExtPrint3r</button>
                 <button class="btn" onclick="showPage('method-blomevm')">BlomeVM (fast and working)</button>
+                <button class="btn" onclick="showPage('method-incognito')">Incognito</button>
             </div>
         </div>
 
@@ -314,7 +318,6 @@
                 <p>Then click GForms then you can disable any extenstion.</p>
         <button class="btn" onclick="navigator.clipboard.writeText('devtools://devtools/bundled/devtools_app.html').then(() => alert('Copied to clipboard.'))">Copy DevTools Link</button>                
         <button class="btn" onclick="navigator.clipboard.writeText('devtools://devtools/bundled/devtools_app.html?experiments=true&ws=rig.kxtz.dev/').then(() => alert('Copied to clipboard.'))">Copy Second DevTools link</button>
-        <button class="btn" onclick="window.open('devtools://devtools/bundled/devtools_app.html?experiments=true&ws=rig.kxtz.dev/').then(() => alert('Copied to clipboard.'))">Github Repo (Rigtools V2)</button>
                 <p>Additional notes:</p>
                 <p>- Make sure your chromeos version is under v128+ or else this will not work.</p>
             </div>
@@ -335,8 +338,7 @@
                 <p>6. wait around 4 mins to install. 20 mins max</p>
                 <p>7. once it clears everything go to ports then go above the link then click the web icon</p>
 <button class="btn" onclick="window.open('https://github.com/codespaces')">Codespaces</button>                
-<button class="btn" onclick="navigator.clipboard.writeText('curl -O https://raw.githubusercontent.com/Blobby-Boi/BlobeVM/main/install.sh chmod +x install.sh ./install.sh').then(() => alert('Copied to clipboard.'))">cmd line</button>                
-                <h2>Important Notes</h2>
+<button class="btn" onclick="navigator.clipboard.writeText('curl -O https://raw.githubusercontent.com/Blobby-Boi/BlobeVM/main/install.sh\nchmod +x install.sh\n./install.sh').then(() => alert('Copied to clipboard!'))">cmd line</button>                <h2>Important Notes</h2>
                 <p>1. If your vm stops like this image</p>
                 <div class="image">
                     <img 
@@ -346,6 +348,25 @@
                     >
                 </div>
                 <p>Go back into your codespace and restart it and it should work again.</p>
+            </div>
+        </div>
+        
+        <div id="method-incognito" class="page">
+            <div class="method-content">
+                <h1>Incognito Exploit</h1>
+                <p>allows you to go incognito</p>
+                <p>Requrments</p>
+                <p>1 brain cell + chromeos version under 128+ (chrome://flags not blocked)</p>
+                <h3>Method</h3>
+                <p>1. click the buttons below for which chrome version your on.</p>
+                <p>2. Paste link into browser and enable and restart</p>
+                <p>3. Go to your settings then go to your network and select your network then scroll down and press network again.</p>
+                <p>4. then put the thing to custom name servers and put this one as the first url (click button below to get ipaddress for network)</p>
+                <p>5. A notification will pop up 20s later telling you to sign in. Press sign in then press CTRL+T</p>
+                <p>Now your in a incognito tab!</p>
+                <button class="btn" onclick="navigator.clipboard.writeText('chrome://flags/#captive-portal-popup-window').then(() => alert('Copied to clipboard.'))">Copy chrome flag v123-v125</button>                
+                <button class="btn" onclick="navigator.clipboard.writeText('chrome://flags/#temporary-unexpire-flags-m125').then(() => alert('Copied to clipboard.'))">Copy chrome flag v126-128</button>                
+                <button class="btn" onclick="navigator.clipboard.writeText('150.136.163.0').then(() => alert('Copied to clipboard.'))">Get IP</button>                
             </div>
         </div>
         
@@ -360,7 +381,7 @@
                 <p>2. Press settings then set the iframes to max</p>
                 <p>3. Press show all extensions </p>
                 <p>4. go to "The Expl0it tab"</p>
-                <p>4. click the extension you want to disable and follow the steps."</p>
+                <p>5. click the extension you want to disable and follow the steps."</p>
                 <p>This works for like 5 - 10 mins working and tested by me</p>
                 <button class="btn" onclick="window.open('https://github.com/Blobby-Boi/ExtPrint3r', '_blank')">Github Repo</button>
                 <button class="btn" onclick="window.open('https://shrib.com/#Livia5oZpeZj', '_blank')">Hosting</button>
@@ -411,7 +432,7 @@
     </div>
 
     <script>
-        const hiddenPages = ["method-rigtools", "method-extprinter", "method-blomevm"];
+        const hiddenPages = ["method-rigtools", "method-extprinter", "method-blomevm", "method-incognito"];
         
         const games = [
             {
