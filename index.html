@@ -3,7 +3,6 @@
 <head>
     <title>Untitled document - Google Docs</title>
     <link id="main-favicon" rel="icon" type="image/x-icon">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">    
     <style>
         :root {
@@ -615,23 +614,17 @@
             history.replaceState(null, presetData.title, presetData.path);
         }
 
-        function setFavicon(url) {
-            document.querySelectorAll('link[rel*="icon"]').forEach(link => link.remove());
-            
-            const links = [
-                { rel: 'icon', href: url },
-                { rel: 'alternate icon', href: url },
-                { rel: 'apple-touch-icon', href: url }
-            ];
-            
-            links.forEach(linkInfo => {
-                const link = document.createElement('link');
-                link.rel = linkInfo.rel;
-                link.type = 'image/x-icon';
-                link.href = `${linkInfo.href}?v=${Date.now()}`;
-                document.head.appendChild(link);
-            });
-        }
+  function setFavicon(url) {
+    document.querySelectorAll('link[rel*="icon"]').forEach(link => link.remove());
+    
+    const favicon = document.createElement('link');
+    favicon.rel = 'icon';
+    favicon.type = 'image/x-icon';
+    favicon.href = url;
+    favicon.id = 'main-favicon';
+    
+    document.head.appendChild(favicon);
+}
         // end of tab cloak
         //start of gamesgrid
         document.addEventListener('DOMContentLoaded', function() {
