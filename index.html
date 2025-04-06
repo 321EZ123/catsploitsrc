@@ -389,8 +389,8 @@
                 <p>5. A notification will pop up 20s later telling you to sign in. Press sign in then press CTRL+T</p>
                 <p>Now your in a incognito tab!</p>
                 <button class="btn" onclick="smartCopy('chrome://flags/#captive-portal-popup-window')">Captive Portal</button>
-                <button class="btn" onclick="navigator.clipboard.writeText('chrome://flags/#temporary-unexpire-flags-m125').then(() => alert('Copied to clipboard.'))">Copy chrome flag v126-128</button>                
-                <button class="btn" onclick="navigator.clipboard.writeText('150.136.163.0').then(() => alert('Copied to clipboard.'))">Get IP</button>                
+                <button class="btn" onclick="smartCopy('chrome://flags/#temporary-unexpire-flags-m125')">Copy chrome flag v126-128</button>                
+                <button class="btn" onclick="smartCopy('150.136.163.0')">Get IP</button>                
             </div>
         </div>
         
@@ -561,7 +561,7 @@ function smartCopy(text) {
       top: 20px;
       left: 50%;
       transform: translateX(-50%);
-      background: #333;
+      background: #5094fc;
       color: white;
       padding: 10px 20px;
       border-radius: 5px;
@@ -573,7 +573,7 @@ function smartCopy(text) {
       <span>Copied to clipboard!</span>
       <button style="
         margin-left: 15px;
-        background: #555;
+        background: #b3d4ff;
         color: white;
         border: none;
         padding: 3px 8px;
