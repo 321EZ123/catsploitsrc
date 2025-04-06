@@ -340,13 +340,13 @@
                 <p>Then Click the Network Tab</p>
                 <p>Underneath Name press gray check box 2 times</p>
                 <p>Then click GForms then you can disable any extenstion.</p>
-        <button class="btn" onclick="navigator.clipboard.writeText('devtools://devtools/bundled/devtools_app.html').then(() => alert('Copied to clipboard.'))">Copy DevTools Link</button>                
-        <button class="btn" onclick="navigator.clipboard.writeText('devtools://devtools/bundled/devtools_app.html?experiments=true&ws=rig.kxtz.dev/').then(() => alert('Copied to clipboard.'))">Copy Second DevTools link</button>
+                <button class="btn" onclick="copyToClipboard('devtools://devtools/bundled/devtools_app.html').then(() => alert('Copied to clipboard.'))">Copy DevTools Link</button>
+                <button class="btn" onclick="copyToClipboard('devtools://devtools/bundled/devtools_app.html?experiments=true&ws=rig.kxtz.dev').then(() => alert('Copied to clipboard.'))">Copy DevTools Link</button>
                 <p>Additional notes:</p>
-                <p>- Make sure your chromeos version is under v128+ or else this will not work.</p>
+                <p>- Make sure your chromeos version is under v128+ or else th/p>
             </div>
         </div>
-        
+        is will not work.<
         <div id="method-blomevm" class="page">
             <div class="method-content">
                 <h1>BlomeVM</h1>
@@ -455,7 +455,7 @@
     </div>
 
     <script>
-        const hiddenPages = ["method-rigtools", "method-extprinter", "method-blomevm", "method-incognito", "upd-v1.0"];
+        const hiddenPages = ["method-rigtools", "method-extprinter", "method-blomevm", "method-incognito", "method-exthanger", "upd-v1.0", "upd-v1.1"];
         
         const games = [
             {
@@ -542,6 +542,22 @@
                 category: ["apps", "popular"]
         },
         ];
+
+        function copyToClipboard(text) {
+  navigator.clipboard.writeText(text)
+    .then(() => alert('Copied to clipboard!'))
+    .catch(err => {
+      console.error('Failed to copy: ', err);
+      // Fallback for browsers that block clipboard access
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      alert('Copied to clipboard!');
+    });
+}
         
         document.addEventListener('DOMContentLoaded', function() {
             const gamesGrid = document.getElementById('gamesGrid');
