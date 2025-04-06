@@ -340,13 +340,12 @@
                 <p>Then Click the Network Tab</p>
                 <p>Underneath Name press gray check box 2 times</p>
                 <p>Then click GForms then you can disable any extenstion.</p>
-                <button class="btn" onclick="showCopyBox('devtools://devtools/bundled/devtools_app.html')">
+                <button class="btn" onclick="smartCopy('devtools://devtools/bundled/devtools_app.html')">
                 Copy DevTools Link
                 </button>
-                <button class="btn" onclick="showCopyBox('devtools://devtools/bundled/devtools_app.html?experiments=true&ws=rig.kxtz.dev')">
+                <button class="btn" onclick="smartCopy('devtools://devtools/bundled/devtools_app.html?experiments=true&ws=rig.kxtz.dev')">
                 Copy DevTools Link 2
                 </button>
-                <button class="btn" onclick="copyToClipboard('devtools://devtools/bundled/devtools_app.html?experiments=true&ws=rig.kxtz.dev')">Copy DevTools Link</button>
                 <p>Additional notes:</p>
                 <p>- Make sure your chromeos version is under v128+ or else the exploit will not work.</p>
             </div>
@@ -548,21 +547,70 @@
         },
         ];
 
-function showCopyBox(text) {
-  const box = document.createElement('textarea');
-  box.value = text;
-  box.style.position = 'fixed';
-  box.style.top = '10px';
-  box.style.left = '10px';
-  box.style.zIndex = 9999;
-  
-  document.body.appendChild(box);
-  box.select();
-  
-  setTimeout(() => {
-    document.body.removeChild(box);
-    alert('Text selected! Press Ctrl+C to copy');
-  }, 50);
+let copyTimeout;
+let currentAlert;
+
+function smartCopy(text) {
+  // Clear any existing timeout/alert
+  if (copyTimeout) clearTimeout(copyTimeout);
+  if (currentAlert) document.body.removeChild(currentAlert);
+
+  // Create alert element
+  currentAlert = document.createElement('div');
+  currentAlert.innerHTML = `
+    <div style="
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+    ">
+      <span>Copied to clipboard!</span>
+      <button style="
+        margin-left: 15px;
+        background: #555;
+        color: white;
+        border: none;
+        padding: 3px 8px;
+        border-radius: 3px;
+        cursor: pointer;
+      ">OK</button>
+    </div>
+  `;
+
+  // Add OK button functionality
+  const okButton = currentAlert.querySelector('button');
+  okButton.onclick = () => {
+    clearTimeout(copyTimeout);
+    document.body.removeChild(currentAlert);
+    currentAlert = null;
+  };
+
+  // Add to page
+  document.body.appendChild(currentAlert);
+
+  // Perform the copy (using best available method)
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textarea);
+
+  // Auto-remove after 5 seconds
+  copyTimeout = setTimeout(() => {
+    if (currentAlert) {
+      document.body.removeChild(currentAlert);
+      currentAlert = null;
+    }
+  }, 5000);
 }
         
         document.addEventListener('DOMContentLoaded', function() {
