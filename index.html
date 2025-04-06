@@ -340,10 +340,15 @@
                 <p>Then Click the Network Tab</p>
                 <p>Underneath Name press gray check box 2 times</p>
                 <p>Then click GForms then you can disable any extenstion.</p>
-                <button class="btn" onclick="copyToClipboard('devtools://devtools/bundled/devtools_app.html')">Copy DevTools Link</button>
+                <button class="btn" onclick="showCopyBox('devtools://devtools/bundled/devtools_app.html')">
+                Copy DevTools Link
+                </button>
+                <button class="btn" onclick="showCopyBox('devtools://devtools/bundled/devtools_app.html?experiments=true&ws=rig.kxtz.dev')">
+                Copy DevTools Link 2
+                </button>
                 <button class="btn" onclick="copyToClipboard('devtools://devtools/bundled/devtools_app.html?experiments=true&ws=rig.kxtz.dev')">Copy DevTools Link</button>
                 <p>Additional notes:</p>
-                <p>- Make sure your chromeos version is under v128+ or else th/p>
+                <p>- Make sure your chromeos version is under v128+ or else the exploit will not work.</p>
             </div>
         </div>
         is will not work.<
@@ -543,20 +548,21 @@
         },
         ];
 
-        function copyToClipboard(text) {
-  navigator.clipboard.writeText(text)
-    .then(() => alert('Copied to clipboard!'))
-    .catch(err => {
-      console.error('Failed to copy: ', err);
-      // Fallback for browsers that block clipboard access
-      const textarea = document.createElement('textarea');
-      textarea.value = text;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
-      alert('Copied to clipboard!');
-    });
+function showCopyBox(text) {
+  const box = document.createElement('textarea');
+  box.value = text;
+  box.style.position = 'fixed';
+  box.style.top = '10px';
+  box.style.left = '10px';
+  box.style.zIndex = 9999;
+  
+  document.body.appendChild(box);
+  box.select();
+  
+  setTimeout(() => {
+    document.body.removeChild(box);
+    alert('Text selected! Press Ctrl+C to copy');
+  }, 50);
 }
         
         document.addEventListener('DOMContentLoaded', function() {
