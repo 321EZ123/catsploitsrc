@@ -383,6 +383,7 @@
                 <button class="btn" onclick="showPage('method-incognito')">Incognito</button>
                 <button class="btn" onclick="showPage('method-exthanger')">ExtHang3r</button>
                 <button class="btn" onclick="showPage('method-mclabsvm')">MCLabsVM</button>
+                <button class="btn" onclick="showPage('method-googlehidden')">Google (hidden search)</button>
             </div>
         </div>
         
@@ -563,6 +564,23 @@
             </div>
         </div>
         
+        <div id="method-googlehidden" class="page">
+            <div class="method-content">
+                <h1>Google Search Private - Tool</h1>
+                <p>works on any version on chromeos.</p>
+                <p>Requrments</p>
+                <p>have data:text not blocked</p>
+                <h3>Method</h3>
+                <p>1. click data url and paste it to your browser</p>
+                <p>Profit!</p>
+                <p>you can use a calculator</p>
+                <button class="btn" onclick="smartCopy('data:text/html,<!DOCTYPE html> <html> <head> <title>full screen iframe</title> <style type="text/css"> html { overflow: auto; } html, body, div, iframe { margin: 0px; padding: 0px; height: 100%; border: none; } iframe { display: block; width: 100%; border: none; overflow-y: auto; overflow-x: hidden; } </style> </head> <body> <iframe src="https://www.google.com?igu=1" frameborder="0" marginheight="0" marginwidth="0" width="100%" height="100%" scrolling="auto" id="google"> </iframe> </body> </html>')">Get IP</button>                
+                <p>Additional notes:</p>
+                <p>- This method works on all Chrome OS versions</p>
+                <p>- The effect is temporary (5-10 minutes)</p>
+            </div>
+        </div>
+        
         
         <div id="games" class="page">
             <h1>Games</h1>
@@ -605,7 +623,7 @@
     </div>
 
     <script>
-        const hiddenPages = ["method-rigtools", "method-extprinter", "method-blomevm", "method-incognito", "method-exthanger", "method-mclabsvm", "upd-v1.0", "upd-v1.1", "upd-v1."];
+        const hiddenPages = ["method-rigtools", "method-extprinter", "method-blomevm", "method-incognito", "method-exthanger", "method-mclabsvm", "method-googlehidden", "upd-v1.0", "upd-v1.1", "upd-v1."];
         
         const games = [
             {
