@@ -357,7 +357,7 @@
 <body>
     <nav class="navbar">
         <h4>Catsploit</h4>
-        <a href="#" class="nav-btn" onclick="showPage('home', event)">Home</a>
+        <a href="#" class="nav-btn active" onclick="showPage('home', event)">Home</a>
         <a href="#" class="nav-btn" onclick="showPage('methods', event)">Methods</a>
         <a href="#" class="nav-btn" onclick="showPage('games', event)">Games</a>
         <a href="#" class="nav-btn" onclick="showPage('ptchnotes', event)">Updates</a>
@@ -574,7 +574,7 @@
                 <p>1. click data url and paste it to your browser</p>
                 <p>Profit!</p>
                 <p>you can use a calculator</p>
-                <button class="btn" onclick="smartCopy('data:text/html,<!DOCTYPE html> <html> <head> <title>full screen iframe</title> <style type="text/css"> html { overflow: auto; } html, body, div, iframe { margin: 0px; padding: 0px; height: 100%; border: none; } iframe { display: block; width: 100%; border: none; overflow-y: auto; overflow-x: hidden; } </style> </head> <body> <iframe src="https://www.google.com?igu=1" frameborder="0" marginheight="0" marginwidth="0" width="100%" height="100%" scrolling="auto" id="google"> </iframe> </body> </html>')">Get IP</button>                
+                <button class="btn" onclick="smartCopy('data:text/html,%3C!DOCTYPE%20html%3E%20%3Chtml%3E%20%3Chead%3E%20%3Ctitle%3Efull%20screen%20iframe%3C/title%3E%20%3Cstyle%20type=%22text/css%22%3E%20html%20%7B%20overflow:%20auto;%20%7D%20html,%20body,%20div,%20iframe%20%7B%20margin:%200px;%20padding:%200px;%20height:%20100%25;%20border:%20none;%20%7D%20iframe%20%7B%20display:%20block;%20width:%20100%25;%20border:%20none;%20overflow-y:%20auto;%20overflow-x:%20hidden;%20%7D%20%3C/style%3E%20%3C/head%3E%20%3Cbody%3E%20%3Ciframe%20src=%22https://www.google.com?igu=1%22%20frameborder=%220%22%20marginheight=%220%22%20marginwidth=%220%22%20width=%22100%25%22%20height=%22100%25%22%20scrolling=%22auto%22%20id=%22google%22%3E%20%3C/iframe%3E%20%3C/body%3E%20%3C/html%3E')">Google Hidden Search (copy and paste)</button>                
                 <p>Additional notes:</p>
                 <p>- This method works on all Chrome OS versions</p>
                 <p>- The effect is temporary (5-10 minutes)</p>
@@ -763,7 +763,7 @@ function smartCopy(text) {
   document.execCommand('copy');
   document.body.removeChild(textarea);
 
-  // Auto-remove after 5 seconds
+
   copyTimeout = setTimeout(() => {
     if (currentAlert) {
       document.body.removeChild(currentAlert);
@@ -781,8 +781,7 @@ function smartCopy(text) {
                 gameCard.id = 'card-' + game.id;
                 gameCard.dataset.categories = game.category.join(' ');
                 gameCard.innerHTML = `
-                    <img src="${game.image}" alt="${game.title}" class="game-image" 
-                         onerror="this.src='https://via.placeholder.com/200x120?text=Game+Image'">
+                    <img src="${game.image || 'https://via.placeholder.com/200x120?text=Game+Image'}" alt="${game.title}" class="game-image">
                     <div class="game-title">${game.title}</div>
                 `;
                 gameCard.onclick = function() {
@@ -798,33 +797,40 @@ function smartCopy(text) {
             });
         });
         
-function showPage(pageId, event) {
-    if (event) {
-        event.preventDefault();
-    }
-    
-    document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-    });
-    
-    document.getElementById(pageId).classList.add('active');
-    
-    if (!hiddenPages.includes(pageId)) {
-        document.querySelectorAll('.nav-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        
-        const navButtons = document.querySelectorAll('.nav-btn');
-        for (let i = 0; i < navButtons.length; i++) {
-            if (navButtons[i].getAttribute('onclick').includes(pageId)) {
-                navButtons[i].classList.add('active');
-                break;
+        function showPage(pageId, event) {
+            if (event) {
+                event.preventDefault();
+            }
+            
+
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+
+            const pageToShow = document.getElementById(pageId);
+            if (pageToShow) {
+                pageToShow.classList.add('active');
+            }
+            
+
+            if (!hiddenPages.includes(pageId)) {
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    
+
+                    const onclickAttr = btn.getAttribute('onclick');
+                    if (onclickAttr && onclickAttr.includes(pageId)) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+            
+
+            if (pageToShow) {
+                pageToShow.scrollTop = 0;
             }
         }
-    }
-    
-    document.getElementById(pageId).scrollTop = 0;
-}
         
         function filterGames() {
             const searchTerm = document.getElementById('gameSearch').value.toLowerCase();
@@ -867,13 +873,9 @@ function showPage(pageId, event) {
             const embed = document.getElementById('game-embed');
             
             embed.src = url;
-            
             fullscreen.style.display = 'block';
-            
             document.querySelector('.page-container').style.display = 'none';
-            
             document.querySelector('.navbar').style.display = 'none';
-            
             document.body.style.overflow = 'hidden';
         }
         
@@ -882,14 +884,12 @@ function showPage(pageId, event) {
             const embed = document.getElementById('game-embed');
             
             embed.src = 'about:blank';
-            
             fullscreen.style.display = 'none';
-            
             document.querySelector('.page-container').style.display = 'block';
             document.querySelector('.navbar').style.display = 'flex';
-            
             document.body.style.overflow = 'auto';
             
+
             showPage('games');
         }
     </script>
