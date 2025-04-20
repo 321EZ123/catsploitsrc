@@ -5,421 +5,379 @@
     <link rel="icon" href="https://raw.githubusercontent.com/mrdavidss-vgg/assets/refs/heads/main/enhanced_image.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <style>
-/* ===== BASE THEME VARIABLES ===== */
-:root {
-  --light-bg: #e6f2ff;
-  --soft-accent: #b3d4ff;
-  --primary-accent: #4d94ff;
-  --text-primary: #1a3d7a;
-  --card-bg: #ffffff;
-  --navbar-bg: rgba(255, 255, 255, 0.9);
-  --shadow-color: rgba(0, 0, 0, 0.1);
-  --input-bg: #ffffff;
-  --input-border: #4d94ff;
-  --dropdown-bg: #ffffff;
-  --dropdown-hover: #b3d4ff;
-  --alert-bg: #b3d4ff;
-  --alert-text: #ffffff;
-  --button-text: #4d94ff;
-  --button-hover-text: #ffffff;
-  --image-placeholder: #f0f0f0;
-}
+        :root {
+            --light-blue: #e6f2ff;
+            --soft-blue: #b3d4ff;
+            --accent-blue: #4d94ff;
+            --text-dark: #1a3d7a;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-blue);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
 
-[data-theme="dark"] {
-  --light-bg: #121212;
-  --soft-accent: #16213e;
-  --primary-accent: #0f3460;
-  --text-primary: #e0e0e0;
-  --card-bg: #1e1e1e;
-  --navbar-bg: rgba(30, 30, 30, 0.9);
-  --shadow-color: rgba(0, 0, 0, 0.3);
-  --input-bg: #2d2d2d;
-  --input-border: #0f3460;
-  --dropdown-bg: #2d2d2d;
-  --dropdown-hover: #0f3460;
-  --alert-bg: #16213e;
-  --alert-text: #e0e0e0;
-  --button-text: #4d94ff;
-  --button-hover-text: #ffffff;
-  --image-placeholder: #2d2d2d;
-}
+        .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            gap: 15px;
+        }
+        
+        .navbar h4 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        
+        .nav-btn {
+            padding: 10px 20px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .nav-btn:hover {
+            background: var(--soft-blue);
+        }
+        
+        .nav-btn.active {
+            background: var(--accent-blue);
+            color: white;
+        }
 
-/* ===== BASE STYLES ===== */
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: var(--light-bg);
-  color: var(--text-primary);
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  overflow: hidden;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
+        .btn {
+            padding: 12px 24px;
+            background: white;
+            color: var(--accent-blue);
+            border: 2px solid var(--accent-blue);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            line-height: 1.5;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            box-sizing: border-box;
+            min-width: 180px;
+        }
 
-/* ===== TYPOGRAPHY ===== */
-h1, h2, h3, h4, h5, h6 {
-  color: var(--text-primary);
-}
+        .btn:hover {
+            background: var(--accent-blue);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
 
-p {
-  margin: 10px 0;
-  line-height: 1.6;
-  color: var(--text-primary);
-}
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
 
-/* ===== NAVIGATION ===== */
-.navbar {
-  background: var(--navbar-bg);
-  padding: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 2px 10px var(--shadow-color);
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 100;
-  gap: 15px;
-}
+        .page-container {
+            position: relative;
+            height: calc(100vh - 60px);
+            width: 100%;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+        
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: center;
+            padding: 20px;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.5s ease;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+        
+        .page.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+        
+        h2 {
+            font-size: 1.8em;
+            margin: 25px 0 15px;
+        }
+        
+        p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
 
-.nav-btn {
-  padding: 10px 20px;
-  text-decoration: none;
-  color: var(--text-primary);
-  font-weight: 600;
-  border-radius: 5px;
-  transition: all 0.3s;
-  font-size: 0.9rem;
-}
+        .method-content {
+            max-width: 800px;
+            width: 90%;
+            text-align: left;
+            margin-bottom: 40px;
+        }
+        
+        .games-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1000px;
+            margin-top: 20px;
+            padding: 15px;
+        }
+        
+        .game-card {
+            width: 200px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .game-image {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            background-color: #f0f0f0;
+        }
+        
+        .game-title {
+            padding: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .search-container {
+            margin: 20px 0;
+            width: 80%;
+            max-width: 500px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        #gameSearch {
+            flex: 1;
+            padding: 10px 15px;
+            border: 2px solid var(--accent-blue);
+            border-radius: 25px;
+            font-family: 'Poppins';
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        #gameSearch:focus {
+            border-color: var(--text-dark);
+            box-shadow: 0 0 0 2px var(--soft-blue);
+        }
 
-.nav-btn:hover {
-  background: var(--soft-accent);
-  color: var(--text-primary);
-}
-
-.nav-btn.active {
-  background: var(--primary-accent);
-  color: white;
-}
-
-/* ===== BUTTONS ===== */
-.btn {
-  padding: 12px 24px;
-  background: var(--card-bg);
-  color: var(--button-text);
-  border: 2px solid var(--primary-accent);
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  margin: 10px;
-  transition: all 0.3s ease;
-  font-size: 16px;
-  line-height: 1.5;
-  text-decoration: none;
-  display: inline-block;
-  text-align: center;
-  box-sizing: border-box;
-  min-width: 180px;
-}
-
-.btn:hover {
-  background: var(--primary-accent);
-  color: var(--button-hover-text);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px var(--shadow-color);
-}
-
-.btn:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 4px var(--shadow-color);
-}
-
-.btn.active {
-  background: var(--primary-accent);
-  color: white;
-  border-color: var(--primary-accent);
-}
-
-/* ===== PAGE LAYOUT ===== */
-.page-container {
-    position: relative;
-    height: calc(100vh - 60px); 
+        #pro-xySearch {
+            flex: 1;
+            padding: 10px 15px;
+            border: 2px solid var(--accent-blue);
+            border-radius: 25px;
+            font-family: 'Poppins';
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        #pro-xySearch:focus {
+            border-color: var(--text-dark);
+            box-shadow: 0 0 0 2px var(--soft-blue);
+        }
+        
+        .filter-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .filter-button {
+            padding: 10px 15px;
+            background: white;
+            color: var(--accent-blue);
+            border: 2px solid var(--accent-blue);
+            border-radius: 25px;
+            font-family: 'Poppins';
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s;
+        }
+        
+        .filter-button:hover {
+            background: var(--soft-blue);
+        }
+        
+        .filter-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 10px;
+            right: 0;
+            overflow: hidden;
+        }
+        
+        .filter-dropdown-content a {
+            color: var(--text-dark);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            transition: all 0.2s;
+        }
+        
+        .filter-dropdown-content a:hover {
+            background-color: var(--soft-blue);
+            color: var(--text-dark);
+        }
+        
+        .filter-dropdown:hover .filter-dropdown-content {
+            display: block;
+        }
+        
+ #game-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    overflow: hidden;
-    margin-top: 60px;
-    padding-top: 20px;
+    height: 100%;
+    border: none;
+    background: white;
 }
 
-.page {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  text-align: center;
-  padding: 20px;
-  opacity: 0;
-  transform: translateX(100%);
-  transition: all 0.5s ease;
-  overflow-y: auto;
-  box-sizing: border-box;
-  background-color: var(--light-bg);
-}
-
-.page.active {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-#pro-xy {
-    padding-top: 20px;
-    margin-top: 60px;
-}
-
-.method-content {
-    margin-top: 20px; 
-}
-
-/* ===== GAME CARDS ===== */
-.games-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  max-width: 1000px;
-  margin-top: 20px;
-  padding: 15px;
-}
-
-.game-card {
-  width: 200px;
-  background: var(--card-bg);
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px var(--shadow-color);
-  transition: transform 0.3s;
-  cursor: pointer;
-}
-
-.game-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px var(--shadow-color);
-}
-
-.game-image {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  background-color: var(--image-placeholder);
-}
-
-.game-title {
-  padding: 12px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--text-primary);
-}
-
-/* ===== SEARCH & FILTERS ===== */
-.search-container {
-  margin: 20px 0;
-  width: 80%;
-  max-width: 500px;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-#gameSearch, #pro-xySearch {
-  flex: 1;
-  padding: 10px 15px;
-  border: 2px solid var(--input-border);
-  border-radius: 25px;
-  font-family: 'Poppins';
-  font-size: 16px;
-  outline: none;
-  transition: all 0.3s;
-  background-color: var(--input-bg);
-  color: var(--text-primary);
-}
-
-#gameSearch:focus, #pro-xySearch:focus {
-  border-color: var(--text-primary);
-  box-shadow: 0 0 0 2px var(--soft-accent);
-}
-
-.filter-dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.filter-button {
-  padding: 10px 15px;
-  background: var(--card-bg);
-  color: var(--button-text);
-  border: 2px solid var(--primary-accent);
-  border-radius: 25px;
-  font-family: 'Poppins';
-  font-size: 16px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  transition: all 0.3s;
-}
-
-.filter-button:hover {
-  background: var(--soft-accent);
-}
-
-.filter-dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: var(--dropdown-bg);
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px var(--shadow-color);
-  z-index: 1;
-  border-radius: 10px;
-  right: 0;
-  overflow: hidden;
-}
-
-.filter-dropdown-content a {
-  color: var(--text-primary);
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-  transition: all 0.2s;
-}
-
-.filter-dropdown-content a:hover {
-  background-color: var(--dropdown-hover);
-  color: var(--text-primary);
-}
-
-.filter-dropdown:hover .filter-dropdown-content {
-  display: block;
-}
-
-/* ===== GAME IFRAME ===== */
 #fullscreen-game {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: black;
-  z-index: 1000;
-  display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 1000;
+    display: none;
 }
+        
+        #game-embed {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .fullscreen-message {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: rgb(38, 103, 232);
+            font-size: 14px;
+            z-index: 1001;
+            opacity: 0.7;
+        }
+        
+        .exit-game-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgb(35, 135, 223);
+            color: rgb(31, 59, 241);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 1002;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .exit-game-btn:hover {
+            background: rgb(10, 38, 148);
+            transform: scale(1.1);
+        }
 
-#game-embed {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
+        .image img {
+            max-width: 60%;
+            height: auto;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
 
-.fullscreen-message {
-  position: fixed;
-  bottom: 20px;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  color: var(--primary-accent);
-  font-size: 14px;
-  z-index: 1001;
-  opacity: 0.7;
-}
-
-.exit-game-btn {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: var(--primary-accent);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
-  cursor: pointer;
-  z-index: 1002;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s;
-}
-
-.exit-game-btn:hover {
-  background: var(--soft-accent);
-  transform: scale(1.1);
-}
-
-/* ===== ALERTS & MESSAGES ===== */
-.copy-alert {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--alert-bg);
-  color: var(--alert-text);
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 10px var(--shadow-color);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-}
-
-#url-error {
-  color: #ff6b6b;
-  margin-top: 10px;
-  display: none;
-}
-
-/* ===== IMAGES ===== */
-.image img {
-  max-width: 60%;
-  height: auto;
-  border-radius: 10px;
-  margin: 20px 0;
-  box-shadow: 0 4px 8px var(--shadow-color);
-}
-
-/* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 768px) {
-  .navbar {
-    flex-wrap: wrap;
-    padding: 10px;
-    background: var(--navbar-bg);
-  }
-  
-  .nav-btn {
-    padding: 8px 12px;
-    font-size: 0.8rem;
-    color: var(--text-primary);
-  }
-  
-  .btn {
-    min-width: 150px;
-    padding: 10px 15px;
-  }
-  
-  .game-card {
-    width: 160px;
-    background: var(--card-bg);
-  }
-  
-  .filter-button {
-    background: var(--card-bg);
-    color: var(--button-text);
-  }
-}
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+                padding: 10px;
+            }
+            
+            .nav-btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .btn {
+                min-width: 150px;
+                padding: 10px 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .method-content {
+                width: 95%;
+            }
+            
+            .game-card {
+                width: 160px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -428,9 +386,8 @@ p {
         <a href="#" class="nav-btn active" onclick="showPage('home', event)">Home</a>
         <a href="#" class="nav-btn" onclick="showPage('methods', event)">Methods</a>
         <a href="#" class="nav-btn" onclick="showPage('games', event)">Games</a>
-        <a href="#" class="nav-btn" onclick="showPage('pro-xy', event)">Pr0xy</a>
+        <a href="#" class="nav-btn" onclick="showPage('pro-xy', event)">Prøxy</a>
         <a href="#" class="nav-btn" onclick="showPage('ptchnotes', event)">Updates</a>
-        <a href="#" class="nav-btn" onclick="showPage('settings', event)">Settings</a>
         <a href="#" class="nav-btn" onclick="showPage('credits', event)">Credits</a>
     </nav>
 
@@ -439,8 +396,8 @@ p {
         <div id="home" class="page active">
             <h1>Catsploit V1</h1>
             <p>Methods for school extensions deletion.</p>
-            <p>Update V1.2 finally released (2weeks)</p>
-            <button class="btn" onclick="showPage('upd-v1.2')">Update V1.2 Current</button>
+            <p>Update V1.2 Released!!</p>
+            <button class="btn" onclick="showPage('upd-v1.2')">Update V1.2</button>
         </div>
 
         <div id="methods" class="page">
@@ -464,7 +421,7 @@ p {
                 <button class="btn" onclick="showPage('upd-v1.0', event)">V1.0 Release</button>
                 <button class="btn" onclick="showPage('upd-v1.1', event)">V1.1 Update</button>
                 <button class="btn" onclick="showPage('upd-v1.1.1', event)">V1.1.1 Hotfix</button>
-                <button class="btn" onclick="showPage('upd-v1.2', event)">V1.2 (current)</button>
+                <button class="btn" onclick="showPage('upd-v1.2', event)">V1.2 Update</button>
             </div>
         </div>
         
@@ -503,20 +460,17 @@ p {
         <div id="upd-v1.2" class="page">
             <h1>Update - V1.2</h1>
             <h2>Whats added?</h2>
-            <p>Working Prox|y servers</p>
-            <p>+ Proxy Tab</p>
-            <p>+ Settings Tabs</p>
-            <p>+ Dark Mode</p>
+            <p>Couple More Games</p>
+            <p>Working Prøxy servers</p>
+            <p>Prøxy Tab</p>
             <h2>Bug Fix</h2>
-            <p>embeds not loading (i switched the servers)</p>
-            <h2>Known Bugs</h2>
-            <p>Header going into the navagation bar in settings (i really dont give 2 fucks about that so yeah. ps "im tired" -david 11:56pm) </p>
+            <p>Fixed the embed not working on certain websites.</p>
             <h2>Information</h2>
-            <p>Catsploit Released on: April 20th, 2025 12am ET</p>
-            <p>Catsploit Development (started making): April 5th, 2025 9:30am ET</p>
-            <p>Catsploit Version: v1.2</p>
+            <p>Catsploit Released on: April 20th 12:00pm ET</p>
+            <p>Catsploit Development (started making): April 17th, 2025 ET</p>
+            <p>Catsploit Version: v1.1</p>
             <div style="max-width: 600px;">
-                <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg/catsploit')">Github Release</button>                 
+                <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg/catsploit')">Github Repo</button>                
             </div>
         </div>
         
@@ -707,30 +661,21 @@ p {
         </div>
     </div>
 
-    <div id="settings" class="page">
-        <div class="method-content" style="max-width: 600px; margin: 0 auto;">
-        <h1>Settings</h1>
-        <p>Settings Tab. This tab will allow you to change the websites presence.</p>
-        <p>I really dont care about the bug with the header going into the navagation bar so dont tell me its broken.</p>
-
-          <button class="btn" id="darkBtn" onclick="settings.color('darkmode')">Enable Dark Mode</button>
-          <button class="btn" id="lightBtn" onclick="settings.color('lightmode')">Enable Light Mode</button>
-        </div>
-    </div>
-</div>
-
     <div id="pro-xy" class="page">
-        <div class="method-content" style="max-width: 600px; margin: 0 auto;">
-            <h1>Pr0xy</h1>
-            <p>This allows you to view any url. (Im aware now.gg and cloudflare verification sites do not work.)</p>
-            
+        <h1>Prøxy</h1>
+        <p>This allows you to view any url. (Im aware now.gg and cloudflare verification sites do not work.)</p>
+        <h2>Server Prøxies Status</h2>
+        <p>Prøxy Server #1: 🟢</p>
+        <p>Prøxy Server #2: 🟢</p>
+        <p>Prøxy Server #3: 🟢</p>
+        <p>Prøxy Server #4: 🟢</p>
+
+        <div style="max-width: 600px;">
             <div class="search-container">
-                <input type="text" id="pro-xySearch" placeholder="Catsploit V1.2 Pro-xy" onkeydown="handleProxyEnter(event)">
+                <input type="text" id="pro-xySearch" placeholder="Catsploit V1.2 Prøxy" onkeydown="handleProxyEnter(event)">
                 <button class="btn" onclick="validateAndOpenProxy()">Go</button>
             </div>
-            <div id="url-error" style="color: red; margin-top: 10px; display: none;">
-                Needs to be a valid URL. (please include http:// or https://)
-            </div>
+            <div id="url-error" style="color: red; margin-top: 10px; display: none;">Needs to be a valid URL (include http:// or https://)</div>
         </div>
     </div>
     
@@ -836,6 +781,27 @@ p {
                 category: ["popular"]
             },
             {
+                id: "game13",
+                title: "Google Chrome Dino",
+                image: "https://raw.githubusercontent.com/mrdavidss-vgg/assets/refs/heads/main/IMG_2952.png",
+                url: "https://chrome-dino-game.github.io/",
+                category: ["popular"]
+            },
+            {
+                id: "game14",
+                title: "Tetris",
+                image: "https://upload.wikimedia.org/wikipedia/commons/4/46/Tetris_logo.png",
+                url: "https://djblue.github.io/tetris/",
+                category: ["popular"]
+            },
+            {
+                id: "game15",
+                title: "Clicker Heroes",
+                image: "https://static.wikia.nocookie.net/clickerheroes/images/e/ef/Abcdefg.webp/revision/latest?cb=20240822171246",
+                url: "https://ubg98.github.io/ClickerHeroes/",
+                category: ["popular"]
+            },
+            {
                 id: "app1",
                 title: "Discord - Login",
                 image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ10rPiqQn7hN6eGiuB-UUYyerDiN7SiHpOWQ&s",
@@ -910,28 +876,8 @@ p {
                 }
             }, 5000);
         }
-
-const settings = {
-    color: function(mode) {
-        if (mode === 'darkmode') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.documentElement.removeAttribute('data-theme');
-            localStorage.setItem('theme', 'light');
-        }
-    },
-    
-    load: function() {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            this.color('darkmode');
-        }
-    }
-};
     
         document.addEventListener('DOMContentLoaded', function() {
-            settings.load();
             const gamesGrid = document.getElementById('gamesGrid');
             
             games.forEach(game => {
@@ -1014,14 +960,21 @@ const settings = {
             });
         }
     
-function openGameInFullscreen(url) {
+        function openGameInFullscreen(url) {
     const fullscreen = document.getElementById('fullscreen-game');
     const container = document.querySelector('.page-container');
     const navbar = document.querySelector('.navbar');
 
-    // Clear any existing iframe
-    const iframe = document.getElementById('game-embed');
-    iframe.src = 'about:blank';
+    const oldIframe = document.getElementById('game-iframe');
+    if (oldIframe) oldIframe.remove();
+
+    const iframe = document.createElement('iframe');
+    iframe.id = 'game-iframe';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = 'none';
+    iframe.allowFullscreen = true;
+    iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
 
     const sites = [
         `https://meximathurbanned.global.ssl.fastly.net/embed.html#${url.replace(/ /g, '%20')}`,
@@ -1048,10 +1001,17 @@ function openGameInFullscreen(url) {
     
     iframe.onerror = tryNextSite;
     
+    fullscreen.appendChild(iframe);
     fullscreen.style.display = 'block';
     container.style.display = 'none';
     navbar.style.display = 'none';
     document.body.style.overflow = 'hidden';
+
+    const exitBtn = document.createElement('button');
+    exitBtn.className = 'exit-game-btn';
+    exitBtn.innerHTML = '×';
+    exitBtn.onclick = closeFullscreen;
+    fullscreen.appendChild(exitBtn);
 
     const loadingCheck = setTimeout(() => {
         if (!iframe.contentWindow || iframe.contentDocument.body.innerHTML === '') {
