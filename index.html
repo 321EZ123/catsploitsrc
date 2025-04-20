@@ -1024,10 +1024,10 @@ function openGameInFullscreen(url) {
     iframe.src = 'about:blank';
 
     const sites = [
-        `https://meximathurbanned.global.ssl.fastly.net/embed.html#${encodeURIComponent(url)}`,
-        `https://full.boxathome.net/embed.html#${encodeURIComponent(url)}`,
-        `https://frogiesarcade.win/embed.html#${encodeURIComponent(url)}`,
-        `https://nowgg.lol/embed.html#${encodeURIComponent(url)}`,
+        `https://meximathurbanned.global.ssl.fastly.net/embed.html#${url.replace(/ /g, '%20')}`,
+        `https://full.boxathome.net/embed.html#${url.replace(/ /g, '%20')}`,
+        `https://frogiesarcade.win/embed.html#${url.replace(/ /g, '%20')}`,
+        `https://nowgg.lol/embed.html#${url.replace(/ /g, '%20')}`,
         url
     ];
 
