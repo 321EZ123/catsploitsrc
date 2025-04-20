@@ -1013,27 +1013,20 @@ const settings = {
             });
         }
     
-        function openGameInFullscreen(url) {
+function openGameInFullscreen(url) {
     const fullscreen = document.getElementById('fullscreen-game');
     const container = document.querySelector('.page-container');
     const navbar = document.querySelector('.navbar');
 
-    const oldIframe = document.getElementById('game-iframe');
-    if (oldIframe) oldIframe.remove();
-
-    const iframe = document.createElement('iframe');
-    iframe.id = 'game-iframe';
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
-    iframe.style.border = 'none';
-    iframe.allowFullscreen = true;
-    iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
+    // Clear any existing iframe
+    const iframe = document.getElementById('game-embed');
+    iframe.src = 'about:blank';
 
     const sites = [
-        `https://meximathurbanned.global.ssl.fastly.net/embed.html#${url.replace(/ /g, '%20')}`,
-        `https://full.boxathome.net/embed.html#${url.replace(/ /g, '%20')}`,
-        `https://frogiesarcade.win/embed.html#${url.replace(/ /g, '%20')}`,
-        `https://nowgg.lol/embed.html#${url.replace(/ /g, '%20')}`,
+        `https://meximathurbanned.global.ssl.fastly.net/embed.html#${encodeURIComponent(url)}`,
+        `https://full.boxathome.net/embed.html#${encodeURIComponent(url)}`,
+        `https://frogiesarcade.win/embed.html#${encodeURIComponent(url)}`,
+        `https://nowgg.lol/embed.html#${encodeURIComponent(url)}`,
         url
     ];
 
@@ -1054,17 +1047,10 @@ const settings = {
     
     iframe.onerror = tryNextSite;
     
-    fullscreen.appendChild(iframe);
     fullscreen.style.display = 'block';
     container.style.display = 'none';
     navbar.style.display = 'none';
     document.body.style.overflow = 'hidden';
-
-    const exitBtn = document.createElement('button');
-    exitBtn.className = 'exit-game-btn';
-    exitBtn.innerHTML = '×';
-    exitBtn.onclick = closeFullscreen;
-    fullscreen.appendChild(exitBtn);
 
     const loadingCheck = setTimeout(() => {
         if (!iframe.contentWindow || iframe.contentDocument.body.innerHTML === '') {
