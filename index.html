@@ -4,6 +4,7 @@
     <title>Untitled Document - Google Docs</title>
     <link rel="icon" href="https://raw.githubusercontent.com/mrdavidss-vgg/assets/refs/heads/main/enhanced_image.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --light-blue: #e6f2ff;
@@ -24,7 +25,7 @@
 
         .navbar {
             background: rgba(255, 255, 255, 0.9);
-            padding: 15px;
+            padding: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -33,7 +34,7 @@
             width: 100%;
             top: 0;
             z-index: 100;
-            gap: 15px;
+            gap: 10px;
         }
         
         .navbar h4 {
@@ -42,14 +43,23 @@
         }
         
         .nav-btn {
-            padding: 10px 20px;
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 600;
-            border-radius: 5px;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-        }
+    padding: 5px 5px; /* Adjusted padding for icons */
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    border-radius: 5px;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Fixed width for consistency */
+    height: 40px; /* Fixed height for consistency */
+}
+
+.nav-btn i {
+    font-size: 1.2rem; /* Icon size */
+}
         
         .nav-btn:hover {
             background: var(--soft-blue);
@@ -279,6 +289,148 @@
             display: block;
         }
         
+    /* Partners Section Styles */
+.partners-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1000px;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.partner-card {
+    width: 150px;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+    text-align: center;
+}
+
+.partner-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.partner-icon {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+}
+
+.partner-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* Expanded Card Styles */
+.partner-card-expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 500px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    z-index: 1000;
+    padding: 30px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+.partner-card-expanded.active {
+    display: flex;
+}
+
+.partner-expanded-icon {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+}
+
+.partner-expanded-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+    text-align: center;
+}
+
+.partner-expanded-desc {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #555;
+}
+
+.partner-expanded-btn {
+    padding: 12px 30px;
+    background: var(--accent-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.partner-expanded-btn:hover {
+    background: #3a7bd5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}
+
+.close-expanded {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #777;
+}
+
+.close-expanded:hover {
+    color: #333;
+}
+
  #game-iframe {
     position: absolute;
     top: 0;
@@ -383,12 +535,27 @@
 <body>
     <nav class="navbar">
         <h4>Catsploit</h4>
-        <a href="#" class="nav-btn active" onclick="showPage('home', event)">Home</a>
-        <a href="#" class="nav-btn" onclick="showPage('methods', event)">Methods</a>
-        <a href="#" class="nav-btn" onclick="showPage('games', event)">Games</a>
-        <a href="#" class="nav-btn" onclick="showPage('pro-xy', event)">Prøxy</a>
-        <a href="#" class="nav-btn" onclick="showPage('ptchnotes', event)">Updates</a>
-        <a href="#" class="nav-btn" onclick="showPage('credits', event)">Credits</a>
+        <a href="#" class="nav-btn active" onclick="showPage('home', event)" title="Home">
+            <i class="fas fa-home"></i>
+        </a>
+        <a href="#" class="nav-btn" onclick="showPage('methods', event)" title="Methods">
+            <i class="fas fa-code"></i>
+        </a>
+        <a href="#" class="nav-btn" onclick="showPage('games', event)" title="Games">
+            <i class="fas fa-gamepad"></i>
+        </a>
+        <a href="#" class="nav-btn" onclick="showPage('pro-xy', event)" title="Prøxy">
+            <i class="fas fa-globe"></i>
+        </a>
+        <a href="#" class="nav-btn" onclick="showPage('ptchnotes', event)" title="Updates">
+            <i class="fas fa-file-download"></i>
+        </a>
+        <a href="#" class="nav-btn" onclick="showPage('partnerships', event)" title="Partners">
+            <i class="fas fa-handshake"></i>
+        </a>
+        <a href="#" class="nav-btn" onclick="showPage('extras', event)" title="Extras">
+            <i class="fas fa-plus"></i>
+        </a>
     </nav>
 
     <div class="page-container">
@@ -396,8 +563,8 @@
         <div id="home" class="page active">
             <h1>Catsploit V1</h1>
             <p>Methods for school extensions deletion.</p>
-            <p>Update V1.2 Released!!</p>
-            <button class="btn" onclick="showPage('upd-v1.2')">Update V1.2</button>
+            <p>Update V1.2.1 patch just released.</p>
+            <button class="btn" onclick="showPage('upd-v1.2.1')">Update V1.2.1</button>
         </div>
 
         <div id="methods" class="page">
@@ -417,6 +584,7 @@
  <div id="ptchnotes" class="page">
             <h1>Updates</h1>
             <p>Updates for Catsploit.</p>
+
             <div style="max-width: 600px;">
                 <button class="btn" onclick="showPage('upd-v1.0', event)">V1.0 Release</button>
                 <button class="btn" onclick="showPage('upd-v1.1', event)">V1.1 Update</button>
@@ -464,11 +632,32 @@
             <p>Working Prøxy servers</p>
             <p>Prøxy Tab</p>
             <h2>Bug Fix</h2>
+            <p>embeds not loading (i switched the servers)</p>
+            <h2>Known Bugs</h2>
+            <p>Header going into the navagation bar in settings (i really dont give 2 fucks about that so yeah. ps "im tired" -david 11:56pm) </p>
             <p>Fixed the embed not working on certain websites.</p>
             <h2>Information</h2>
-            <p>Catsploit Released on: April 20th 12:00pm ET</p>
-            <p>Catsploit Development (started making): April 17th, 2025 ET</p>
-            <p>Catsploit Version: v1.1</p>
+            <p>Catsploit Released on: April 20th, 2025 12am ET</p>
+            <p>Catsploit Development (started making): April 5th, 2025 9:30am ET</p>
+            <p>Catsploit Version: v1.2</p>
+            <div style="max-width: 600px;">
+                <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg/catsploit')">Github Repo</button>                
+            </div>
+        </div>
+
+        <div id="upd-v1.2.1" class="page">
+            <h1>Update - V1.2.1</h1>
+            <h2>Whats added?</h2>
+            <p>Extras Tab</p>
+            <p>Partnership Tab</p>
+            <h2>Bug Fix</h2>
+            <p>Headers going inside of the navagation bar.</p>
+            <h2>Known Bugs</h2>
+            <p>idk give me a fucking break. - david 1:20am</p>
+            <p>Fixed the embed not working on certain websites.</p>
+            <h2>Information</h2>
+            <p>idgaf about this part</p>
+            <p>Catsploit Version: v1.2.1</p>
             <div style="max-width: 600px;">
                 <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg/catsploit')">Github Repo</button>                
             </div>
@@ -653,15 +842,55 @@
                 <h1>Credits</h1>
                 <p>Developed by David - coder (founder)</p>
                 <p>Krypton - Inspired by concept of the 404 page.</p>
+                <p>frogies arcade - used as prox-y servers</p>
                 <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg', '_blank')">My GitHub</button>
                 <button class="btn" onclick="window.open('https://github.com/EvanTeSecond/Krypton', '_blank')">Krypton Repo</button>
+                <button class="btn" onclick="window.open('https://github.com/FrogiesArcade', '_blank')">frogiesarcade github</button>
                 <button class="btn" onclick="window.open('https://dsc.gg/catsploit-dc', '_blank')">Catsploit Discord</button>
                 <button class="btn" onclick="window.open('https://discord.com/users/959880218263310406', '_blank')">My Discord</button>
             </div>
         </div>
     </div>
 
+    <div id="extras" class="page">
+        <h1> </h1>
+        <h1> </h1>
+        <h2>Extras</h2>
+        <p>this is where the all of the other stuff goes like idk</p>
+        <div style="max-width: 600px;">
+            <button class="btn" onclick="showPage('credits')">Credits</button>
+            <button class="btn" onclick="showPage('partnerships')">Partnerships</button>
+            <button class="btn" onclick="showPage('settings')">Settings (soon)</button>
+            </div>
+        </div>
+    
+
+    <div id="settings" class="page">
+        <h1> </h1>
+        <h1> </h1>
+        <h2>nothing here right now.. (releasing in v1.2.2)</h2>
+    </div>
+
+    <div id="partnerships" class="page">
+        <h2> </h2>
+        <h1>Partnerships</h1>
+        <p>Our partners</p>
+        
+        <div class="partners-container" id="partnersGrid">
+        </div>
+        
+        <div class="overlay" id="partnerOverlay"></div>
+        <div class="partner-card-expanded" id="partnerExpanded">
+            <button class="close-expanded" onclick="closePartnerCard()">×</button>
+            <img src="" alt="Partner Logo" class="partner-expanded-icon" id="expandedPartnerIcon">
+            <h2 class="partner-expanded-title" id="expandedPartnerTitle">Partner Name</h2>
+            <p class="partner-expanded-desc" id="expandedPartnerDesc">Partner description goes here.</p>
+            <button class="partner-expanded-btn" id="expandedPartnerBtn">Visit Site</button>
+        </div>
+    </div>
+
     <div id="pro-xy" class="page">
+        <h2> </h2>
         <h1>Prøxy</h1>
         <p>This allows you to view any url. (Im aware now.gg and cloudflare verification sites do not work.)</p>
         <h2>Server Prøxies Status</h2>
@@ -687,7 +916,8 @@
 
 
     <script>
-        const hiddenPages = ["method-rigtools", "method-extprinter", "method-blomevm", "method-incognito", "method-exthanger", "method-mclabsvm", "method-googlehidden", "upd-v1.0", "upd-v1.1", "upd-v1.1.1", "upd-v1.2"];
+        const hiddenPages = ["method-rigtools", "method-extprinter", "method-blomevm", "method-incognito", "method-exthanger", "method-mclabsvm", "method-googlehidden", "settings", "credits", "tools", "exploits", "upd-v1.0", "upd-v1.1", "upd-v1.1.1", "upd-v1.2", "upd-v1.2.1"
+        ];
         
         const games = [
             {
@@ -976,13 +1206,25 @@
     iframe.allowFullscreen = true;
     iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
 
-    const sites = [
-        `https://meximathurbanned.global.ssl.fastly.net/embed.html#${url.replace(/ /g, '%20')}`,
-        `https://full.boxathome.net/embed.html#${url.replace(/ /g, '%20')}`,
-        `https://frogiesarcade.win/embed.html#${url.replace(/ /g, '%20')}`,
-        `https://nowgg.lol/embed.html#${url.replace(/ /g, '%20')}`,
-        url
+    function prepareProxyUrls(url) {
+    // Ensure URL has protocol
+    if (!/^https?:\/\//i.test(url)) {
+        url = 'https://' + url;
+    }
+
+    // Encode only if needed
+    const encodedUrl = /[^a-zA-Z0-9\-._~:/?#[\]@!$&'()*+,;=]/.test(url) 
+        ? encodeURIComponent(url) 
+        : url;
+
+    return [
+        `https://meximathurbanned.global.ssl.fastly.net/embed.html#${encodedUrl}`,
+        `https://full.boxathome.net/embed.html#${encodedUrl}`,
+        `https://frogiesarcade.win/embed.html#${encodedUrl}`,
+        `https://nowgg.lol/embed.html#${encodedUrl}`,
+        url // Fallback to direct URL
     ];
+}
 
     let currentSiteIndex = 0;
 
@@ -1029,23 +1271,17 @@ function validateAndOpenProxy() {
         const urlInput = document.getElementById('pro-xySearch').value.trim();
         const errorElement = document.getElementById('url-error');
         
-        // Reset error display
         errorElement.style.display = 'none';
         
-        // Validate URL format
         try {
-            // Basic validation for http/https
             if (!/^https?:\/\//i.test(urlInput)) {
                 throw new Error('Invalid protocol');
             }
             
-            // Try creating a URL object to validate the full URL
             new URL(urlInput);
             
-            // If validation passes, open the URL
             openGameInFullscreen(urlInput);
         } catch (e) {
-            // Show error if validation fails
             errorElement.style.display = 'block';
         }
     }
@@ -1075,6 +1311,56 @@ function validateAndOpenProxy() {
             
             showPage('games');
         }
+
+const partners = [
+{
+    id: "partner1",
+    title: "Benrogo",
+    icon: "https://172673.xyz/logo.png",
+    url: "https://benrogo.net/",
+    description: "Benrogo is a site has lots of sites that indicates you if a games website or a pr-xy is down and has lots of sites."
+}
+];
+
+function initPartners() {
+    const partnersGrid = document.getElementById('partnersGrid');
+    
+    partners.forEach(partner => {
+        const partnerCard = document.createElement('div');
+        partnerCard.className = 'partner-card';
+        partnerCard.innerHTML = `
+            <img src="${partner.icon}" alt="${partner.title}" class="partner-icon">
+            <p class="partner-name">${partner.title}</p>
+        `;
+        partnerCard.onclick = function() {
+            openPartnerCard(partner);
+        };
+        partnersGrid.appendChild(partnerCard);
+    });
+}
+
+function openPartnerCard(partner) {
+    document.getElementById('expandedPartnerIcon').src = partner.icon;
+    document.getElementById('expandedPartnerTitle').textContent = partner.title;
+    document.getElementById('expandedPartnerDesc').textContent = partner.description;
+    document.getElementById('expandedPartnerBtn').onclick = function() {
+        window.location.href = partner.url;
+    };
+    
+    document.getElementById('partnerOverlay').classList.add('active');
+    document.getElementById('partnerExpanded').classList.add('active');
+}
+
+function closePartnerCard() {
+    document.getElementById('partnerOverlay').classList.remove('active');
+    document.getElementById('partnerExpanded').classList.remove('active');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    initPartners();
+    
+    document.getElementById('partnerOverlay').onclick = closePartnerCard;
+});
     </script>
 </body>
 </html>
