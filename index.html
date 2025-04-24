@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Untitled Document - Google Docs</title>
 
     <meta property="og:title" content="Catsploit V1" />
     <meta property="og:description" content="Catsploit V1 Official Website" />
-    <meta property="og:image" content="https://raw.githubusercontent.com/mrdavidss-vgg/assets/7f3da451286faea175754967900871765fb9e54b/cropped-Screenshot%202025-04-21%2016.09.35_16x9.png" />
+    <meta property="og:image"
+        content="https://raw.githubusercontent.com/mrdavidss-vgg/assets/7f3da451286faea175754967900871765fb9e54b/cropped-Screenshot%202025-04-21%2016.09.35_16x9.png" />
     <meta property="og:url" content="https://catsploit.pages.dev" />
     <meta property="og:type" content="website" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
     <link rel="icon" href="https://raw.githubusercontent.com/mrdavidss-vgg/assets/refs/heads/main/enhanced_image.png">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -21,7 +27,7 @@
             --accent-blue: #4d94ff;
             --text-dark: #1a3d7a;
         }
-        
+
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--light-blue);
@@ -36,44 +42,47 @@
             background: rgba(255, 255, 255, 0.9);
             padding: 10px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: flex-start;
             align-items: center;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: fixed;
-            width: 100%;
+            width: 60px;
+            height: 100vh;
+            left: 0;
             top: 0;
             z-index: 100;
             gap: 10px;
         }
-        
+
         .navbar h4 {
             margin: 0;
             font-size: 1.2rem;
         }
-        
-        .nav-btn {
-    padding: 5px 5px; /* Adjusted padding for icons */
-    text-decoration: none;
-    color: var(--text-dark);
-    font-weight: 600;
-    border-radius: 5px;
-    transition: all 0.3s;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px; /* Fixed width for consistency */
-    height: 40px; /* Fixed height for consistency */
-}
 
-.nav-btn i {
-    font-size: 1.2rem; /* Icon size */
-}
-        
+        .nav-btn {
+            padding: 5px 5px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav-btn i {
+            font-size: 1.2rem;
+        }
+
         .nav-btn:hover {
             background: var(--soft-blue);
         }
-        
+
         .nav-btn.active {
             background: var(--accent-blue);
             color: white;
@@ -102,22 +111,23 @@
             background: var(--accent-blue);
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .btn:active {
             transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .page-container {
             position: relative;
-            height: calc(100vh - 60px);
-            width: 100%;
+            height: 100vh;
+            width: calc(100% - 60px);
             overflow: hidden;
-            margin-top: 60px;
+            margin-left: 60px;
+            margin-top: 0;
         }
-        
+
         .page {
             position: absolute;
             top: 0;
@@ -136,23 +146,23 @@
             overflow-y: auto;
             box-sizing: border-box;
         }
-        
+
         .page.active {
             opacity: 1;
             transform: translateX(0);
         }
-        
+
         h1 {
             font-size: 2.5em;
             margin-bottom: 20px;
             color: var(--text-dark);
         }
-        
+
         h2 {
             font-size: 1.8em;
             margin: 25px 0 15px;
         }
-        
+
         p {
             margin: 10px 0;
             line-height: 1.6;
@@ -164,7 +174,7 @@
             text-align: left;
             margin-bottom: 40px;
         }
-        
+
         .games-container {
             display: flex;
             flex-wrap: wrap;
@@ -174,35 +184,35 @@
             margin-top: 20px;
             padding: 15px;
         }
-        
+
         .game-card {
             width: 200px;
             background: white;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
             cursor: pointer;
         }
-        
+
         .game-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
-        
+
         .game-image {
             width: 100%;
             height: 120px;
             object-fit: cover;
             background-color: #f0f0f0;
         }
-        
+
         .game-title {
             padding: 12px;
             font-weight: 600;
             font-size: 0.95rem;
         }
-        
+
         .search-container {
             margin: 20px 0;
             width: 80%;
@@ -211,7 +221,7 @@
             gap: 10px;
             align-items: center;
         }
-        
+
         #gameSearch {
             flex: 1;
             padding: 10px 15px;
@@ -222,7 +232,7 @@
             outline: none;
             transition: all 0.3s;
         }
-        
+
         #gameSearch:focus {
             border-color: var(--text-dark);
             box-shadow: 0 0 0 2px var(--soft-blue);
@@ -238,17 +248,17 @@
             outline: none;
             transition: all 0.3s;
         }
-        
+
         #pro-xySearch:focus {
             border-color: var(--text-dark);
             box-shadow: 0 0 0 2px var(--soft-blue);
         }
-        
+
         .filter-dropdown {
             position: relative;
             display: inline-block;
         }
-        
+
         .filter-button {
             padding: 10px 15px;
             background: white;
@@ -263,23 +273,23 @@
             gap: 5px;
             transition: all 0.3s;
         }
-        
+
         .filter-button:hover {
             background: var(--soft-blue);
         }
-        
+
         .filter-dropdown-content {
             display: none;
             position: absolute;
             background-color: white;
             min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             z-index: 1;
             border-radius: 10px;
             right: 0;
             overflow: hidden;
         }
-        
+
         .filter-dropdown-content a {
             color: var(--text-dark);
             padding: 12px 16px;
@@ -288,185 +298,183 @@
             text-align: left;
             transition: all 0.2s;
         }
-        
+
         .filter-dropdown-content a:hover {
             background-color: var(--soft-blue);
             color: var(--text-dark);
         }
-        
+
         .filter-dropdown:hover .filter-dropdown-content {
             display: block;
         }
-        
-    /* Partners Section Styles */
-.partners-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    max-width: 1000px;
-    margin-top: 20px;
-    padding: 20px;
-}
 
-.partner-card {
-    width: 150px;
-    background: white;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 10px;
-    text-align: center;
-}
+        .partners-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1000px;
+            margin-top: 20px;
+            padding: 20px;
+        }
 
-.partner-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
+        .partner-card {
+            width: 150px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 10px;
+            text-align: center;
+        }
 
-.partner-icon {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    margin-bottom: 15px;
-    border-radius: 50%;
-    background-color: #f0f0f0;
-}
+        .partner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
 
-.partner-name {
-    font-weight: 600;
-    font-size: 0.95rem;
-    margin: 0;
-}
+        .partner-icon {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+        }
 
-/* Expanded Card Styles */
-.partner-card-expanded {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    max-width: 500px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    z-index: 1000;
-    padding: 30px;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-}
+        .partner-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin: 0;
+        }
 
-.partner-card-expanded.active {
-    display: flex;
-}
+        .partner-card-expanded {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            padding: 30px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.partner-expanded-icon {
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
-    margin-bottom: 20px;
-    border-radius: 50%;
-    background-color: #f0f0f0;
-}
+        .partner-card-expanded.active {
+            display: flex;
+        }
 
-.partner-expanded-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    color: var(--text-dark);
-    text-align: center;
-}
+        .partner-expanded-icon {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+        }
 
-.partner-expanded-desc {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 25px;
-    text-align: center;
-    color: #555;
-}
+        .partner-expanded-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+            text-align: center;
+        }
 
-.partner-expanded-btn {
-    padding: 12px 30px;
-    background: var(--accent-blue);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 16px;
-    text-decoration: none;
-}
+        .partner-expanded-desc {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #555;
+        }
 
-.partner-expanded-btn:hover {
-    background: #3a7bd5;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
+        .partner-expanded-btn {
+            padding: 12px 30px;
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            text-decoration: none;
+        }
 
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 999;
-    display: none;
-}
+        .partner-expanded-btn:hover {
+            background: #3a7bd5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-.overlay.active {
-    display: block;
-}
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
 
-.close-expanded {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #777;
-}
+        .overlay.active {
+            display: block;
+        }
 
-.close-expanded:hover {
-    color: #333;
-}
+        .close-expanded {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #777;
+        }
 
- #game-iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    background: white;
-}
+        .close-expanded:hover {
+            color: #333;
+        }
 
-#fullscreen-game {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: black;
-    z-index: 1000;
-    display: none;
-}
-        
+        #game-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: white;
+        }
+
+        #fullscreen-game {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            z-index: 1000;
+            display: none;
+        }
+
         #game-embed {
             width: 100%;
             height: 100%;
             border: none;
         }
-        
+
         .fullscreen-message {
             position: fixed;
             bottom: 20px;
@@ -478,7 +486,7 @@
             z-index: 1001;
             opacity: 0.7;
         }
-        
+
         .exit-game-btn {
             position: fixed;
             top: 20px;
@@ -497,7 +505,7 @@
             justify-content: center;
             transition: all 0.3s;
         }
-        
+
         .exit-game-btn:hover {
             background: rgb(10, 38, 148);
             transform: scale(1.1);
@@ -508,7 +516,7 @@
             height: auto;
             border-radius: 10px;
             margin: 20px 0;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         @media (max-width: 768px) {
@@ -516,34 +524,54 @@
                 flex-wrap: wrap;
                 padding: 10px;
             }
-            
+
             .nav-btn {
-                padding: 8px 12px;
-                font-size: 0.8rem;
+                padding: 5px;
+                text-decoration: none;
+                color: var(--text-dark);
+                font-weight: 600;
+                border-radius: 5px;
+                transition: all 0.3s;
+                font-size: 0.9rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                margin: 5px 0;
             }
-            
+
+            .navbar h4 {
+                margin: 10px 0;
+                font-size: 1rem;
+                writing-mode: vertical-rl;
+                transform: rotate(180deg);
+                text-orientation: mixed;
+            }
+
             .btn {
                 min-width: 150px;
                 padding: 10px 15px;
             }
-            
+
             h1 {
                 font-size: 2em;
             }
-            
+
             .method-content {
                 width: 95%;
             }
-            
+
             .game-card {
                 width: 160px;
             }
         }
     </style>
 </head>
+
 <body>
     <nav class="navbar">
-        <h4>Catsploit</h4>
+        <h5>Catsploit</h5>
         <a href="#" class="nav-btn active" onclick="showPage('home', event)" title="Home">
             <i class="fas fa-home"></i>
         </a>
@@ -562,6 +590,9 @@
         <a href="#" class="nav-btn" onclick="showPage('partnerships', event)" title="Partners">
             <i class="fas fa-handshake"></i>
         </a>
+        <a href="#" class="nav-btn" onclick="showPage('settings', event)" title="Settings">
+            <i class="fa-solid fa-gear"></i>
+        </a>
         <a href="#" class="nav-btn" onclick="showPage('extras', event)" title="Extras">
             <i class="fas fa-plus"></i>
         </a>
@@ -572,25 +603,20 @@
         <div id="home" class="page active">
             <h1>Catsploit V1</h1>
             <p>Methods for school extensions deletion.</p>
-            <p>Update V1.2.2 Hotfix just released.</p>
-            <button class="btn" onclick="showPage('upd-v1.2.2')">Hotfix V1.2.2</button>
+            <p>Update V1.3 just released! Check out all of the new features.</p>
+            <button class="btn" onclick="showPage('upd-v1.3')">Update V1.3<button>
         </div>
 
         <div id="methods" class="page">
             <h1>Methods</h1>
             <p>Methods to bypass your schools filtering</p>
             <div style="max-width: 600px;">
-                <button class="btn" onclick="showPage('method-rigtools', event)">Rigtools (Recommended)</button>
-                <button class="btn" onclick="showPage('method-extprinter', event)">ExtPrint3r</button>
-                <button class="btn" onclick="showPage('method-blomevm')">BlomeVM (fast and working)</button>
-                <button class="btn" onclick="showPage('method-incognito')">Incognito</button>
-                <button class="btn" onclick="showPage('method-exthanger')">ExtHang3r</button>
-                <button class="btn" onclick="showPage('method-mclabsvm')">MCLabsVM</button>
-                <button class="btn" onclick="showPage('method-googlehidden')">Google (hidden search)</button>
+                <button class="btn" onclick="showPage('exploits', event)">Exploits / Methods</button>
+                <button class="btn" onclick="showPage('tools', event)">Tools</button>
             </div>
         </div>
-        
- <div id="ptchnotes" class="page">
+
+        <div id="ptchnotes" class="page">
             <h1>Updates</h1>
             <p>Updates for Catsploit.</p>
 
@@ -601,280 +627,359 @@
                 <button class="btn" onclick="showPage('upd-v1.2', event)">V1.2 Update</button>
                 <button class="btn" onclick="showPage('upd-v1.2.1', event)">V1.2.1 Patch</button>
                 <button class="btn" onclick="showPage('upd-v1.2.2', event)">V1.2.2 Hotfix</button>
-            </div>
-        </div>
-        
-        <div id="upd-v1.0" class="page">
-            <h1>Update - V1.0</h1>
-            <h2>Whats added?</h2>
-            <p>Games Tab, Methods Tab, Patch notes tab.</p>
-            <p>404 Bait Page / ty krypton :)</p>
-            <h2>Future</h2>
-            <p>What ill think ill add in the future</p>
-            <p>+ More apps and games</p>
-            <p>+ More Methods</p>
-            <p>+ Tab Cloaker</p>
-            <p>+ Dark Mode</p>
-            <h2>Information</h2>
-            <div style="max-width: 600px;">
-                <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg/catsploit')">Github Repo</button>                
-            </div>
-        </div>
-        
-        <div id="upd-v1.1" class="page">
-            <h1>Update - V1.1</h1>
-            <h2>Whats added?</h2>
-            <p>2 More Methods</p>
-            <h2>Bug Fix</h2>
-            <p>Fixed the copy buttons on data:text urls</p>
-            <h2>Information</h2>
-            <p>Catsploit Released on: April 6th, 2025 2:40pm ET</p>
-            <p>Catsploit Development (started making): April 5th, 2025 9:30am ET</p>
-            <p>Catsploit Version: v1.1</p>
-            <div style="max-width: 600px;">
-                <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg/catsploit')">Github Repo</button>                
-            </div>
-        </div>
-        
-        <div id="upd-v1.2" class="page">
-            <h1>Update - V1.2</h1>
-            <h2>Whats added?</h2>
-            <p>Couple More Games</p>
-            <p>Working Prøxy servers</p>
-            <p>Prøxy Tab</p>
-            <h2>Bug Fix</h2>
-            <p>embeds not loading (i switched the servers)</p>
-            <h2>Known Bugs</h2>
-            <p>Header going into the navagation bar in settings (i really dont give 2 fucks about that so yeah. ps "im tired" -david 11:56pm) </p>
-            <p>Fixed the embed not working on certain websites.</p>
-            <h2>Information</h2>
-            <p>Catsploit Released on: April 20th, 2025 12am ET</p>
-            <p>Catsploit Development (started making): April 5th, 2025 9:30am ET</p>
-            <p>Catsploit Version: v1.2</p>
-            <div style="max-width: 600px;">
-                <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg/catsploit')">Github Repo</button>                
+                <button class="btn" onclick="showPage('upd-v1.3', event)">Update V1.3</button>
             </div>
         </div>
 
-        <div id="upd-v1.2.1" class="page">
-            <h1>Update - V1.2.1</h1>
-            <h2>Whats added?</h2>
-            <p>Extras Tab</p>
-            <p>Partnership Tab</p>
-            <h2>Bug Fix</h2>
-            <p>Headers going inside of the navagation bar.</p>
-            <h2>Known Bugs</h2>
-            <p>idk give me a fucking break. - david 1:20am</p>
-            <p>Fixed the embed not working on certain websites.</p>
-            <h2>Information</h2>
-            <p>idgaf about this part</p>
-            <p>Catsploit Version: v1.2.1</p>
-            <div style="max-width: 600px;">
-                <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg/catsploit')">Github Repo</button>                
-            </div>
-        </div>
-        
-        <div id="upd-v1.1.1" class="page">
-            <h1>Hotfix - V1.1.1</h1>
-            <h2>Bug Fix</h2>
-            <p>fixed discord bug</p>
-            <h2>Information</h2>
-            <p>Catsploit Released on: idk</p>
-            <p>Catsploit Development (started making):idfk</p>
-            <p>Catsploit Version: v1.1.1</p>
-            <div style="max-width: 600px;">
-                <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg/catsploit')">Github Repo</button>                
-            </div>
-        </div>
+        <div id="exploits" class="page">
+            <h1>Exploits</h1>
+            <p>Exploits are just the methods tab.</p>
 
-        <div id="upd-v1.2.2" class="page">
-            <h1>Hotfix - V1.2.2</h1>
-            <h2>Bug Fix</h2>
-            <p>Fixed an issue with Games not opening and pr0xys not working and having an invaild error.</p>
-            <p>Added v1.2.1 on updates (i forgo)</p>
-            <h2>Information</h2>
-            <p>Catsploit Released on: idk</p>
-            <p>Catsploit Development (started making):idfk</p>
-            <p>Catsploit Version: v1.2.2</p>
             <div style="max-width: 600px;">
-                <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg/catsploit')">Github Repo</button>                
+                <button class="btn" onclick="showPage('method-rigtools', event)">Rigtools (Recommended)</button>
+                <button class="btn" onclick="showPage('method-extprinter', event)">ExtPrint3r</button>
+                <button class="btn" onclick="showPage('method-blomevm')">BlomeVM (fast and working)</button>
+                <button class="btn" onclick="showPage('method-incognito')">Incognito</button>
+                <button class="btn" onclick="showPage('method-exthanger')">ExtHang3r</button>
+                <button class="btn" onclick="showPage('method-mclabsvm')">MCLabsVM</button>
+                <button class="btn" onclick="showPage('method-googlehidden')">Google (hidden search)</button>
             </div>
         </div>
+    </div>
 
-        <div id="method-rigtools" class="page">
-            <div class="method-content">
-                <h1>Rigtools</h1>
-                <p>Requrments</p>
-                <p>chromebook version under 128</p>
-                <h3>Method</h3>
-                <p>1. First click the first button below then go back here</p>
-                <p>2. Close the Devtools Tab then press the second button</p>
-                <p>Then Click the Network Tab</p>
-                <p>Underneath Name press gray check box 2 times</p>
-                <p>Then click GForms then you can disable any extenstion.</p>
-                <button class="btn" onclick="smartCopy('devtools://devtools/bundled/devtools_app.html')">Copy DevTools Link</button>
-                <button class="btn" onclick="smartCopy('devtools://devtools/bundled/devtools_app.html?experiments=true&ws=rig.kxtz.dev')">Copy DevTools Link 2</button>
-                <p>Additional notes:</p>
-                <p>- Make sure your chromeos version is under v128+ or else the exploit will not work. (penis)</p>
-            </div>
+    <div id="tools" class="page">
+        <h2> </h2>
+        <h1>Tools</h1>
+        <p>Tools Tab. Yeah idk what to put on here</p>
+        <button class="btn" onclick="showPage('data-text', event)">data:text HTML Generator</button>
+        <div style="max-width: 600px;">
         </div>
-        
-        <div id="method-exthanger" class="page">
-            <div class="method-content">
-                <h1>ExtHang3r</h1>
-                <p>Requrments</p>
-                <p>idk have a chromebook</p>
-                <h3>Method</h3>
-                <p>1. Press the first button then open the link and choose the extension you want to disable</p>
-                <p>2. Press hang extension</p>
-                <p>3. After the hanging proccess press Kill (Extension Name)</p>
-                <p>4. Follow the steps below then you disabled the extension.</p>
-                <p>you disabled the extension. yay</p>
-                <button class="btn" onclick="smartCopy('data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%20lang%3D%22en%22%3E%3Chead%3E%3Clink%20rel%3D%22shortcut%20icon%22%20type%3D%22image%2Fpng%22%20href%3D%22https%3A%2F%2Fraw.githubusercontent.com%2FBlobby-Boi%2FExtHang3r%2Frefs%2Fheads%2Fmain%2Ffavicon.png%22%3E%3Cmeta%20charset%3D%22UTF-8%22%3E%3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%2C%20initial-scale%3D1.0%22%3E%3C%2Fhead%3E%3Cbody%3E%3Cscript%3Easync%20function%20fetchAndRun()%7Btry%7Bconst%20response%3Dawait%20fetch(%27https%3A%2F%2Fraw.githubusercontent.com%2FBlobby-Boi%2FExtHang3r%2Fmain%2Findex.html%27)%3Bif(!response.ok)%7Balert(%22Failed%20to%20fetch%20URL.%22)%3Breturn%7Dconst%20text%3Dawait%20response.text()%3Bdocument.open()%3Bdocument.write(text)%3Bdocument.close()%7Dcatch(error)%7Bconsole.error(%22Error%20fetching%20the%20code%3A%22%2Cerror)%3Balert(%22Error%20fetching%20the%20code.%20Check%20the%20console%20for%20details.%22)%7D%7DfetchAndRun()%3B%3C%2Fscript%3E%3C%2Fbody%3E%3C%2Fhtml%3E')">Copy data:text Link</button>
-                <p>Additional notes:</p>
-                <p>Try lowering the iframes if your chromebook crashes. (Try going to 3500 iframes if chromebook crashes.)</p>
-            </div>
+    </div>
+    </div>
+
+    <!--
+    <button class="btn" onclick="showPage('pageid', event)">title</button>
+m -->
+
+    <div id="upd-v1.0" class="page">
+        <h1>Update - V1.0</h1>
+        <h2>Whats added?</h2>
+        <p>Games Tab, Methods Tab, Patch notes tab.</p>
+        <p>404 Bait Page / ty krypton :)</p>
+        <h2>Future</h2>
+        <p>What ill think ill add in the future</p>
+        <p>+ More apps and games</p>
+        <p>+ More Methods</p>
+        <p>+ Tab Cloaker</p>
+        <p>+ Dark Mode</p>
+        <h2>Information</h2>
+        <div style="max-width: 600px;">
+            <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg/catsploit')">Github Repo</button>
         </div>
-        
-        <div id="method-blomevm" class="page">
-            <div class="method-content">
-                <h1>BlomeVM</h1>
-                <p>Description: BlobeVM is a virtual machine that can bypass school restrictions. Fast Easy to use.</p>
-                <h2>Requrments</h2>
-                <p>have github notblocked.</p>
-                <h3>Method</h3>
-                <p>1. go to https://github.com/codespaces and choosing the "blank" codespace template</p>
-                <p>2. click the second button on this page that says "Copy BlomeVM Command"</p>
-                <p>3. right click & paste it in into the command prompt. then press enter</p>
-                <p>4. install the vm in terminal</p>
-                <p>5. press install now the vm in terminal</p>
-                <p>6. wait around 4 mins to install. 20 mins max</p>
-                <p>7. once it clears everything go to ports then go above the link then click the web icon</p>
-                <button class="btn" onclick="window.open('https://github.com/codespaces')">Codespaces</button>                
-                <button class="btn" onclick="smartCopy('curl -O https://raw.githubusercontent.com/Blobby-Boi/BlobeVM/main/install.sh\nchmod +x install.sh\n./install.sh')">Copy BlomeVM Command</button>
-                <p>1. If your vm stops like this image</p>
-                <div class="image">
-                    <img 
-                        src="https://raw.githubusercontent.com/mrdavidss-vgg/assets/main/Screenshot%202025-04-04%2015.26.13.png" 
-                        alt="BlomeVM Screenshot"
-                        onerror="this.src='https://via.placeholder.com/400x200?text=Image+Not+Found'"
-                    >
+    </div>
+
+    <div id="upd-v1.1" class="page">
+        <h1>Update - V1.1</h1>
+        <h2>Whats added?</h2>
+        <p>2 More Methods</p>
+        <h2>Bug Fix</h2>
+        <p>Fixed the copy buttons on data:text urls</p>
+        <h2>Information</h2>
+        <p>Catsploit Released on: April 6th, 2025 2:40pm ET</p>
+        <p>Catsploit Development (started making): April 5th, 2025 9:30am ET</p>
+        <p>Catsploit Version: v1.1</p>
+        <div style="max-width: 600px;">
+            <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg/catsploit')">Github Repo</button>
+        </div>
+    </div>
+
+    <div id="upd-v1.2" class="page">
+        <h1>Update - V1.2</h1>
+        <h2>Whats added?</h2>
+        <p>Couple More Games</p>
+        <p>Working Prøxy servers</p>
+        <p>Prøxy Tab</p>
+        <h2>Bug Fix</h2>
+        <p>embeds not loading (i switched the servers)</p>
+        <h2>Known Bugs</h2>
+        <p>Header going into the navagation bar in settings (i really dont give 2 fucks about that so yeah. ps "im
+            tired" -david 11:56pm) </p>
+        <p>Fixed the embed not working on certain websites.</p>
+        <h2>Information</h2>
+        <p>Catsploit Released on: April 20th, 2025 12am ET</p>
+        <p>Catsploit Development (started making): April 5th, 2025 9:30am ET</p>
+        <p>Catsploit Version: v1.2</p>
+        <div style="max-width: 600px;">
+            <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg/catsploit')">Github Repo</button>
+        </div>
+    </div>
+
+    <div id="upd-v1.2.1" class="page">
+        <h1>Update - V1.2.1</h1>
+        <h2>Whats added?</h2>
+        <p>Extras Tab</p>
+        <p>Partnership Tab</p>
+        <h2>Bug Fix</h2>
+        <p>Headers going inside of the navagation bar.</p>
+        <h2>Known Bugs</h2>
+        <p>idk give me a fucking break. - david 1:20am</p>
+        <p>Fixed the embed not working on certain websites.</p>
+        <h2>Information</h2>
+        <p>idgaf about this part</p>
+        <p>Catsploit Version: v1.2.1</p>
+        <div style="max-width: 600px;">
+            <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg/catsploit')">Github Repo</button>
+        </div>
+    </div>
+
+    <div id="upd-v1.1.1" class="page">
+        <h1>Hotfix - V1.1.1</h1>
+        <h2>Bug Fix</h2>
+        <p>fixed discord bug</p>
+        <h2>Information</h2>
+        <p>Catsploit Released on: idk</p>
+        <p>Catsploit Development (started making):idfk</p>
+        <p>Catsploit Version: v1.1.1</p>
+        <div style="max-width: 600px;">
+            <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg/catsploit')">Github Repo</button>
+        </div>
+    </div>
+
+    <div id="upd-v1.2.2" class="page">
+        <h1>Hotfix - V1.2.2</h1>
+        <h2>Bug Fix</h2>
+        <p>Fixed an issue with Games not opening and pr0xys not working and having an invaild error.</p>
+        <p>Added v1.2.1 on updates (i forgo)</p>
+        <h2>Information</h2>
+        <p>Catsploit Released on: idk</p>
+        <p>Catsploit Development (started making):idfk</p>
+        <p>Catsploit Version: v1.2.2</p>
+        <div style="max-width: 600px;">
+            <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg/catsploit')">Github Repo</button>
+        </div>
+    </div>    
+
+    <div id="upd-v1.3" class="page">
+        <h1>Update - V1.3</h1>
+        <h2>Whats new and whats added?</h2>
+        <p>- Changed Navagation Bar to be vertical instead of horziontial.</p>
+        <p>- Settings Tab</p>
+        <p>- proxy changer section</p>
+        <p>- Panic Key (thanks to zxsgames our partner!)</p>
+        <p>- Changed Methods Tab a bit with 2 sections (exploits and tools)</p>
+        <p>- Data:text Generator. (in tools.)</p>
+        <p>- Extras Tab</p>
+        <p>- Partnership Tab</p>
+        <h2>Information</h2>
+        <p>Catsploit Released on: idk</p>
+        <p>Catsploit Development (started making):idfk</p>
+        <p>Catsploit Version: v1.3</p>
+        <div style="max-width: 600px;">
+            <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg/catsploit')">Github Repo</button>
+        </div>
+    </div>
+
+    <div id="method-rigtools" class="page">
+        <div class="method-content">
+            <h1>Rigtools</h1>
+            <p>Requrments</p>
+            <p>chromebook version under 128</p>
+            <h3>Method</h3>
+            <p>1. First click the first button below then go back here</p>
+            <p>2. Close the Devtools Tab then press the second button</p>
+            <p>Then Click the Network Tab</p>
+            <p>Underneath Name press gray check box 2 times</p>
+            <p>Then click GForms then you can disable any extenstion.</p>
+            <button class="btn" onclick="smartCopy('devtools://devtools/bundled/devtools_app.html')">Copy DevTools
+                Link</button>
+            <button class="btn"
+                onclick="smartCopy('devtools://devtools/bundled/devtools_app.html?experiments=true&ws=rig.kxtz.dev')">Copy
+                DevTools Link 2</button>
+            <p>Additional notes:</p>
+            <p>- Make sure your chromeos version is under v128+ or else the exploit will not work. (penis)</p>
+        </div>
+    </div>
+
+    <div id="method-exthanger" class="page">
+        <div class="method-content">
+            <h1>ExtHang3r</h1>
+            <p>Requrments</p>
+            <p>idk have a chromebook</p>
+            <h3>Method</h3>
+            <p>1. Press the first button then open the link and choose the extension you want to disable</p>
+            <p>2. Press hang extension</p>
+            <p>3. After the hanging proccess press Kill (Extension Name)</p>
+            onclick="smartCopy('data:text/html,%3C!DOCTYPE%20html%3E%3Chtml%20lang%3D%22en%22%3E%3Chead%3E%3Clink%20rel%3D%22shortcut%20icon%22%20type%3D%22image%2Fpng%22%20href%3D%22https%3A%2F%2Fraw.githubusercontent.com%2FBlobby-Boi%2FExtHang3r%2Frefs%2Fheads%2Fmain%2Ffavicon.png%22%3E%3Cmeta%20charset%3D%22UTF-8%22%3E%3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%2C%20initial-scale%3D1.0%22%3E%3C%2Fhead%3E%3Cbody%3E%3Cscript%3Easync%20function%20fetchAndRun()%7Btry%7Bconst%20response%3Dawait%20fetch(%27https%3A%2F%2Fraw.githubusercontent.com%2FBlobby-Boi%2FExtHang3r%2Fmain%2Findex.html%27)%3Bif(!response.ok)%7Balert(%22Failed%20to%20fetch%20URL.%22)%3Breturn%7Dconst%20text%3Dawait%20response.text()%3Bdocument.open()%3Bdocument.write(text)%3Bdocument.close()%7Dcatch(error)%7Bconsole.error(%22Error%20fetching%20the%20code%3A%22%2Cerror)%3Balert(%22Error%20fetching%20the%20code.%20Check%20the%20console%20for%20details.%22)%7D%7DfetchAndRun()%3B%3C%2Fscript%3E%3C%2Fbody%3E%3C%2Fhtml%3E')">Copy
+            data:text Link</button>
+            <p>4. Follow the steps below then you disabled the extension.</p>
+            <p>you disabled the extension. yay</p>
+            <button class="btn" <p>Additional notes:</p>
+                <p>Try lowering the iframes if your chromebook crashes. (Try going to 3500 iframes if chromebook
+                    crashes.)
+                </p>
+        </div>
+    </div>
+
+    <div id="method-blomevm" class="page">
+        <div class="method-content">
+            <h1>BlomeVM</h1>
+            <p>Description: BlobeVM is a virtual machine that can bypass school restrictions. Fast Easy to use.</p>
+            <h2>Requrments</h2>
+            <p>have github notblocked.</p>
+            <h3>Method</h3>
+            <p>1. go to https://github.com/codespaces and choosing the "blank" codespace template</p>
+            <p>2. click the second button on this page that says "Copy BlomeVM Command"</p>
+            <p>3. right click & paste it in into the command prompt. then press enter</p>
+            <p>4. install the vm in terminal</p>
+            <p>5. press install now the vm in terminal</p>
+            <p>6. wait around 4 mins to install. 20 mins max</p>
+            <p>7. once it clears everything go to ports then go above the link then click the web icon</p>
+            <button class="btn" onclick="window.open('https://github.com/codespaces')">Codespaces</button>
+            <button class="btn"
+                onclick="smartCopy('curl -O https://raw.githubusercontent.com/Blobby-Boi/BlobeVM/main/install.sh\nchmod +x install.sh\n./install.sh')">Copy
+                BlomeVM Command</button>
+            <p>1. If your vm stops like this image</p>
+            <div class="image">
+                <img src="https://raw.githubusercontent.com/mrdavidss-vgg/assets/main/Screenshot%202025-04-04%2015.26.13.png"
+                    alt="BlomeVM Screenshot"
+                    onerror="this.src='https://via.placeholder.com/400x200?text=Image+Not+Found'">
+            </div>
+            <p>Go back into your codespace and restart it and it should work again.</p>
+        </div>
+    </div>
+
+    <div id="method-incognito" class="page">
+        <div class="method-content">
+            <h1>Incognito Exploit</h1>
+            <p>allows you to go incognito</p>
+            <p>Requrments</p>
+            <p>1 brain cell + chromeos version under 128+ (chrome://flags not blocked)</p>
+            <h3>Method</h3>
+            <p>1. click the buttons below for which chrome version your on.</p>
+            <p>2. Paste link into browser and enable and restart</p>
+            <p>3. Go to your settings then go to your network and select your network then scroll down and press network
+                again.</p>
+            <p>4. then put the thing to custom name servers and put this one as the first url (click button below to get
+                ipaddress for network)</p>
+            <p>5. A notification will pop up 20s later telling you to sign in. Press sign in then press CTRL+T</p>
+            <p>Now your in a incognito tab!</p>
+            <button class="btn" onclick="smartCopy('chrome://flags/#captive-portal-popup-window')">Captive
+                Portal</button>
+            <button class="btn" onclick="smartCopy('chrome://flags/#temporary-unexpire-flags-m125')">Copy chrome flag
+                v126-128</button>
+            <button class="btn" onclick="smartCopy('150.136.163.0')">Get IP</button>
+        </div>
+    </div>
+
+    <div id="method-mclabsvm" class="page">
+        <div class="method-content">
+            <h1>Microsoft Labs VM</h1>
+            <p>allows you to go incognito</p>
+            <p>Requrments</p>
+            <p>1 brain cell + chromeos version under 128+ (chrome://flags not blocked)</p>
+            <h3>Method</h3>
+            <p>1. Sign into microsoft (if you are already signed in skip this step)</p>
+            <p>2. Click the button below to go to microsoft labs</p>
+            <p>3. Click "Launch VM Mode" in Microsoft Labs</p>
+            <p>4. Now enter the password (click "password" button)</p>
+            <p>Profit!</p>
+            <p>NOTE: Lots of websites are blocked but it's quite fun to mess around with. (If you want a vm with working
+                browser thats not blocked use BlomeVM)</p>
+            <button class="btn"
+                onclick="window.open('https://learn.microsoft.com/en-us/training/modules/implement-common-integration-features-finance-ops/10-exercise-1')">Microsoft
+                Labs</button>
+            <button class="btn" onclick="smartCopy('pass@word1')">Password</button>
+        </div>
+    </div>
+
+    <div id="method-extprinter" class="page">
+        <div class="method-content">
+            <h1>ExtPrint3r</h1>
+            <p>works on any version on chromeos.</p>
+            <p>Requrments</p>
+            <p>1 brain cell</p>
+            <h3>Method</h3>
+            <p>1. click data url and paste it to your browser (if its blocked use hosting on github)</p>
+            <p>2. Press settings then set the iframes to max</p>
+            <p>3. Press show all extensions </p>
+            <p>4. go to "The Expl0it tab"</p>
+            <p>5. click the extension you want to disable and follow the steps."</p>
+            <p>This works for like 5 - 10 mins working and tested by me</p>
+            <button class="btn" onclick="window.open('https://github.com/Blobby-Boi/ExtPrint3r', '_blank')">Github
+                Repo</button>
+            <button class="btn" onclick="window.open('https://shrib.com/#Livia5oZpeZj', '_blank')">Hosting</button>
+            <button class="btn"
+                onclick="window.open('https://gist.githubusercontent.com/mrdavidss-vgg/7d4a6353c210974572391a77fbf6bdf9/raw/3f7c22179288d5e25578b94eedd300ea50a99fab/extprint3r.txt', '_blank')">ExtPrint3r
+                data:text</button>
+            <p>Additional notes:</p>
+            <p>- This method works on all Chrome versions</p>
+            <p>- The effect is temporary (5-10 minutes)</p>
+        </div>
+    </div>
+
+    <div id="method-googlehidden" class="page">
+        <div class="method-content">
+            <h1>Google Search Private - Tool</h1>
+            <p>works on any version on chromeos.</p>
+            <p>Requrments</p>
+            <p>have data:text not blocked</p>
+            <h3>Method</h3>
+            <p>1. click data url and paste it to your browser</p>
+            <p>Profit!</p>
+            <p>you can use a calculator</p>
+            <button class="btn"
+                onclick="smartCopy('data:text/html,%3C!DOCTYPE%20html%3E%20%3Chtml%3E%20%3Chead%3E%20%3Ctitle%3Efull%20screen%20iframe%3C/title%3E%20%3Cstyle%20type=%22text/css%22%3E%20html%20%7B%20overflow:%20auto;%20%7D%20html,%20body,%20div,%20iframe%20%7B%20margin:%200px;%20padding:%200px;%20height:%20100%25;%20border:%20none;%20%7D%20iframe%20%7B%20display:%20block;%20width:%20100%25;%20border:%20none;%20overflow-y:%20auto;%20overflow-x:%20hidden;%20%7D%20%3C/style%3E%20%3C/head%3E%20%3Cbody%3E%20%3Ciframe%20src=%22https://www.google.com?igu=1%22%20frameborder=%220%22%20marginheight=%220%22%20marginwidth=%220%22%20width=%22100%25%22%20height=%22100%25%22%20scrolling=%22auto%22%20id=%22google%22%3E%20%3C/iframe%3E%20%3C/body%3E%20%3C/html%3E')">Google
+                Hidden Search (copy and paste)</button>
+            <p>Additional notes:</p>
+            <p>- This method works on all Chrome OS versions</p>
+            <p>- The effect is temporary (5-10 minutes)</p>
+        </div>
+    </div>
+
+
+    <div id="games" class="page">
+        <h3></h3>
+        <h1>Games</h1>
+        <p>Games Tab. If a game is down please message me on discord.</p>
+
+        <div class="search-container">
+            <input type="text" id="gameSearch" placeholder="Search games..." oninput="filterGames()">
+            <div class="filter-dropdown">
+                <button class="filter-button">All Games ▼</button>
+                <div class="filter-dropdown-content">
+                    <a href="#" onclick="filterByCategory('all')">All Games</a>
+                    <a href="#" onclick="filterByCategory('popular')">Popular</a>
+                    <a href="#" onclick="filterByCategory('vm')">Virtual Machines</a>
+                    <a href="#" onclick="filterByCategory('action')">Action</a>
+                    <a href="#" onclick="filterByCategory('apps')">Apps</a>
                 </div>
-                <p>Go back into your codespace and restart it and it should work again.</p>
-            </div>
-        </div>
-        
-        <div id="method-incognito" class="page">
-            <div class="method-content">
-                <h1>Incognito Exploit</h1>
-                <p>allows you to go incognito</p>
-                <p>Requrments</p>
-                <p>1 brain cell + chromeos version under 128+ (chrome://flags not blocked)</p>
-                <h3>Method</h3>
-                <p>1. click the buttons below for which chrome version your on.</p>
-                <p>2. Paste link into browser and enable and restart</p>
-                <p>3. Go to your settings then go to your network and select your network then scroll down and press network again.</p>
-                <p>4. then put the thing to custom name servers and put this one as the first url (click button below to get ipaddress for network)</p>
-                <p>5. A notification will pop up 20s later telling you to sign in. Press sign in then press CTRL+T</p>
-                <p>Now your in a incognito tab!</p>
-                <button class="btn" onclick="smartCopy('chrome://flags/#captive-portal-popup-window')">Captive Portal</button>
-                <button class="btn" onclick="smartCopy('chrome://flags/#temporary-unexpire-flags-m125')">Copy chrome flag v126-128</button>                
-                <button class="btn" onclick="smartCopy('150.136.163.0')">Get IP</button>                
             </div>
         </div>
 
-        <div id="method-mclabsvm" class="page">
-            <div class="method-content">
-                <h1>Microsoft Labs VM</h1>
-                <p>allows you to go incognito</p>
-                <p>Requrments</p>
-                <p>1 brain cell + chromeos version under 128+ (chrome://flags not blocked)</p>
-                <h3>Method</h3>
-                <p>1. Sign into microsoft (if you are already signed in skip this step)</p>
-                <p>2. Click the button below to go to microsoft labs</p>
-                <p>3. Click "Launch VM Mode" in Microsoft Labs</p>
-                <p>4. Now enter the password (click "password" button)</p>
-                <p>Profit!</p>
-                <p>NOTE: Lots of websites are blocked but it's quite fun to mess around with. (If you want a vm with working browser thats not blocked use BlomeVM)</p>
-                <button class="btn" onclick="window.open('https://learn.microsoft.com/en-us/training/modules/implement-common-integration-features-finance-ops/10-exercise-1')">Microsoft Labs</button>                
-                <button class="btn" onclick="smartCopy('pass@word1')">Password</button>                
-            </div>
+        <div class="games-container" id="gamesGrid">
         </div>
-        
-        <div id="method-extprinter" class="page">
-            <div class="method-content">
-                <h1>ExtPrint3r</h1>
-                <p>works on any version on chromeos.</p>
-                <p>Requrments</p>
-                <p>1 brain cell</p>
-                <h3>Method</h3>
-                <p>1. click data url and paste it to your browser (if its blocked use hosting on github)</p>
-                <p>2. Press settings then set the iframes to max</p>
-                <p>3. Press show all extensions </p>
-                <p>4. go to "The Expl0it tab"</p>
-                <p>5. click the extension you want to disable and follow the steps."</p>
-                <p>This works for like 5 - 10 mins working and tested by me</p>
-                <button class="btn" onclick="window.open('https://github.com/Blobby-Boi/ExtPrint3r', '_blank')">Github Repo</button>
-                <button class="btn" onclick="window.open('https://shrib.com/#Livia5oZpeZj', '_blank')">Hosting</button>
-                <button class="btn" onclick="window.open('https://gist.githubusercontent.com/mrdavidss-vgg/7d4a6353c210974572391a77fbf6bdf9/raw/3f7c22179288d5e25578b94eedd300ea50a99fab/extprint3r.txt', '_blank')">ExtPrint3r data:text</button>
-                <p>Additional notes:</p>
-                <p>- This method works on all Chrome OS versions</p>
-                <p>- The effect is temporary (5-10 minutes)</p>
-            </div>
+    </div>
+
+    <div id="credits" class="page">
+        <div style="max-width: 600px;">
+            <h1>Credits</h1>
+            <p>Developed by CDev - coder (founder)</p>
+            <p>Krypton - Inspired by concept of the 404 page.</p>
+            <p>frogies arcade - used as prox-y servers</p>
+            <p>ZXS Games - Panic Key</p>
+            <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg', '_blank')">My GitHub</button>
+            <button class="btn" onclick="window.open('https://github.com/EvanTeSecond/Krypton', '_blank')">Krypton
+                Repo</button>
+                <button class="btn" onclick="window.open('https://zxsgames.vip/', '_blank')">ZXS Games
+                    </button>
+            <button class="btn" onclick="window.open('https://github.com/FrogiesArcade', '_blank')">frogiesarcade
+                github</button>
+            <button class="btn" onclick="window.open('https://dsc.gg/catsploit-dc', '_blank')">Catsploit
+                Discord</button>
+            <button class="btn" onclick="window.open('https://discord.com/users/959880218263310406', '_blank')">My
+                Discord</button>
         </div>
-        
-        <div id="method-googlehidden" class="page">
-            <div class="method-content">
-                <h1>Google Search Private - Tool</h1>
-                <p>works on any version on chromeos.</p>
-                <p>Requrments</p>
-                <p>have data:text not blocked</p>
-                <h3>Method</h3>
-                <p>1. click data url and paste it to your browser</p>
-                <p>Profit!</p>
-                <p>you can use a calculator</p>
-                <button class="btn" onclick="smartCopy('data:text/html,%3C!DOCTYPE%20html%3E%20%3Chtml%3E%20%3Chead%3E%20%3Ctitle%3Efull%20screen%20iframe%3C/title%3E%20%3Cstyle%20type=%22text/css%22%3E%20html%20%7B%20overflow:%20auto;%20%7D%20html,%20body,%20div,%20iframe%20%7B%20margin:%200px;%20padding:%200px;%20height:%20100%25;%20border:%20none;%20%7D%20iframe%20%7B%20display:%20block;%20width:%20100%25;%20border:%20none;%20overflow-y:%20auto;%20overflow-x:%20hidden;%20%7D%20%3C/style%3E%20%3C/head%3E%20%3Cbody%3E%20%3Ciframe%20src=%22https://www.google.com?igu=1%22%20frameborder=%220%22%20marginheight=%220%22%20marginwidth=%220%22%20width=%22100%25%22%20height=%22100%25%22%20scrolling=%22auto%22%20id=%22google%22%3E%20%3C/iframe%3E%20%3C/body%3E%20%3C/html%3E')">Google Hidden Search (copy and paste)</button>                
-                <p>Additional notes:</p>
-                <p>- This method works on all Chrome OS versions</p>
-                <p>- The effect is temporary (5-10 minutes)</p>
-            </div>
-        </div>
-        
-        
-        <div id="games" class="page">
-            <h1>Games</h1>
-            <p>Games Tab. If a game is down please message me on discord.</p>
-            
-            <div class="search-container">
-                <input type="text" id="gameSearch" placeholder="Search games..." oninput="filterGames()">
-                <div class="filter-dropdown">
-                    <button class="filter-button">All Games ▼</button>
-                    <div class="filter-dropdown-content">
-                        <a href="#" onclick="filterByCategory('all')">All Games</a>
-                        <a href="#" onclick="filterByCategory('popular')">Popular</a>
-                        <a href="#" onclick="filterByCategory('action')">Action</a>
-                        <a href="#" onclick="filterByCategory('apps')">Apps</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="games-container" id="gamesGrid">
-            </div>
-        </div>
-        
-        <div id="credits" class="page">
-            <div style="max-width: 600px;">
-                <h1>Credits</h1>
-                <p>Developed by David - coder (founder)</p>
-                <p>Krypton - Inspired by concept of the 404 page.</p>
-                <p>frogies arcade - used as prox-y servers</p>
-                <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg', '_blank')">My GitHub</button>
-                <button class="btn" onclick="window.open('https://github.com/EvanTeSecond/Krypton', '_blank')">Krypton Repo</button>
-                <button class="btn" onclick="window.open('https://github.com/FrogiesArcade', '_blank')">frogiesarcade github</button>
-                <button class="btn" onclick="window.open('https://dsc.gg/catsploit-dc', '_blank')">Catsploit Discord</button>
-                <button class="btn" onclick="window.open('https://discord.com/users/959880218263310406', '_blank')">My Discord</button>
-            </div>
-        </div>
+    </div>
     </div>
 
     <div id="extras" class="page">
@@ -886,24 +991,44 @@
             <button class="btn" onclick="showPage('credits')">Credits</button>
             <button class="btn" onclick="showPage('partnerships')">Partnerships</button>
             <button class="btn" onclick="showPage('settings')">Settings (soon)</button>
-            </div>
         </div>
-    
+    </div>
+
 
     <div id="settings" class="page">
         <h1> </h1>
         <h1> </h1>
-        <h2>nothing here right now.. (releasing in v1.3)</h2>
+        <h2>Settings</h2>
+        <p>Settings tab.</p>
+
+        <div style="max-width: 600px;">
+            <button class="btn" onclick="showPage('switch-servers', event)">Switch Pr-oxy Servers</button>
+            <button class="btn" onclick="showPage('panic-key', event)">Panic Key</button>
+        </div>
+    </div>
+
+    <div id="switch-servers" class="page">
+        <h1> </h1>
+        <h2>Switch Pro-xy Servers</h2>
+        <p>Select a proxy server to use for game/proxy loading</p>
+
+        <div style="max-width: 600px;">
+            <button class="btn" onclick="switchServers('embeddr-5', event)">Prox0xy (Embeddr) #1</button>
+            <button class="btn" onclick="switchServers('frogiesarcade-1', event)">Prox0xy (Frogies arcade) #1</button>
+            <button class="btn" onclick="switchServers('frogiesarcade-2', event)">Prox0xy (Frogies arcade) #2</button>
+            <button class="btn" onclick="switchServers('frogiesarcade-3', event)">Prox0xy (Frogies arcade) #3</button>
+            <button class="btn" onclick="switchServers('frogiesarcade-4', event)">Prox0xy (Frogies arcade) #4</button>
+        </div>
     </div>
 
     <div id="partnerships" class="page">
         <h2> </h2>
         <h1>Partnerships</h1>
         <p>Our partners</p>
-        
+
         <div class="partners-container" id="partnersGrid">
         </div>
-        
+
         <div class="overlay" id="partnerOverlay"></div>
         <div class="partner-card-expanded" id="partnerExpanded">
             <button class="close-expanded" onclick="closePartnerCard()">×</button>
@@ -914,36 +1039,125 @@
         </div>
     </div>
 
+    <div id="data-text" class="page">
+        <h2> </h2>
+        <h1>data:text HTML Generator</h1>
+        <p>Create data:text URLs from HTML code (inspired by Krypton)</p>
+
+        <div style="width: 90%; max-width: 800px; margin: 20px auto;">
+            <textarea id="htmlInput"
+                style="width: 100%; height: 300px; padding: 15px; border: 2px solid var(--accent-blue); border-radius: 10px; font-family: 'Poppins', sans-serif; font-size: 14px;"
+                placeholder="Paste your HTML code here...">&lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;E&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Example site&lt;/h1&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;</textarea>
+
+            <div style="margin-top: 20px; display: flex; justify-content: center;">
+                <button class="btn" onclick="generateDataText()">Generate data:text URL</button>
+            </div>
+
+            <div id="dataTextOutput" style="margin-top: 20px; display: none;">
+                <h3>Your data:text URL:</h3>
+                <div
+                    style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #ddd; word-break: break-all;">
+                    <code id="generatedUrl"></code>
+                </div>
+                <button class="btn" onclick="copyDataText()" style="margin-top: 15px;">
+                    <i class="fas fa-copy"></i> Copy URL
+                </button>
+            </div>
+        </div>
+    </div>
+
     <div id="pro-xy" class="page">
         <h2> </h2>
         <h1>Prøxy</h1>
         <p>This allows you to view any url. (Im aware now.gg and cloudflare verification sites do not work.)</p>
-        <h2>Server Prøxies Status</h2>
-        <p>Prøxy Server #1: 🟢 (Current Server)</p>
-        <p>Prøxy Server #2: 🟢</p>
-        <p>Prøxy Server #3: 🟢</p>
-        <p>Prøxy Server #4: 🟢</p>
 
         <div style="max-width: 600px;">
             <div class="search-container">
-                <input type="text" id="pro-xySearch" placeholder="Catsploit V1.2 Prøxy" onkeydown="handleProxyEnter(event)">
+                <input type="text" id="pro-xySearch" placeholder="Catsploit V1.2 Prøxy"
+                    onkeydown="handleProxyEnter(event)">
                 <button class="btn" onclick="validateAndOpenProxy()">Go</button>
             </div>
-            <div id="url-error" style="color: red; margin-top: 10px; display: none;">Needs to be a valid URL (include http:// or https://)</div>
+            <div id="url-error" style="color: red; margin-top: 10px; display: none;">Needs to be a valid URL (include
+                http:// or https://)</div>
         </div>
     </div>
-    
+
+    <div id="panic-key" class="page">
+        <h1>Panic Key</h1>
+        <p>Press a key to instantly redirect to another site when someone approaches</p>
+        
+        <div style="max-width: 600px; margin: 0 auto; text-align: left;">
+            <div style="margin-bottom: 20px;">
+                <h3>Current Panic Key:</h3>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span id="current-panic-key" style="font-size: 24px; font-weight: bold; background: #f0f0f0; padding: 5px 15px; border-radius: 5px;">`</span>
+                    <button id="change-panic-key-btn" class="btn" style="padding: 8px 16px;">Change Key</button>
+                </div>
+                <p id="listening-status" style="color: #666; font-style: italic; margin-top: 5px;"></p>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <h3>Redirect URL:</h3>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="panic-url" style="flex: 1; padding: 10px; border: 2px solid var(--accent-blue); border-radius: 5px;" 
+                           placeholder="Enter URL (e.g., https://google.com)" value="https://google.com">
+                    <button class="btn" onclick="savePanicSettings()" style="padding: 8px 16px;">Save Settings</button>
+                </div>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <h3>Status:</h3>
+                <p id="panic-status" style="color: var(--accent-blue); font-weight: bold;">Panic key is active</p>
+            </div>
+            
+            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent-blue);">
+                <h3>How to use:</h3>
+                <p>1. Set your preferred panic key (default is '`')</p>
+                <p>2. Set the URL you want to redirect to when panic key is pressed</p>
+                <p>3. Press "Save Settings"</p>
+                <p>4. Press your panic key anytime to quickly redirect</p>
+            </div>
+        </div>
+    </div>
+
     <div id="fullscreen-game">
         <button class="exit-game-btn" onclick="closeFullscreen()">×</button>
         <embed id="game-embed" type="text/html">
-            <div class="fullscreen-message">Catsploit V1.2</div>
+        <div class="fullscreen-message">Catsploit V1.2</div>
     </div>
 
 
     <script>
-        const hiddenPages = ["method-rigtools", "method-extprinter", "method-blomevm", "method-incognito", "method-exthanger", "method-mclabsvm", "method-googlehidden", "settings", "credits", "tools", "exploits", "upd-v1.0", "upd-v1.1", "upd-v1.1.1", "upd-v1.2", "upd-v1.2.1", "upd-v1.2.2"
+        const hiddenPages = ["method-rigtools", "method-extprinter", "method-blomevm", "method-incognito",
+            "method-exthanger", "method-mclabsvm", "method-googlehidden", "switch-servers",
+            "credits", "tools", "exploits", "data-text", "panic-key", "upd-v1.0", "upd-v1.1",
+            "upd-v1.1.1", "upd-v1.2", "upd-v1.2.1", "upd-v1.2.2", "upd-v1.3"];
+
+        const partners = [
+            {
+                id: "partner1",
+                title: "Benrogo",
+                icon: "https://172673.xyz/logo.png",
+                url: "https://benrogo.net/",
+                description: "Benrogo is a site has lots of sites that indicates you if a games website or a pr-xy is down and has lots of sites to search and play games on."
+            },
+            {
+                id: "partner2",
+                title: "ZXS Games",
+                icon: "https://media-hosting.imagekit.io//22df2e446d5a4996/logo.png?Expires=1837211717&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=sjK~86wttUnoBhQ2Cm6ZK7ScYviFq25M1oKzSJ3nmeCOkS4QbCnfRIdMN96V7LRyw1e6jCsHWkTuwHDt4LHD6HthRuYp5opZTzkHOYTIRcmXfjysGmVP17Vf9MHfJ-DribNeHppDrmgYT9ebXcbIMYntbv8fukxuhr9mAUbpPxhU8am3D9JZIMgDf5H0A38H2jSe2dZLRaS3y0AMMhS1yxbmUV-PP9T4nUykjKCSHoGedkN0yKE4vNC2sWEdnDntwMydRhClbacG047auKhODUsnC6P6xQ9VSsNsmQOC6LTzpNic~ULOeZw5DXP99Wq7tM-4sL3U0cVh8M~~tq2e1g__",
+                url: "https://zxsgames.vip/",
+                description: "ZXS Games is an school unblocked websites with a proxy, games, settings and more!"
+            }
         ];
-        
+
         const games = [
             {
                 id: "Other1",
@@ -1057,6 +1271,13 @@
                 category: ["popular"]
             },
             {
+                id: "vm1",
+                title: "AppOnFly (Virtual Machine)",
+                image: "https://pbs.twimg.com/profile_images/571351367877275648/dypTRQ7b_400x400.png",
+                url: "https://app.apponfly.com/trial",
+                category: ["popular", "vm"]
+            },
+            {
                 id: "app1",
                 title: "Discord - Login",
                 image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ10rPiqQn7hN6eGiuB-UUYyerDiN7SiHpOWQ&s",
@@ -1092,38 +1313,46 @@
                 category: ["apps", "popular"]
             }
         ];
-    
+
+        const proxyServers = {
+            'embeddr-5': 'https://embeddr.rhw.one/embed',
+            'frogiesarcade-1': 'https://frogiesarcade.win/embed.html',
+            'frogiesarcade-2': 'https://full.boxathome.net/embed.html',
+            'frogiesarcade-3': 'https://meximathurbanned.global.ssl.fastly.net/embed.html',
+            'frogiesarcade-4': 'https://frogiesarcade.win/embed.html'
+        };
+
         let copyTimeout;
         let currentAlert;
-    
+
         function smartCopy(text) {
             if (copyTimeout) clearTimeout(copyTimeout);
             if (currentAlert) document.body.removeChild(currentAlert);
-    
+
             currentAlert = document.createElement('div');
             currentAlert.innerHTML = `
-                <div style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #b3d4ff; color: white; padding: 10px 20px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 9999; display: flex; align-items: center;">
-                    <span>Copied to clipboard!</span>
-                    <button style="margin-left: 15px; background: #5094fc; color: white; border: none; padding: 3px 8px; border-radius: 3px; cursor: pointer;">OK</button>
-                </div>
-            `;
-    
+        <div style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #b3d4ff; color: white; padding: 10px 20px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 9999; display: flex; align-items: center;">
+            <span>Copied to clipboard!</span>
+            <button style="margin-left: 15px; background: #5094fc; color: white; border: none; padding: 3px 8px; border-radius: 3px; cursor: pointer;">OK</button>
+        </div>
+    `;
+
             const okButton = currentAlert.querySelector('button');
             okButton.onclick = () => {
                 clearTimeout(copyTimeout);
                 document.body.removeChild(currentAlert);
                 currentAlert = null;
             };
-    
+
             document.body.appendChild(currentAlert);
-    
+
             const textarea = document.createElement('textarea');
             textarea.value = text;
             document.body.appendChild(textarea);
             textarea.select();
             document.execCommand('copy');
             document.body.removeChild(textarea);
-    
+
             copyTimeout = setTimeout(() => {
                 if (currentAlert) {
                     document.body.removeChild(currentAlert);
@@ -1131,44 +1360,19 @@
                 }
             }, 5000);
         }
-    
-        document.addEventListener('DOMContentLoaded', function() {
-            const gamesGrid = document.getElementById('gamesGrid');
-            
-            games.forEach(game => {
-                const gameCard = document.createElement('div');
-                gameCard.className = 'game-card';
-                gameCard.id = 'card-' + game.id;
-                gameCard.dataset.categories = game.category.join(' ');
-                gameCard.innerHTML = `
-                    <img src="${game.image || 'https://via.placeholder.com/200x120?text=Game+Image'}" alt="${game.title}" class="game-image" onerror="this.src='https://via.placeholder.com/200x120?text=Image+Failed'">
-                    <div class="game-title">${game.title}</div>
-                `;
-                gameCard.onclick = function() {
-                    openGameInFullscreen(game.url);
-                };
-                gamesGrid.appendChild(gameCard);
-            });
-            
-            document.addEventListener('keydown', function(e) {
-                if (e.key === "Escape") {
-                    closeFullscreen();
-                }
-            });
-        });
-    
+
         function showPage(pageId, event) {
             if (event) event.preventDefault();
-            
+
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
-            
+
             const pageToShow = document.getElementById(pageId);
             if (pageToShow) {
                 pageToShow.classList.add('active');
             }
-            
+
             if (!hiddenPages.includes(pageId)) {
                 document.querySelectorAll('.nav-btn').forEach(btn => {
                     btn.classList.remove('active');
@@ -1178,205 +1382,396 @@
                     }
                 });
             }
-            
+
             if (pageToShow) {
                 pageToShow.scrollTop = 0;
             }
         }
+
+        function switchServers(serverId, event) {
+            if (event) event.preventDefault();
+
+            if (proxyServers[serverId]) {
+                localStorage.setItem('selectedProxyServer', serverId);
+                updateActiveServerButton(serverId);
+
+                currentAlert = document.createElement('div');
+                currentAlert.innerHTML = `
+            <div style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #b3d4ff; color: white; padding: 10px 20px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 9999;">
+                Switched to ${serverId.replace('-', ' ').toUpperCase()} server
+            </div>
+        `;
+                document.body.appendChild(currentAlert);
+
+                setTimeout(() => {
+                    if (currentAlert) {
+                        document.body.removeChild(currentAlert);
+                        currentAlert = null;
+                    }
+                }, 2000);
+            }
+        }
+
+        function updateActiveServerButton(activeServerId) {
+            document.querySelectorAll('#switch-servers .btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            const activeBtn = document.querySelector(`#switch-servers .btn[onclick*="${activeServerId}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
+        }
+
+        function openGameInFullscreen(url) {
+            const fullscreen = document.getElementById('fullscreen-game');
+            const container = document.querySelector('.page-container');
+            const navbar = document.querySelector('.navbar');
+
+            fullscreen.innerHTML = `
+        <button class="exit-game-btn" onclick="closeFullscreen()">×</button>
+        <iframe id="game-iframe" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+        <div class="fullscreen-message">Catsploit V1.2</div>
+    `;
+
+            const iframe = document.getElementById('game-iframe');
+            const loading = document.createElement('div');
+            loading.style.position = 'absolute';
+            loading.style.top = '50%';
+            loading.style.left = '50%';
+            loading.style.transform = 'translate(-50%, -50%)';
+            loading.style.color = 'white';
+            loading.style.fontSize = '20px';
+            loading.textContent = 'Loading...';
+            fullscreen.appendChild(loading);
+
+            try {
+                if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                    url = 'https://' + url;
+                }
+
+                const validatedUrl = new URL(url);
+
+                const selectedServer = localStorage.getItem('selectedProxyServer') || 'frogiesarcade-1';
+                let proxyBaseUrl = proxyServers[selectedServer];
+
+                proxyBaseUrl = proxyBaseUrl.replace(/#+$/, '') + '#';
+
+                const proxyUrl = proxyBaseUrl + validatedUrl.href;
+
+                iframe.src = proxyUrl;
+
+                iframe.onload = function () {
+                    loading.remove();
+                };
+
+                iframe.onerror = function () {
+                    const fallbackServers = [
+                        'https://frogiesarcade.win/embed.html#',
+                        'https://full.boxathome.net/embed.html#',
+                        'https://meximathurbanned.global.ssl.fastly.net/embed.html#'
+                    ];
+
+                    let currentServerIndex = 0;
+
+                    function tryFallback() {
+                        if (currentServerIndex < fallbackServers.length) {
+                            const fallbackUrl = fallbackServers[currentServerIndex] + validatedUrl.href;
+                            iframe.src = fallbackUrl;
+                            currentServerIndex++;
+                        } else {
+                            loading.textContent = 'Trying direct connection...';
+                            iframe.src = validatedUrl.href;
+
+                            setTimeout(() => {
+                                if (iframe.contentWindow && iframe.contentWindow.location.href !== validatedUrl.href) {
+                                    loading.textContent = 'Failed to load content. Please try another URL.';
+                                    setTimeout(() => {
+                                        closeFullscreen();
+                                    }, 2000);
+                                }
+                            }, 3000);
+                        }
+                    }
+
+                    tryFallback();
+                };
+
+                fullscreen.style.display = 'block';
+                container.style.display = 'none';
+                navbar.style.display = 'none';
+                document.body.style.overflow = 'hidden';
+            } catch (e) {
+                loading.textContent = 'Invalid URL. Please include http:// or https://';
+                setTimeout(() => {
+                    closeFullscreen();
+                }, 2000);
+            }
+        }
+
+        function closeFullscreen() {
+            const fullscreen = document.getElementById('fullscreen-game');
+            const iframe = document.getElementById('game-iframe');
+
+            if (iframe) {
+                iframe.src = 'about:blank';
+            }
+
+            fullscreen.style.display = 'none';
+            document.querySelector('.page-container').style.display = 'block';
+            document.querySelector('.navbar').style.display = 'flex';
+            document.body.style.overflow = 'auto';
+        }
+
+        let panicKey = '`';
+    let panicUrl = 'https://google.com';
+    let isListeningForKey = false;
     
+    function loadPanicSettings() {
+        const savedKey = localStorage.getItem('panicKey');
+        const savedUrl = localStorage.getItem('panicUrl');
+        
+        if (savedKey) panicKey = savedKey;
+        if (savedUrl) panicUrl = savedUrl;
+        
+        document.getElementById('current-panic-key').textContent = panicKey;
+        document.getElementById('panic-url').value = panicUrl;
+    }
+    
+    function savePanicSettings() {
+        const newUrl = document.getElementById('panic-url').value.trim();
+        
+        if (newUrl && (newUrl.startsWith('http://') || newUrl.startsWith('https://'))) {
+            panicUrl = newUrl;
+            localStorage.setItem('panicUrl', panicUrl);
+            
+            document.getElementById('panic-status').textContent = 'Settings saved successfully!';
+            document.getElementById('panic-status').style.color = 'green';
+            
+            setTimeout(() => {
+                document.getElementById('panic-status').textContent = 'Panic key is active';
+                document.getElementById('panic-status').style.color = 'var(--accent-blue)';
+            }, 2000);
+        } else {
+            document.getElementById('panic-status').textContent = 'Please enter a valid URL (include http:// or https://)';
+            document.getElementById('panic-status').style.color = 'red';
+        }
+    }
+    
+    document.getElementById('change-panic-key-btn').addEventListener('click', function() {
+        isListeningForKey = true;
+        document.getElementById('listening-status').textContent = 'Press any key to set as panic key...';
+        
+        const tempKeyListener = function(e) {
+            if (isListeningForKey) {
+                e.preventDefault();
+                
+                if (['Control', 'Shift', 'Alt', 'Meta', 'Tab', 'CapsLock'].includes(e.key)) {
+                    document.getElementById('listening-status').textContent = 'Cannot use modifier keys. Try another key.';
+                    return;
+                }
+                
+                panicKey = e.key;
+                localStorage.setItem('panicKey', panicKey);
+                document.getElementById('current-panic-key').textContent = panicKey;
+                document.getElementById('listening-status').textContent = `Panic key set to: ${panicKey}`;
+                
+                isListeningForKey = false;
+                document.removeEventListener('keydown', tempKeyListener);
+                
+                setTimeout(() => {
+                    document.getElementById('listening-status').textContent = '';
+                }, 2000);
+            }
+        };
+        
+        document.addEventListener('keydown', tempKeyListener);
+    });
+    
+    document.addEventListener('keydown', function(e) {
+        if (!isListeningForKey && e.key === panicKey) {
+            e.preventDefault();
+            window.location.href = panicUrl;
+        }
+    });
+    
+    window.addEventListener('load', function() {
+        loadPanicSettings();
+    });
+
+
         function filterGames() {
             const searchTerm = document.getElementById('gameSearch').value.toLowerCase();
             const gameCards = document.querySelectorAll('.game-card');
-            
+
             gameCards.forEach(card => {
                 const title = card.querySelector('.game-title').textContent.toLowerCase();
                 card.style.display = title.includes(searchTerm) ? 'block' : 'none';
             });
         }
-    
+
         function filterByCategory(category) {
             const gameCards = document.querySelectorAll('.game-card');
             const filterButton = document.querySelector('.filter-button');
-            
-            filterButton.textContent = category === 'all' ? 'All Games ▼' : 
-                                    category.charAt(0).toUpperCase() + category.slice(1) + ' ▼';
-            
+
+            filterButton.textContent = category === 'all' ? 'All Games ▼' :
+                category.charAt(0).toUpperCase() + category.slice(1) + ' ▼';
+
             gameCards.forEach(card => {
                 if (category === 'all') {
                     card.style.display = 'block';
                 } else {
                     const categories = card.dataset.categories.split(' ');
-                    if (categories.includes(category)) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
+                    card.style.display = categories.includes(category) ? 'block' : 'none';
                 }
             });
         }
-    
-        function openGameInFullscreen(url) {
-    const fullscreen = document.getElementById('fullscreen-game');
-    const container = document.querySelector('.page-container');
-    const navbar = document.querySelector('.navbar');
 
-    // Clear any existing iframe
-    const oldIframe = document.getElementById('game-iframe');
-    if (oldIframe) oldIframe.remove();
+        function initPartners() {
+            const partnersGrid = document.getElementById('partnersGrid');
 
-    // Create new iframe
-    const iframe = document.createElement('iframe');
-    iframe.id = 'game-iframe';
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
-    iframe.style.border = 'none';
-    iframe.allowFullscreen = true;
-    iframe.sandbox = 'allow-scripts allow-same-origin allow-popups allow-forms';
-
-    // Prepare proxy URLs with fallbacks
-    const proxyUrls = [
-        `https://meximathurbanned.global.ssl.fastly.net/embed.html#${encodeURIComponent(url)}`,
-        `https://full.boxathome.net/embed.html#${encodeURIComponent(url)}`,
-        `https://frogiesarcade.win/embed.html#${encodeURIComponent(url)}`,
-        `https://nowgg.lol/embed.html#${encodeURIComponent(url)}`,
-        url // Fallback to direct URL
-    ];
-
-    let currentProxyIndex = 0;
-
-    function tryNextProxy() {
-        if (currentProxyIndex < proxyUrls.length) {
-            iframe.src = proxyUrls[currentProxyIndex];
-            currentProxyIndex++;
-        }
-    }
-
-    // Try the first proxy
-    tryNextProxy();
-
-    // If iframe fails to load, try the next proxy
-    iframe.onerror = tryNextProxy;
-
-    // Add iframe to fullscreen container
-    fullscreen.appendChild(iframe);
-    fullscreen.style.display = 'block';
-    container.style.display = 'none';
-    navbar.style.display = 'none';
-    document.body.style.overflow = 'hidden';
-
-    // Add exit button
-    const exitBtn = document.createElement('button');
-    exitBtn.className = 'exit-game-btn';
-    exitBtn.innerHTML = '×';
-    exitBtn.onclick = closeFullscreen;
-    fullscreen.appendChild(exitBtn);
-
-    // Add loading timeout
-    const loadingCheck = setTimeout(() => {
-        if (!iframe.contentWindow || iframe.contentDocument.body.innerHTML === '') {
-            tryNextProxy();
-        }
-    }, 5000);
-
-    iframe.onload = () => {
-        clearTimeout(loadingCheck);
-    };
-}
-
-const partners = [
-{
-    id: "partner1",
-    title: "Benrogo",
-    icon: "https://172673.xyz/logo.png",
-    url: "https://benrogo.net/",
-    description: "Benrogo is a site has lots of sites that indicates you if a games website or a pr-xy is down and has lots of sites to search and play games on."
-}
-];
-
-function initPartners() {
-    const partnersGrid = document.getElementById('partnersGrid');
-    
-    partners.forEach(partner => {
-        const partnerCard = document.createElement('div');
-        partnerCard.className = 'partner-card';
-        partnerCard.innerHTML = `
+            partners.forEach(partner => {
+                const partnerCard = document.createElement('div');
+                partnerCard.className = 'partner-card';
+                partnerCard.innerHTML = `
             <img src="${partner.icon}" alt="${partner.title}" class="partner-icon">
             <p class="partner-name">${partner.title}</p>
         `;
-        partnerCard.onclick = function() {
-            openPartnerCard(partner);
-        };
-        partnersGrid.appendChild(partnerCard);
-    });
-}
+                partnerCard.onclick = function () {
+                    openPartnerCard(partner);
+                };
+                partnersGrid.appendChild(partnerCard);
+            });
+        }
 
-function openPartnerCard(partner) {
-    document.getElementById('expandedPartnerIcon').src = partner.icon;
-    document.getElementById('expandedPartnerTitle').textContent = partner.title;
-    document.getElementById('expandedPartnerDesc').textContent = partner.description;
-    document.getElementById('expandedPartnerBtn').onclick = function() {
-        window.location.href = partner.url;
-    };
-    
-    document.getElementById('partnerOverlay').classList.add('active');
-    document.getElementById('partnerExpanded').classList.add('active');
-}
+        function openPartnerCard(partner) {
+            document.getElementById('expandedPartnerIcon').src = partner.icon;
+            document.getElementById('expandedPartnerTitle').textContent = partner.title;
+            document.getElementById('expandedPartnerDesc').textContent = partner.description;
+            document.getElementById('expandedPartnerBtn').onclick = function () {
+                window.open(partner.url, '_blank');
+            };
 
-function closePartnerCard() {
-    document.getElementById('partnerOverlay').classList.remove('active');
-    document.getElementById('partnerExpanded').classList.remove('active');
-}
+            document.getElementById('partnerOverlay').classList.add('active');
+            document.getElementById('partnerExpanded').classList.add('active');
+        }
 
-document.addEventListener('DOMContentLoaded', function() {
-    initPartners();
-    
-    document.getElementById('partnerOverlay').onclick = closePartnerCard;
-});
+        function closePartnerCard() {
+            document.getElementById('partnerOverlay').classList.remove('active');
+            document.getElementById('partnerExpanded').classList.remove('active');
+        }
 
-function validateAndOpenProxy() {
-        const urlInput = document.getElementById('pro-xySearch').value.trim();
-        const errorElement = document.getElementById('url-error');
-        
-        errorElement.style.display = 'none';
-        
-        try {
-            if (!/^https?:\/\//i.test(urlInput)) {
-                throw new Error('Invalid protocol');
+        function validateAndOpenProxy() {
+            const urlInput = document.getElementById('pro-xySearch').value.trim();
+            const errorElement = document.getElementById('url-error');
+
+            errorElement.style.display = 'none';
+
+            try {
+                if (!/^https?:\/\//i.test(urlInput)) {
+                    throw new Error('Invalid protocol');
+                }
+                new URL(urlInput);
+                openGameInFullscreen(urlInput);
+            } catch (e) {
+                errorElement.style.display = 'block';
             }
-            
-            new URL(urlInput);
-            
-            openGameInFullscreen(urlInput);
-        } catch (e) {
-            errorElement.style.display = 'block';
         }
-    }
-    
-    function handleProxyEnter(event) {
-        if (event.key === 'Enter') {
-            validateAndOpenProxy();
-        }
-    }
-    
-        function closeFullscreen() {
-            const fullscreen = document.getElementById('fullscreen-game');
-            const iframe = document.getElementById('game-iframe');
-            
-            if (iframe) {
-                iframe.src = 'about:blank';
-                iframe.remove();
+
+        function handleProxyEnter(event) {
+            if (event.key === 'Enter') {
+                validateAndOpenProxy();
             }
-            
-            const exitBtn = document.querySelector('.exit-game-btn');
-            if (exitBtn) exitBtn.remove();
-            
-            fullscreen.style.display = 'none';
-            document.querySelector('.page-container').style.display = 'block';
-            document.querySelector('.navbar').style.display = 'flex';
-            document.body.style.overflow = 'auto';
-            
-            showPage('games');
         }
+
+        function generateDataText() {
+            let htmlInput = document.getElementById('htmlInput').value.trim();
+            if (!htmlInput) {
+                alert("Please enter some HTML code first!");
+                return;
+            }
+
+            const encodedHtml = encodeURIComponent(htmlInput)
+                .replace(/'/g, "%27")
+                .replace(/"/g, "%22");
+
+            const dataTextUrl = `data:text/html;charset=utf-8,${encodedHtml}`;
+
+            document.getElementById('generatedUrl').textContent = dataTextUrl;
+            document.getElementById('dataTextOutput').style.display = 'block';
+            document.getElementById('dataTextOutput').dataset.url = dataTextUrl;
+            document.getElementById('dataTextOutput').dataset.html = htmlInput;
+        }
+
+        function copyDataText() {
+            const outputDiv = document.getElementById('dataTextOutput');
+            if (!outputDiv.style.display || outputDiv.style.display === 'none') {
+                alert("Please generate a URL first!");
+                return;
+            }
+
+            const textToCopy = outputDiv.dataset.url;
+            const textarea = document.createElement('textarea');
+            textarea.value = textToCopy;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            smartCopy("Copied data:text URL to clipboard!");
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const savedServer = localStorage.getItem('selectedProxyServer');
+            if (savedServer) {
+                updateActiveServerButton(savedServer);
+            }
+
+            const gamesGrid = document.getElementById('gamesGrid');
+            games.forEach(game => {
+                const gameCard = document.createElement('div');
+                gameCard.className = 'game-card';
+                gameCard.id = 'card-' + game.id;
+                gameCard.dataset.categories = game.category.join(' ');
+                gameCard.innerHTML = `
+            <img src="${game.image || 'https://via.placeholder.com/200x120?text=Game+Image'}" 
+                 alt="${game.title}" 
+                 class="game-image" 
+                 onerror="this.src='https://via.placeholder.com/200x120?text=Image+Failed'">
+            <div class="game-title">${game.title}</div>
+        `;
+                gameCard.onclick = function () {
+                    openGameInFullscreen(game.url);
+                };
+                gamesGrid.appendChild(gameCard);
+            });
+
+            initPartners();
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === "Escape") {
+                    closeFullscreen();
+                }
+            });
+
+            document.getElementById('pro-xySearch').addEventListener('keydown', handleProxyEnter);
+        });
+
+        fullscreen.style.display = 'none';
+        document.querySelector('.page-container').style.display = 'block';
+        document.querySelector('.navbar').style.display = 'flex';
+        document.body.style.overflow = 'auto';
+
+
+        const exitBtn = document.querySelector('.exit-game-btn');
+        if (exitBtn) exitBtn.remove();
+
+        fullscreen.style.display = 'none';
+        document.querySelector('.page-container').style.display = 'block';
+        document.querySelector('.navbar').style.display = 'flex';
+        document.body.style.overflow = 'auto';
+
+        showPage('games');
     </script>
 </body>
+
 </html>
