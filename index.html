@@ -772,7 +772,7 @@ m -->
         <div style="max-width: 600px;">
             <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg/catsploit')">Github Repo</button>
         </div>
-    </div>    
+    </div>
 
     <div id="upd-v1.3" class="page">
         <h1>Update - V1.3</h1>
@@ -985,8 +985,8 @@ m -->
             <button class="btn" onclick="window.open('https://github.com/mrdavidss-vgg', '_blank')">My GitHub</button>
             <button class="btn" onclick="window.open('https://github.com/EvanTeSecond/Krypton', '_blank')">Krypton
                 Repo</button>
-                <button class="btn" onclick="window.open('https://zxsgames.vip/', '_blank')">ZXS Games
-                    </button>
+            <button class="btn" onclick="window.open('https://zxsgames.vip/', '_blank')">ZXS Games
+            </button>
             <button class="btn" onclick="window.open('https://github.com/FrogiesArcade', '_blank')">frogiesarcade
                 github</button>
             <button class="btn" onclick="window.open('https://dsc.gg/catsploit-dc', '_blank')">Catsploit
@@ -1108,32 +1108,35 @@ m -->
     <div id="panic-key" class="page">
         <h1>Panic Key</h1>
         <p>Press a key to instantly redirect to another site when someone approaches</p>
-        
+
         <div style="max-width: 600px; margin: 0 auto; text-align: left;">
             <div style="margin-bottom: 20px;">
                 <h3>Current Panic Key:</h3>
                 <div style="display: flex; align-items: center; gap: 10px;">
-                    <span id="current-panic-key" style="font-size: 24px; font-weight: bold; background: #f0f0f0; padding: 5px 15px; border-radius: 5px;">`</span>
+                    <span id="current-panic-key"
+                        style="font-size: 24px; font-weight: bold; background: #f0f0f0; padding: 5px 15px; border-radius: 5px;">`</span>
                     <button id="change-panic-key-btn" class="btn" style="padding: 8px 16px;">Change Key</button>
                 </div>
                 <p id="listening-status" style="color: #666; font-style: italic; margin-top: 5px;"></p>
             </div>
-            
+
             <div style="margin-bottom: 20px;">
                 <h3>Redirect URL:</h3>
                 <div style="display: flex; gap: 10px;">
-                    <input type="text" id="panic-url" style="flex: 1; padding: 10px; border: 2px solid var(--accent-blue); border-radius: 5px;" 
-                           placeholder="Enter URL (e.g., https://google.com)" value="https://google.com">
+                    <input type="text" id="panic-url"
+                        style="flex: 1; padding: 10px; border: 2px solid var(--accent-blue); border-radius: 5px;"
+                        placeholder="Enter URL (e.g., https://google.com)" value="https://google.com">
                     <button class="btn" onclick="savePanicSettings()" style="padding: 8px 16px;">Save Settings</button>
                 </div>
             </div>
-            
+
             <div style="margin-bottom: 20px;">
                 <h3>Status:</h3>
                 <p id="panic-status" style="color: var(--accent-blue); font-weight: bold;">Panic key is active</p>
             </div>
-            
-            <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent-blue);">
+
+            <div
+                style="background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent-blue);">
                 <h3>How to use:</h3>
                 <p>1. Set your preferred panic key (default is '`')</p>
                 <p>2. Set the URL you want to redirect to when panic key is pressed</p>
@@ -1347,7 +1350,7 @@ m -->
             currentAlert = document.createElement('div');
             currentAlert.innerHTML = `
         <div style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #b3d4ff; color: white; padding: 10px 20px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 9999; display: flex; align-items: center;">
-            <span>Copied to clipboard!</span>
+            <span>Copied: ${text.length > 30 ? text.substring(0, 30) + '...' : text}</span>
             <button style="margin-left: 15px; background: #5094fc; color: white; border: none; padding: 3px 8px; border-radius: 3px; cursor: pointer;">OK</button>
         </div>
     `;
@@ -1373,9 +1376,8 @@ m -->
                     document.body.removeChild(currentAlert);
                     currentAlert = null;
                 }
-            }, 5000);
+            }, 2350);
         }
-
         function showPage(pageId, event) {
             if (event) event.preventDefault();
 
@@ -1539,80 +1541,80 @@ m -->
         }
 
         let panicKey = '`';
-    let panicUrl = 'https://google.com';
-    let isListeningForKey = false;
-    
-    function loadPanicSettings() {
-        const savedKey = localStorage.getItem('panicKey');
-        const savedUrl = localStorage.getItem('panicUrl');
-        
-        if (savedKey) panicKey = savedKey;
-        if (savedUrl) panicUrl = savedUrl;
-        
-        document.getElementById('current-panic-key').textContent = panicKey;
-        document.getElementById('panic-url').value = panicUrl;
-    }
-    
-    function savePanicSettings() {
-        const newUrl = document.getElementById('panic-url').value.trim();
-        
-        if (newUrl && (newUrl.startsWith('http://') || newUrl.startsWith('https://'))) {
-            panicUrl = newUrl;
-            localStorage.setItem('panicUrl', panicUrl);
-            
-            document.getElementById('panic-status').textContent = 'Settings saved successfully!';
-            document.getElementById('panic-status').style.color = 'green';
-            
-            setTimeout(() => {
-                document.getElementById('panic-status').textContent = 'Panic key is active';
-                document.getElementById('panic-status').style.color = 'var(--accent-blue)';
-            }, 2000);
-        } else {
-            document.getElementById('panic-status').textContent = 'Please enter a valid URL (include http:// or https://)';
-            document.getElementById('panic-status').style.color = 'red';
+        let panicUrl = 'https://google.com';
+        let isListeningForKey = false;
+
+        function loadPanicSettings() {
+            const savedKey = localStorage.getItem('panicKey');
+            const savedUrl = localStorage.getItem('panicUrl');
+
+            if (savedKey) panicKey = savedKey;
+            if (savedUrl) panicUrl = savedUrl;
+
+            document.getElementById('current-panic-key').textContent = panicKey;
+            document.getElementById('panic-url').value = panicUrl;
         }
-    }
-    
-    document.getElementById('change-panic-key-btn').addEventListener('click', function() {
-        isListeningForKey = true;
-        document.getElementById('listening-status').textContent = 'Press any key to set as panic key...';
-        
-        const tempKeyListener = function(e) {
-            if (isListeningForKey) {
-                e.preventDefault();
-                
-                if (['Control', 'Shift', 'Alt', 'Meta', 'Tab', 'CapsLock'].includes(e.key)) {
-                    document.getElementById('listening-status').textContent = 'Cannot use modifier keys. Try another key.';
-                    return;
-                }
-                
-                panicKey = e.key;
-                localStorage.setItem('panicKey', panicKey);
-                document.getElementById('current-panic-key').textContent = panicKey;
-                document.getElementById('listening-status').textContent = `Panic key set to: ${panicKey}`;
-                
-                isListeningForKey = false;
-                document.removeEventListener('keydown', tempKeyListener);
-                
+
+        function savePanicSettings() {
+            const newUrl = document.getElementById('panic-url').value.trim();
+
+            if (newUrl && (newUrl.startsWith('http://') || newUrl.startsWith('https://'))) {
+                panicUrl = newUrl;
+                localStorage.setItem('panicUrl', panicUrl);
+
+                document.getElementById('panic-status').textContent = 'Settings saved successfully!';
+                document.getElementById('panic-status').style.color = 'green';
+
                 setTimeout(() => {
-                    document.getElementById('listening-status').textContent = '';
+                    document.getElementById('panic-status').textContent = 'Panic key is active';
+                    document.getElementById('panic-status').style.color = 'var(--accent-blue)';
                 }, 2000);
+            } else {
+                document.getElementById('panic-status').textContent = 'Please enter a valid URL (include http:// or https://)';
+                document.getElementById('panic-status').style.color = 'red';
             }
-        };
-        
-        document.addEventListener('keydown', tempKeyListener);
-    });
-    
-    document.addEventListener('keydown', function(e) {
-        if (!isListeningForKey && e.key === panicKey) {
-            e.preventDefault();
-            window.location.href = panicUrl;
         }
-    });
-    
-    window.addEventListener('load', function() {
-        loadPanicSettings();
-    });
+
+        document.getElementById('change-panic-key-btn').addEventListener('click', function () {
+            isListeningForKey = true;
+            document.getElementById('listening-status').textContent = 'Press any key to set as panic key...';
+
+            const tempKeyListener = function (e) {
+                if (isListeningForKey) {
+                    e.preventDefault();
+
+                    if (['Control', 'Shift', 'Alt', 'Meta', 'Tab', 'CapsLock'].includes(e.key)) {
+                        document.getElementById('listening-status').textContent = 'Cannot use modifier keys. Try another key.';
+                        return;
+                    }
+
+                    panicKey = e.key;
+                    localStorage.setItem('panicKey', panicKey);
+                    document.getElementById('current-panic-key').textContent = panicKey;
+                    document.getElementById('listening-status').textContent = `Panic key set to: ${panicKey}`;
+
+                    isListeningForKey = false;
+                    document.removeEventListener('keydown', tempKeyListener);
+
+                    setTimeout(() => {
+                        document.getElementById('listening-status').textContent = '';
+                    }, 2000);
+                }
+            };
+
+            document.addEventListener('keydown', tempKeyListener);
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (!isListeningForKey && e.key === panicKey) {
+                e.preventDefault();
+                window.location.href = panicUrl;
+            }
+        });
+
+        window.addEventListener('load', function () {
+            loadPanicSettings();
+        });
 
 
         function filterGames() {
@@ -1715,7 +1717,6 @@ m -->
             document.getElementById('generatedUrl').textContent = dataTextUrl;
             document.getElementById('dataTextOutput').style.display = 'block';
             document.getElementById('dataTextOutput').dataset.url = dataTextUrl;
-            document.getElementById('dataTextOutput').dataset.html = htmlInput;
         }
 
         function copyDataText() {
@@ -1732,7 +1733,7 @@ m -->
             textarea.select();
             document.execCommand('copy');
             document.body.removeChild(textarea);
-            smartCopy("Copied data:text URL to clipboard!");
+            smartCopy(textToCopy);
         }
 
         document.addEventListener('DOMContentLoaded', function () {
